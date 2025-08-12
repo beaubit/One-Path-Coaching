@@ -3,71 +3,86 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Beau Schmitz Coaching — Exercise · Nutrition · Habits</title>
-  <meta name="description" content="Personal coaching in Melbourne for sustainable exercise, nutrition, and healthy habits. Online and local clients welcome." />
+  <title>One Path Health Coaching — Exercise · Nutrition · Habits</title>
+  <meta name="description" content="One Path Health Coaching helps Melbourne and online clients build sustainable exercise and nutrition habits through tailored plans, education, and supportive accountability." />
+  <meta name="theme-color" content="#5dbb8a" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b1020; --panel:#0f1730; --ink:#e8ecff; --muted:#b9c3ffb0;
-      --accent:#76a8ff; --accent-2:#9ef5c9; --line:#223056; --chip:#14204a;
-      --ok:#3ddc97; --warn:#ffd166; --error:#ff7a7a;
+      /* Light, warm, healthy palette */
+      --bg:#f4faf7;        /* page background */
+      --panel:#ffffff;     /* cards & form fields */
+      --ink:#0f1f17;       /* main text (near black/green) */
+      --muted:#506a5b;     /* secondary text */
+      --accent:#45a877;    /* buttons/links primary */
+      --accent-2:#a7e0c4;  /* soft accent */
+      --line:#d6e9df;      /* borders */
+      --chip:#e9f6ef;      /* subtle chips */
+      --ok:#2e7d32; --warn:#b07c00; --error:#b3261e;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font-family: ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
-         color:var(--ink); background:
-         radial-gradient(1200px 800px at 15% -10%, #1b2551 0%, var(--bg) 55%) no-repeat fixed,
-         linear-gradient(180deg, #0b1125 0%, #0b0f1b 100%);
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 15% -10%, #e7f6ee 0%, var(--bg) 55%) no-repeat fixed,
+        linear-gradient(180deg, #f4faf7 0%, #f6fbf8 100%);
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
     .wrap{max-width:1100px; margin-inline:auto; padding:24px}
+
     header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px);
-           background:linear-gradient(180deg, rgba(11,16,32,.85), rgba(11,16,32,.3));
+           background:linear-gradient(180deg, rgba(244,250,247,.85), rgba(244,250,247,.6));
            border-bottom:1px solid var(--line)}
     .nav{display:flex; align-items:center; gap:18px;}
     .nav .spacer{flex:1}
+    .brandmark{width:32px; height:32px; border-radius:10px; background:linear-gradient(135deg,#8be0ba,#45a877); border:1px solid #72c49c}
+
     .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px;
-         background:linear-gradient(180deg,#2a3b75,#23315e); color:var(--ink); border:1px solid #344575;
-         box-shadow:0 6px 18px rgba(14,24,52,.35); cursor:pointer; font-weight:600}
+         background:linear-gradient(180deg,#5ec08f,#45a877); color:white; border:1px solid #4fb083;
+         box-shadow:0 6px 18px rgba(36,140,96,.20); cursor:pointer; font-weight:600}
     .btn:hover{filter:brightness(1.06)}
-    .btn.ghost{background:transparent; border-color:#2d3d6d}
+    .btn.ghost{background:transparent; color:var(--accent); border:1px solid var(--accent); box-shadow:none}
 
     .hero{padding:64px 24px 32px}
     .hero .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:36px}
-    .card{background:linear-gradient(180deg, #101938, #0e1734); border:1px solid var(--line);
-          border-radius:20px; padding:22px; box-shadow: 0 10px 28px rgba(12,18,42,.45)}
-    h1{font-size:clamp(28px, 3.8vw, 48px); line-height:1.08; margin:0 0 12px}
-    h2{font-size:clamp(22px, 2.6vw, 32px); margin:0 0 12px}
+
+    .card{background:var(--panel); border:1px solid var(--line);
+          border-radius:20px; padding:22px; box-shadow: 0 8px 18px rgba(24,60,42,.06)}
+    h1{font-size:clamp(30px, 3.6vw, 46px); line-height:1.08; margin:0 0 12px}
+    h2{font-size:clamp(22px, 2.4vw, 32px); margin:0 0 12px}
     h3{font-size:20px; margin:16px 0 8px}
     p{color:var(--muted); line-height:1.65}
     .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:16px}
     .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px}
-    .k strong{display:block; font-size:18px}
+    .k strong{display:block; font-size:18px; color:var(--ink)}
 
-    /* Sections */
     section{padding:40px 24px}
     .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
     .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line);
-          background:linear-gradient(180deg,#121c3c,#0f1834); color:var(--muted); font-size:12px}
+          background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:var(--muted); font-size:12px}
 
     .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
     .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
 
     /* Form */
     form{display:grid; gap:12px}
-    label{font-weight:600; color:#dbe3ff}
+    label{font-weight:600; color:#1c372a}
     input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink);
-      background:#0c1430; border:1px solid #273765; outline:none}
-    input:focus, textarea:focus, select:focus{border-color:#4a6fe3}
+      background:#ffffff; border:1px solid var(--line); outline:none}
+    input::placeholder, textarea::placeholder{color:#7b9788}
+    input:focus, textarea:focus, select:focus{border-color:#84c9a8; box-shadow:0 0 0 3px #a7e0c44d}
     .inline{display:flex; gap:12px}
     .hint{font-size:12px; color:var(--muted)}
-    .success{background: #102a1e; border:1px solid #2c7d52; color:#b7ffd9; padding:10px 12px; border-radius:12px}
-    .error{background:#2a1111; border:1px solid #7d2c2c; color:#ffd6d6; padding:10px 12px; border-radius:12px}
+    .success{background:#e8f7ee; border:1px solid #bfe8d0; color:#1f3b2d; padding:10px 12px; border-radius:12px}
+    .error{background:#fdeaea; border:1px solid #f3c0c0; color:#6b1111; padding:10px 12px; border-radius:12px}
 
-    /* Footer */
     footer{padding:28px 24px; border-top:1px solid var(--line); color:var(--muted)}
 
-    /* Responsive */
     @media (max-width: 900px){
       .hero .grid{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
@@ -78,10 +93,11 @@
 </head>
 <body>
   <!-- 
-    👋 Hey Beau!
-    Single-file site scaffold for your coaching business (Melbourne + online).
+    One Path Health Coaching (Melbourne + online)
 
-    HOW TO WIRE THE INTAKE FORM (choose one):
+    HOSTING: Upload this file as **index.html** to your GitHub repo and turn on GitHub Pages.
+
+    FORM WIRING (choose one):
     1) GOOGLE SHEETS (Apps Script) — recommended
        • Make a new Google Sheet → Extensions → Apps Script. Paste this sample:
 
@@ -97,21 +113,16 @@ function doPost(e){
 
     2) MAILTO FALLBACK (no server):
        • If no endpoint is set, the form will open the user's email client with a prefilled email to you.
-       • Replace YOUR_EMAIL@EXAMPLE.COM below.
+       • This file is prefilled to email: bschmitz799@gmail.com — change if needed.
 
-    3) Zapier/Make/Forms: paste webhook URL into data-endpoint.
-
-    LEGAL/ETHICS REMINDERS (edit copy as needed):
-      • You are not a dietitian. Provide general nutrition education only; avoid medical nutrition therapy.
-      • Include an informed-consent checkbox (already included).
-      • Add your ABN when available and your business policies.
+    NOTE: GitHub repo names cannot contain spaces. Consider `one-path-health` as the repo name.
   -->
 
   <header>
     <div class="wrap nav">
       <div style="display:flex; align-items:center; gap:12px">
-        <div style="width:32px; height:32px; border-radius:10px; background:linear-gradient(135deg,#6aa8ff,#9ef5c9)"></div>
-        <strong>Beau Schmitz Coaching</strong>
+        <div class="brandmark"></div>
+        <strong>One Path Health Coaching</strong>
       </div>
       <div class="spacer"></div>
       <a class="btn ghost" href="#services">Services</a>
@@ -156,26 +167,26 @@ function doPost(e){
       </div>
     </section>
 
-    <!-- ABOUT (Blank area to fill later) -->
+    <!-- ABOUT (placeholders) -->
     <section id="about">
       <div class="wrap">
         <div class="section-title">
-          <h2>About Beau</h2><span class="pill">Edit this later</span>
+          <h2>About One Path Health</h2><span class="pill">Edit this later</span>
         </div>
         <div class="grid-2">
           <div class="card">
             <h3>Your story / philosophy</h3>
-            <p><!-- Write a short origin story and your coaching philosophy here. --></p>
+            <p><!-- Add your origin story and coaching philosophy. --></p>
           </div>
           <div class="card">
             <h3>Qualifications & approach</h3>
-            <p><!-- Add high-level background (Bachelor of Science in Business Management), 6+ years of self-directed training/nutrition study, body composition maintenance, etc. Add scope of practice note. --></p>
+            <p><!-- Bachelor of Science in Business Management; 6+ years of self-directed training/nutrition study; scope note: general nutrition education, not medical nutrition therapy. --></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- SERVICES (placeholders) -->
     <section id="services">
       <div class="wrap">
         <div class="section-title">
@@ -184,21 +195,21 @@ function doPost(e){
         <div class="grid-3">
           <div class="card">
             <h3>Training Programs</h3>
-            <p><!-- Bullet what programs look like (split, days/week, progression, mobility). --></p>
+            <p><!-- Describe structure (days/week, progression, mobility). --></p>
           </div>
           <div class="card">
             <h3>Nutrition Guidance</h3>
-            <p><!-- Explain style: simple swaps, portion awareness, flexible treats, education on sleep/energy/insulin. --></p>
+            <p><!-- Explain approach: simple swaps, portion awareness, flexible treats, education on sleep/energy/insulin. --></p>
           </div>
           <div class="card">
             <h3>Accountability & Support</h3>
-            <p><!-- Describe check-ins, messaging, progress reviews, adjustments. --></p>
+            <p><!-- Check-ins cadence, messaging support, plan adjustments. --></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROCESS / HOW IT WORKS -->
+    <!-- HOW IT WORKS -->
     <section id="approach">
       <div class="wrap">
         <div class="section-title">
@@ -228,30 +239,50 @@ function doPost(e){
       </div>
     </section>
 
-    <!-- PRICING (placeholder) -->
+    <!-- PRICING (customized) -->
     <section id="pricing">
       <div class="wrap">
         <div class="section-title">
-          <h2>Packages & Pricing</h2><span class="pill">Fill in later</span>
+          <h2>Packages & Pricing</h2><span class="pill">AUD</span>
         </div>
         <div class="grid-3">
           <div class="card">
-            <h3>Starter</h3>
-            <p><!-- Add inclusions and AUD price. --></p>
+            <h3>Exercise/Nutrition Plan</h3>
+            <p style="margin:.25rem 0 .5rem; font-weight:700; color:var(--ink)">$50</p>
+            <p>Customized nutrition and exercise protocols you can use immediately to start your journey.</p>
+            <ul style="margin:.5rem 0 0; padding-left:18px; line-height:1.8">
+              <li>Personalized training plan or hybrid</li>
+              <li>Nutrition guide with simple swaps</li>
+            </ul>
+            <p class="hint" style="margin-top:.5rem">Recommended for those with strong foundations who want a structured plan that works.</p>
           </div>
           <div class="card">
-            <h3>Standard</h3>
-            <p><!-- Add inclusions and AUD price. --></p>
+            <h3>Getting Started Package</h3>
+            <p style="margin:.25rem 0 .5rem; font-weight:700; color:var(--ink)">$200 • 4 weeks</p>
+            <p>Everything in the Exercise/Nutrition Plan plus support to lay a strong foundation.</p>
+            <ul style="margin:.5rem 0 0; padding-left:18px; line-height:1.8">
+              <li>2 × 60‑min calls in your first month</li>
+              <li>Educational docs to prepare you to execute</li>
+              <li>24/7 support via email & socials</li>
+            </ul>
+            <p class="hint" style="margin-top:.5rem">Recommended if you want guidance and tools to confidently start your health journey.</p>
           </div>
           <div class="card">
-            <h3>Premium</h3>
-            <p><!-- Add inclusions and AUD price. --></p>
+            <h3>Dedicated Coaching</h3>
+            <p style="margin:.25rem 0 .5rem; font-weight:700; color:var(--ink)">$600 • 12 weeks</p>
+            <p>Ongoing, hands‑on coaching to transform your routines and results.</p>
+            <ul style="margin:.5rem 0 0; padding-left:18px; line-height:1.8">
+              <li>Everything in Getting Started, extended</li>
+              <li>Plan updates as you progress</li>
+              <li>Accountability and messaging support</li>
+            </ul>
+            <p class="hint" style="margin-top:.5rem">Recommended if you want long‑term support and a comprehensive reset.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ (placeholder) -->
+    <!-- FAQ (placeholders) -->
     <section id="faq">
       <div class="wrap">
         <div class="section-title">
@@ -264,7 +295,7 @@ function doPost(e){
           </div>
           <div class="card">
             <h3>What about nutrition advice?</h3>
-            <p><!-- Clarify scope: general education vs. medical nutrition therapy. --></p>
+            <p><!-- Clarify scope: general nutrition education; not medical nutrition therapy. --></p>
           </div>
         </div>
       </div>
@@ -284,7 +315,9 @@ function doPost(e){
             <div id="formMsg" role="status" aria-live="polite"></div>
             <form id="intakeForm" autocomplete="on" novalidate
                   data-endpoint=""  
-                  data-google-form-link="">
+                  data-google-form-link="https://docs.google.com/forms/d/1uxxEI6G5Q-CvHuDkeM8qIfFZ_8EZdWJb3OzCp5jSaCk/viewform">
+              <!-- Honeypot (anti‑spam) -->
+              <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" aria-hidden="true">
               <div class="inline">
                 <div style="flex:1">
                   <label for="name">Full name</label>
@@ -311,11 +344,11 @@ function doPost(e){
           </div>
           <div class="card">
             <h3>Contact</h3>
-            <p><strong>Email:</strong> <!-- Add your email address -->
-              <a href="mailto:YOUR_EMAIL@EXAMPLE.COM">YOUR_EMAIL@EXAMPLE.COM</a></p>
-            <p><strong>Instagram:</strong> <!-- Add your handle --> <a href="#">@yourhandle</a></p>
+            <p><strong>Email:</strong> 
+              <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
+            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/beauyup/" target="_blank" rel="noopener">@beauyup</a></p>
             <p><strong>Location:</strong> Melbourne, Australia • Sessions online or local</p>
-            <hr style="border-color:#23345f; margin:14px 0">
+            <hr style="border-color:var(--line); margin:14px 0">
             <h3>What to expect</h3>
             <ul style="margin:0; padding-left:18px; line-height:1.8">
               <li>Reply within 1–2 business days</li>
@@ -331,7 +364,7 @@ function doPost(e){
   <footer>
     <div class="wrap">
       <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
-        <span>© <span id="y"></span> Beau Schmitz Coaching</span>
+        <span>© <span id="y"></span> One Path Health Coaching</span>
         <span class="hint">ABN coming soon • Privacy & Terms (add links)</span>
       </div>
     </div>
@@ -343,7 +376,7 @@ function doPost(e){
 
     // Optional: set your Calendly/booking link here
     document.getElementById('bookCallBtn').addEventListener('click', () => {
-      const booking = 'https://calendly.com/'; // TODO: replace
+      const booking = 'https://calendly.com/'; // TODO: replace when ready
       if(booking && booking !== 'https://calendly.com/') window.open(booking, '_blank');
       else alert('Add your booking link in the code (search for bookCallBtn).');
     });
@@ -359,14 +392,13 @@ function doPost(e){
 
     function onSubmitSuccess(data){
       show('success', 'Thanks! Check your email soon — I\'ll follow up with next steps.');
-      // If you've set a Google Form link on the form element, redirect to it:
       const gf = form.dataset.googleFormLink || '';
       if(gf){ setTimeout(()=>{ window.location.href = gf; }, 800); }
       form.reset();
     }
 
     function mailtoFallback(payload){
-      const to = 'YOUR_EMAIL@EXAMPLE.COM'; // TODO: replace
+      const to = 'bschmitz799@gmail.com';
       const subject = encodeURIComponent('New Coaching Intake');
       const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}`);
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
@@ -378,11 +410,14 @@ function doPost(e){
       const f = new FormData(form);
       const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim() };
 
+      // Honeypot check
+      if((document.getElementById('website')||{}).value){ return; }
+
       if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete all fields.'); return; }
       if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; }
       if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; }
 
-      // Save locally so you have a backup when someone submits offline
+      // Save locally as a backup
       try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){/* ignore */}
 
       const endpoint = form.dataset.endpoint?.trim();
@@ -394,7 +429,6 @@ function doPost(e){
           else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); }
         }catch(err){ show('error', 'Couldn\'t reach the server. Using email instead…'); mailtoFallback(payload); }
       } else {
-        // No endpoint set → mailto fallback
         mailtoFallback(payload);
       }
     });
