@@ -20,8 +20,8 @@
     html,body{height:100%}
     html{scroll-behavior:smooth}
     body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink); background: radial-gradient(1200px 800px at 15% -10%, #e7f6ee 0%, var(--bg) 55%) no-repeat fixed, linear-gradient(180deg, #f4faf7 0%, #f6fbf8 100%); }
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
+    a{color:var(--accent); text-decoration:none; transition:text-shadow .18s ease}
+    a:hover{text-decoration:underline; text-shadow:0 0 10px rgba(69,168,119,.45)}
     a:focus-visible, .btn:focus-visible{outline:3px solid var(--accent-2); outline-offset:2px; border-radius:14px}
     .wrap{max-width:1100px; margin-inline:auto; padding:24px}
 
@@ -30,27 +30,42 @@
     .brandmark{width:32px; height:32px; border-radius:10px; background:linear-gradient(135deg,#8be0ba,#45a877); border:1px solid #72c49c}
 
     /* Buttons */
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:linear-gradient(180deg,#5ec08f,#45a877); color:white; border:1px solid #4fb083; box-shadow:0 6px 18px rgba(36,140,96,.20); cursor:pointer; font-weight:600;
-         transition: transform .18s ease, box-shadow .18s ease, filter .18s ease; will-change: transform}
-    .btn:hover{filter:brightness(1.06); transform:scale(1.04)}
-    .btn:active{transform:scale(0.98)}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:linear-gradient(180deg,#5ec08f,#45a877); color:white; border:1px solid #4fb083; box-shadow:0 8px 22px rgba(36,140,96,.22); cursor:pointer; font-weight:600;
+         transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease; will-change: transform}
+    .btn:hover{filter:brightness(1.07); transform:scale(1.09); box-shadow:0 14px 36px rgba(36,140,96,.30); text-shadow:0 0 10px rgba(255,255,255,.7), 0 0 18px rgba(69,168,119,.55)}
+    .btn:active{transform:scale(0.97)}
     .btn.ghost{background:transparent; color:var(--accent); border:1px solid var(--accent); box-shadow:none}
+    .btn.ghost:hover{box-shadow:0 10px 26px rgba(36,140,96,.18); text-shadow:0 0 10px rgba(69,168,119,.55)}
 
-    /* Also bubble accordion headers slightly */
-    .acc-head{transition: transform .18s ease} 
-    .acc-head:hover, .acc-head:focus-visible{transform:scale(1.02)}
+    /* Bubble feel for accordion headers too */
+    .acc-head{transition: transform .2s ease, text-shadow .2s ease}
+    .acc-head:hover, .acc-head:focus-visible{transform:scale(1.04); text-shadow:0 0 10px rgba(69,168,119,.4)}
     .acc-head:active{transform:scale(0.99)}
 
     .hero{padding:64px 24px 32px} .hero .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:36px}
-    .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:22px; box-shadow: 0 8px 18px rgba(24,60,42,.06)}
-    h1{font-size:clamp(30px, 3.6vw, 46px); line-height:1.08; margin:0 0 12px} h2{font-size:clamp(22px, 2.4vw, 32px); margin:0 0 12px} h3{font-size:20px; margin:16px 0 8px} p{color:var(--muted); line-height:1.65}
-    .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:16px} .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px} .k strong{display:block; font-size:18px; color:var(--ink)}
-    section{padding:44px 24px} .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
-    .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:var(--muted); font-size:12px}
-    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px} .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
+
+    /* Stronger shadows on content sections */
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:22px; box-shadow: 0 16px 38px rgba(24,60,42,.12)}
+    .card:hover{box-shadow:0 22px 48px rgba(24,60,42,.16)}
+
+    h1{font-size:clamp(30px, 3.6vw, 46px); line-height:1.08; margin:0 0 12px}
+    h2{font-size:clamp(22px, 2.4vw, 32px); margin:0 0 12px}
+    h3{font-size:20px; margin:16px 0 8px}
+    p{color:var(--muted); line-height:1.65}
+
+    .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:16px}
+    .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px; box-shadow:0 6px 16px rgba(24,60,42,.10)}
+    .k strong{display:block; font-size:18px; color:var(--ink)}
+
+    section{padding:44px 24px}
+    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:var(--muted); font-size:12px; box-shadow:0 4px 10px rgba(24,60,42,.10)}
+
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
+    .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
 
     /* Carousel */
-    .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:20px; border:1px solid var(--line); background:#eef7f1}
+    .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:20px; border:1px solid var(--line); background:#eef7f1; box-shadow:0 14px 36px rgba(24,60,42,.12)}
     .slide{position:absolute; inset:0; opacity:0; transition:opacity .7s ease; display:flex; align-items:center; justify-content:center}
     .slide.active{opacity:1} .slide img{width:100%; height:100%; object-fit:cover}
     .dots{position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px}
@@ -59,15 +74,19 @@
 
     /* Form */
     form{display:grid; gap:12px} label{font-weight:600; color:#1c372a}
-    input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #111; outline:none}
+    input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #111; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
     input::placeholder, textarea::placeholder{color:#7b9788}
-    input:focus, textarea:focus, select:focus{border-color:#111; box-shadow:0 0 0 3px #a7e0c44d}
-    .inline{display:flex; gap:12px} .hint{font-size:12px; color:var(--muted)} .success{background:#e8f7ee; border:1px solid #bfe8d0; color:#1f3b2d; padding:10px 12px; border-radius:12px} .error{background:#fdeaea; border:1px solid #f3c0c0; color:#6b1111; padding:10px 12px; border-radius:12px}
+    input:focus, textarea:focus, select:focus{border-color:#111; box-shadow:0 8px 22px rgba(0,0,0,.12), 0 0 0 3px #a7e0c44d}
+
+    .inline{display:flex; gap:12px}
+    .hint{font-size:12px; color:var(--muted)}
+    .success{background:#e8f7ee; border:1px solid #bfe8d0; color:#1f3b2d; padding:10px 12px; border-radius:12px; box-shadow:0 6px 16px rgba(24,60,42,.12)}
+    .error{background:#fdeaea; border:1px solid #f3c0c0; color:#6b1111; padding:10px 12px; border-radius:12px; box-shadow:0 6px 16px rgba(177,58,58,.12)}
 
     footer{padding:28px 24px; border-top:1px solid var(--line); color:var(--muted)}
 
     /* Accordion (smooth collapse/expand) */
-    .accordion .item{border:1px solid var(--line); border-radius:16px; background:var(--panel); overflow:hidden}
+    .accordion .item{border:1px solid var(--line); border-radius:16px; background:var(--panel); overflow:hidden; box-shadow:0 12px 28px rgba(24,60,42,.10)}
     .acc-head{width:100%; text-align:left; background:transparent; border:0; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; font-weight:600}
     .acc-icon{transition:transform .35s ease}
     .acc-panel{max-height:0; overflow:hidden; opacity:.0; padding:0 16px; transition:max-height .45s ease, opacity .45s ease, padding .3s ease}
@@ -155,48 +174,10 @@
       </div>
     </section>
 
-    <!-- SERVICES (placeholders) -->
+    <!-- SERVICES & PACKAGES (moved pricing content here) -->
     <section id="services">
       <div class="wrap">
-        <div class="section-title"><h2>Services</h2><span class="pill">Edit this later</span></div>
-        <div class="grid-3">
-          <div class="card"><h3>Training Programs</h3><p><!-- Details here. --></p></div>
-          <div class="card"><h3>Nutrition Guidance</h3><p><!-- Details here. --></p></div>
-          <div class="card"><h3>Accountability & Support</h3><p><!-- Details here. --></p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="approach">
-      <div class="wrap">
-        <div class="section-title"><h2>How it works</h2><span class="pill">Edit this later</span></div>
-        <ol class="card" style="margin:0; padding-left:22px; line-height:1.9">
-          <li>Submit the intake form below.</li>
-          <li>Free 15–20 min intro call to learn your goals, preferences, and schedule.</li>
-          <li>I design your plan and walk you through it on an education call.</li>
-          <li>Weekly/fortnightly check-ins; adjust training/nutrition based on feedback.</li>
-          <li>Build independence: you graduate confident and self-sufficient.</li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-      <div class="wrap">
-        <div class="section-title"><h2>Client Wins</h2><span class="pill">Add later</span></div>
-        <div class="grid-3">
-          <div class="card"><em>“I felt supported from day one. The plan was simple to follow and didn’t take over my life.”</em><p class="hint">— J., Brunswick</p></div>
-          <div class="card"><em>“Practical advice that fit my schedule. I finally enjoy training again.”</em><p class="hint">— S., Fitzroy</p></div>
-          <div class="card"><em>“Small changes added up to better sleep and more energy.”</em><p class="hint">— A., Carlton</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing">
-      <div class="wrap">
-        <div class="section-title"><h2>Packages & Pricing</h2><span class="pill">AUD</span></div>
+        <div class="section-title"><h2>Services & Packages</h2><span class="pill">AUD</span></div>
         <div class="grid-3">
           <div class="card">
             <h3>Exercise/Nutrition Plan</h3>
@@ -232,6 +213,32 @@
           </div>
         </div>
         <p class="hint" style="margin-top:10px">No lock‑in. Pause or cancel anytime with 48‑hour notice. Payments are in AUD. Receipts provided.</p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="approach">
+      <div class="wrap">
+        <div class="section-title"><h2>How it works</h2><span class="pill">Edit this later</span></div>
+        <ol class="card" style="margin:0; padding-left:22px; line-height:1.9">
+          <li>Submit the intake form below.</li>
+          <li>Free 15–20 min intro call to learn your goals, preferences, and schedule.</li>
+          <li>I design your plan and walk you through it on an education call.</li>
+          <li>Weekly/fortnightly check-ins; adjust training/nutrition based on feedback.</li>
+          <li>Build independence: you graduate confident and self-sufficient.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="wrap">
+        <div class="section-title"><h2>Client Wins</h2><span class="pill">Add later</span></div>
+        <div class="grid-3">
+          <div class="card"><em>“I felt supported from day one. The plan was simple to follow and didn’t take over my life.”</em><p class="hint">— J., Brunswick</p></div>
+          <div class="card"><em>“Practical advice that fit my schedule. I finally enjoy training again.”</em><p class="hint">— S., Fitzroy</p></div>
+          <div class="card"><em>“Small changes added up to better sleep and more energy.”</em><p class="hint">— A., Carlton</p></div>
+        </div>
       </div>
     </section>
 
