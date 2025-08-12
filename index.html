@@ -7,7 +7,7 @@
   <meta name="description" content="One Path Health Coaching helps Melbourne and online clients build sustainable exercise and nutrition habits through tailored plans, education, and supportive accountability." />
   <meta name="theme-color" content="#5dbb8a" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- Open Graph / Social -->
   <meta property="og:title" content="One Path Health Coaching — Melbourne & Online" />
   <meta property="og:description" content="Sustainable exercise and nutrition coaching. Kind, practical guidance that fits your life." />
@@ -15,41 +15,38 @@
   <meta property="og:url" content="https://beaubit.github.io/one-path-health/" />
   <meta property="og:image" content="https://your-domain.com/og-one-path-health.jpg" />
   <style>
-    :root{ --bg:#f4faf7; --panel:#ffffff; --ink:#0f1f17; --muted:#506a5b; --accent:#45a877; --accent-2:#a7e0c4; --line:#d6e9df; --chip:#e9f6ef; --ok:#2e7d32; --warn:#b07c00; --error:#b3261e; }
+    :root{
+      --bg:#f4faf7; --panel:#ffffff; --ink:#0f1f17; --muted:#506a5b; --accent:#45a877; --accent-dark:#2e7a55; --accent-2:#a7e0c4; --line:#d6e9df; --chip:#e9f6ef;
+      --btnGlow: rgba(255,255,255,.95);
+    }
     *{box-sizing:border-box}
     html,body{height:100%}
     html{scroll-behavior:smooth}
     body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink); background: radial-gradient(1200px 800px at 15% -10%, #e7f6ee 0%, var(--bg) 55%) no-repeat fixed, linear-gradient(180deg, #f4faf7 0%, #f6fbf8 100%); }
 
-    /* Top quote banner */
-    .quote-banner{background:linear-gradient(180deg,#ecf8f1,#f4faf7); border-bottom:1px solid var(--line)}
-    .quote-banner .wrap{padding-block:14px}
-    .quote{margin:0; text-align:center; font-family:"Playfair Display", Georgia, "Times New Roman", serif; font-style:italic; font-weight:400; font-size:clamp(18px, 2.2vw, 28px); line-height:1.3; letter-spacing:.2px}
-    .quote small{display:block; margin-top:4px; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-style:normal; font-weight:600; font-size:.9rem; color:var(--muted)}
-
     a{color:var(--accent); text-decoration:none; transition:text-shadow .18s ease}
     a:hover{text-decoration:underline; text-shadow:0 0 10px rgba(69,168,119,.45)}
     a:focus-visible, .btn:focus-visible{outline:3px solid var(--accent-2); outline-offset:2px; border-radius:14px}
+
     .wrap{max-width:1100px; margin-inline:auto; padding:24px}
 
     header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.85), rgba(244,250,247,.6)); border-bottom:1px solid var(--line)}
     .nav{display:flex; align-items:center; gap:18px;} .nav .spacer{flex:1}
-    .brand-logo{height:34px; width:auto; border-radius:8px; display:block}
+    .brand-logo{width:32px; height:32px; border-radius:8px; object-fit:cover; display:block}
 
-    /* Buttons */
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:linear-gradient(180deg,#5ec08f,#45a877); color:white; border:1px solid #4fb083; box-shadow:0 8px 22px rgba(36,140,96,.22); cursor:pointer; font-weight:600;
-         transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease; will-change: transform}
-    .btn:hover{filter:brightness(1.07); transform:scale(1.09); box-shadow:0 14px 36px rgba(36,140,96,.30); text-shadow:0 0 10px rgba(255,255,255,.7), 0 0 18px rgba(69,168,119,.55)}
+    /* Buttons — all filled, darker green, white glow on hover */
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:var(--accent-dark); color:#fff; border:1px solid #246448; box-shadow:0 8px 20px rgba(36,100,72,.25); cursor:pointer; font-weight:600; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease}
+    .btn:hover{filter:brightness(1.03); transform:scale(1.09); box-shadow:0 16px 36px rgba(36,100,72,.35); text-shadow:0 0 10px var(--btnGlow),0 0 18px var(--btnGlow)}
     .btn:active{transform:scale(0.97)}
-    .btn.ghost{background:transparent; color:var(--accent); border:1px solid var(--accent); box-shadow:none}
-    .btn.ghost:hover{box-shadow:0 10px 26px rgba(36,140,96,.18); text-shadow:0 0 10px rgba(69,168,119,.55)}
+    .btn.ghost{background:var(--accent-dark); color:#fff; border:1px solid #246448} /* Ghosts now filled too */
 
     /* Bubble feel for accordion headers too */
     .acc-head{transition: transform .2s ease, text-shadow .2s ease}
     .acc-head:hover, .acc-head:focus-visible{transform:scale(1.04); text-shadow:0 0 10px rgba(69,168,119,.4)}
     .acc-head:active{transform:scale(0.99)}
 
-    .hero{padding:64px 24px 32px} .hero .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:36px}
+    .hero{padding:64px 24px 32px}
+    .hero .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:36px}
 
     /* Stronger shadows on content sections */
     .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:22px; box-shadow: 0 16px 38px rgba(24,60,42,.12)}
@@ -79,6 +76,11 @@
     .dot{width:8px; height:8px; border-radius:50%; background:#ffffffaa; border:1px solid #ffffff; box-shadow:0 0 0 1px #00000022 inset}
     .dot.active{background:#45a877}
 
+    /* Pull-quote (moved under hero, smaller, italic, Inter) */
+    .quote-inline{padding:8px 24px 28px}
+    .quote-inline .site-quote{margin:0; text-align:center; font-style:italic; font-size:clamp(16px, 1.8vw, 20px); color:#375646}
+    .quote-inline .site-quote span{font-weight:600}
+
     /* Form */
     form{display:grid; gap:12px} label{font-weight:600; color:#1c372a}
     input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #111; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
@@ -99,21 +101,14 @@
     .acc-panel{max-height:0; overflow:hidden; opacity:.0; padding:0 16px; transition:max-height .45s ease, opacity .45s ease, padding .3s ease}
     .item.open .acc-panel{opacity:1; padding:0 16px 16px}
 
-    @media (max-width: 900px){ .hero .grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} header .nav{gap:10px} .quote{font-size:clamp(16px, 2.8vw, 22px)} }
+    @media (max-width: 900px){ .hero .grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} header .nav{gap:10px} }
   </style>
 </head>
 <body>
-  <!-- Quote banner -->
-  <div class="quote-banner">
-    <div class="wrap">
-      <blockquote class="quote">“He who has health has hope; and he who has hope has everything.” <small>— Thomas Carlyle</small></blockquote>
-    </div>
-  </div>
-
   <header>
     <div class="wrap nav">
       <a href="#" style="display:flex; align-items:center; gap:12px; text-decoration:none">
-        <img class="brand-logo" src="images/logo-one-path-health.png" alt="One Path Health logo" />
+        <img class="brand-logo" src="images/logo-one-path-health.jpg" alt="One Path Health logo" />
         <strong style="color:var(--ink)">One Path Health Coaching</strong>
       </a>
       <div class="spacer"></div>
@@ -162,6 +157,13 @@
       </div>
     </section>
 
+    <!-- QUOTE moved under hero -->
+    <section class="quote-inline">
+      <div class="wrap">
+        <p class="site-quote">“He who has health has hope; and he who has hope has everything.” <span>— Thomas Carlyle</span></p>
+      </div>
+    </section>
+
     <!-- ABOUT (carousel + copy) -->
     <section id="about">
       <div class="wrap">
@@ -188,7 +190,7 @@
       </div>
     </section>
 
-    <!-- SERVICES & PACKAGES (pricing merged here) -->
+    <!-- SERVICES & PACKAGES -->
     <section id="services">
       <div class="wrap">
         <div class="section-title"><h2>Services & Packages</h2><span class="pill">AUD</span></div>
