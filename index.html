@@ -76,6 +76,15 @@
     .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
     .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
 
+    /* Carousel */
+    .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:20px; border:1px solid var(--line); background:#eef7f1}
+    .slide{position:absolute; inset:0; opacity:0; transition:opacity .7s ease; display:flex; align-items:center; justify-content:center}
+    .slide.active{opacity:1}
+    .slide img{width:100%; height:100%; object-fit:cover}
+    .dots{position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px}
+    .dot{width:8px; height:8px; border-radius:50%; background:#ffffffaa; border:1px solid #ffffff; box-shadow:0 0 0 1px #00000022 inset}
+    .dot.active{background:#45a877}
+
     /* Form */
     form{display:grid; gap:12px}
     label{font-weight:600; color:#1c372a}
@@ -104,6 +113,11 @@
 
     HOSTING: Upload this file as **index.html** to your GitHub repo and turn on GitHub Pages.
 
+    ABOUT IMAGES:
+    • You provided HEIC photos. Many browsers don't display HEIC. Convert to JPG/PNG and place them in an /images folder:
+      images/IMG_6289.jpg, images/IMG_6256.jpg, images/IMG_1133.jpg, images/IMG_9327.jpg
+    • Then update the `aboutImages` array below if filenames differ.
+
     FORM WIRING (choose one):
     1) GOOGLE SHEETS (Apps Script) — recommended
        • Make a new Google Sheet → Extensions → Apps Script. Paste this sample:
@@ -111,7 +125,7 @@
 function doPost(e){
   const sheet = SpreadsheetApp.getActiveSheet();
   const data = JSON.parse(e.postData.contents);
-  sheet.appendRow([new Date(), data.name, data.birthday, data.email, data.phone, data.suburb, data.goal, data.limits, data.ref]);
+  sheet.appendRow([new Date(), data.name, data.birthday, data.email, data.suburb, data.goal, data.limits, data.ref]);
   return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
 }
        • Deploy → New deployment → type: Web app → Execute as: Me; Who has access: Anyone.
@@ -180,20 +194,32 @@ function doPost(e){
       </div>
     </section>
 
-    <!-- ABOUT (placeholders) -->
+    <!-- ABOUT (carousel + copy) -->
     <section id="about">
       <div class="wrap">
         <div class="section-title">
-          <h2>About One Path Health</h2><span class="pill">Edit this later</span>
+          <h2>About Me</h2><span class="pill">Meet Beau</span>
         </div>
         <div class="grid-2">
-          <div class="card">
-            <h3>Your story / philosophy</h3>
-            <p><!-- I started One Path Health to make exercise and nutrition feel doable—not overwhelming. After six years of testing what actually works in real life, I coach clients to build small, repeatable habits that compound into real change. My focus is education and support, so you understand why we’re doing each step and feel confident doing it on your own. --></p>
+          <!-- Carousel -->
+          <div class="card" style="padding:12px">
+            <div class="carousel" aria-label="Photo slideshow" aria-live="polite">
+              <div class="slide active"><img alt="Beau Schmitz" src="images/IMG_6289.jpg" /></div>
+              <div class="slide"><img alt="Beau Schmitz" src="images/IMG_6256.jpg" /></div>
+              <div class="slide"><img alt="Beau Schmitz" src="images/IMG_1133.jpg" /></div>
+              <div class="slide"><img alt="Beau Schmitz" src="images/IMG_9327.jpg" /></div>
+              <div class="dots" aria-hidden="true">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+            </div>
           </div>
+          <!-- Copy -->
           <div class="card">
-            <h3>Qualifications & approach</h3>
-            <p><!-- I provide general nutrition education and lifestyle guidance. I don’t provide medical nutrition therapy. If you have a medical condition or specific dietary needs, I’ll happily coordinate with your GP or an Accredited Practising Dietitian. --></p>
+            <h3>Health is Wealth</h3>
+            <p>My name is Beau Schmitz. I have been passionately dedicated to health and fitness for over 6 years. Constantly learning and applying healthy habits. My personal journey has helped me understand the mental and physical benefits of leading a health conscious life. My goal is to empower others through this knowledge and help them achieve the goal of loving the way they feel in their own body through sustainable life practices. <strong>Health is Wealth!</strong> When we take control of our health, all other areas of our life start to thrive!</p>
           </div>
         </div>
       </div>
@@ -344,17 +370,13 @@ function doPost(e){
               </div>
               <div class="inline">
                 <div style="flex:1">
-                  <label for="phone">Phone</label>
-                  <input id="phone" name="phone" type="tel" placeholder="04xx xxx xxx" />
-                </div>
-                <div style="flex:1">
                   <label for="suburb">Suburb</label>
                   <input id="suburb" name="suburb" type="text" placeholder="Brunswick" />
                 </div>
-              </div>
-              <div>
-                <label for="goal">Primary goal</label>
-                <input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" />
+                <div style="flex:1">
+                  <label for="goal">Primary goal</label>
+                  <input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" />
+                </div>
               </div>
               <div>
                 <label for="limits">Injuries or limitations (optional)</label>
@@ -395,20 +417,59 @@ function doPost(e){
         </div>
       </div>
     </section>
+
+    <!-- PRIVACY POLICY -->
+    <section id="privacy">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Privacy Policy</h2>
+          <span class="pill">Last updated: <span id="ppDate"></span></span>
+        </div>
+        <div class="card">
+          <p>We respect your privacy. This page explains what we collect, why we collect it, and how we keep it safe.</p>
+          <h3>What we collect</h3>
+          <ul>
+            <li>Contact details you provide (name, email, optional suburb and notes) via the intake form.</li>
+            <li>Any information you choose to share during coaching (e.g., goals, preferences).</li>
+          </ul>
+          <h3>How we use your information</h3>
+          <ul>
+            <li>To reply to your enquiry and provide coaching services.</li>
+            <li>To schedule calls, send resources, and manage your plan.</li>
+            <li>We do not sell or share your data.</li>
+          </ul>
+          <h3>Storage & security</h3>
+          <p>Information is stored securely in tools we use to deliver services (e.g., email, Google Drive/Sheets if you opt in). Access is limited to the coach.</p>
+          <h3>Your choices</h3>
+          <ul>
+            <li>Ask to access or correct your information at any time.</li>
+            <li>Ask to delete your information (unless we’re required to keep it by law).</li>
+            <li>Unsubscribe from messages by replying or contacting us.</li>
+          </ul>
+          <h3>Contact</h3>
+          <p>Email: <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="wrap">
       <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
         <span>© <span id="y"></span> One Path Health Coaching</span>
-        <span class="hint">ABN coming soon • Public liability & PI insured • Privacy-first • <a href="#">Privacy</a> • <a href="#">Terms</a></span>
+        <span class="hint">ABN coming soon • Public liability & PI insured • Privacy-first • <a href="#privacy">Privacy</a> • <a href="#">Terms</a></span>
       </div>
     </div>
   </footer>
 
   <script>
-    // Year in footer
+    // Year in footer & PP date (today)
     document.getElementById('y').textContent = new Date().getFullYear();
+    (function(){
+      const d = new Date();
+      const fmt = d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
+      const el = document.getElementById('ppDate'); if(el) el.textContent = fmt;
+    })();
 
     // Booking buttons
     function openBooking(){
@@ -418,6 +479,27 @@ function doPost(e){
     }
     document.getElementById('bookCallBtn').addEventListener('click', openBooking);
     document.getElementById('heroBookBtn').addEventListener('click', openBooking);
+
+    // ABOUT carousel (5s rotation)
+    (function(){
+      const container = document.querySelector('#about .carousel');
+      if(!container) return;
+      const slides = Array.from(container.querySelectorAll('.slide'));
+      const dots = Array.from(container.querySelectorAll('.dot'));
+      let i = 0; let timer = null;
+      function show(n){
+        slides[i].classList.remove('active'); dots[i].classList.remove('active');
+        i = n; if(i<0) i = slides.length-1; if(i>=slides.length) i = 0;
+        slides[i].classList.add('active'); dots[i].classList.add('active');
+      }
+      function next(){ show(i+1); }
+      function start(){ timer = setInterval(next, 5000); }
+      function stop(){ if(timer) clearInterval(timer); }
+      container.addEventListener('mouseenter', stop);
+      container.addEventListener('mouseleave', start);
+      dots.forEach((d, idx)=> d.addEventListener('click', ()=>{ stop(); show(idx); start(); }));
+      start();
+    })();
 
     const form = document.getElementById('intakeForm');
     const msg = document.getElementById('formMsg');
@@ -436,7 +518,7 @@ function doPost(e){
       const to = 'bschmitz799@gmail.com';
       const subject = encodeURIComponent('New Coaching Intake');
       const body = encodeURIComponent(
-        `Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nPhone: ${payload.phone||''}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`
+        `Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`
       );
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       onSubmitSuccess();
@@ -449,7 +531,6 @@ function doPost(e){
         name: f.get('name')?.trim(),
         birthday: f.get('birthday'),
         email: f.get('email')?.trim(),
-        phone: f.get('phone')?.trim(),
         suburb: f.get('suburb')?.trim(),
         goal: f.get('goal')?.trim(),
         limits: f.get('limits')?.trim(),
