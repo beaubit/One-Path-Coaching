@@ -15,128 +15,47 @@
   <meta property="og:url" content="https://beaubit.github.io/one-path-health/" />
   <meta property="og:image" content="https://your-domain.com/og-one-path-health.jpg" />
   <style>
-    :root{
-      /* Light, warm, healthy palette */
-      --bg:#f4faf7;        /* page background */
-      --panel:#ffffff;     /* cards & form fields */
-      --ink:#0f1f17;       /* main text */
-      --muted:#506a5b;     /* secondary text */
-      --accent:#45a877;    /* buttons/links primary */
-      --accent-2:#a7e0c4;  /* soft accent */
-      --line:#d6e9df;      /* borders */
-      --chip:#e9f6ef;      /* subtle chips */
-      --ok:#2e7d32; --warn:#b07c00; --error:#b3261e;
-    }
+    :root{ --bg:#f4faf7; --panel:#ffffff; --ink:#0f1f17; --muted:#506a5b; --accent:#45a877; --accent-2:#a7e0c4; --line:#d6e9df; --chip:#e9f6ef; --ok:#2e7d32; --warn:#b07c00; --error:#b3261e; }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--ink);
-      background:
-        radial-gradient(1200px 800px at 15% -10%, #e7f6ee 0%, var(--bg) 55%) no-repeat fixed,
-        linear-gradient(180deg, #f4faf7 0%, #f6fbf8 100%);
-    }
+    body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink); background: radial-gradient(1200px 800px at 15% -10%, #e7f6ee 0%, var(--bg) 55%) no-repeat fixed, linear-gradient(180deg, #f4faf7 0%, #f6fbf8 100%); }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
     a:focus-visible, .btn:focus-visible{outline:3px solid var(--accent-2); outline-offset:2px; border-radius:14px}
     .wrap{max-width:1100px; margin-inline:auto; padding:24px}
-
-    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px);
-           background:linear-gradient(180deg, rgba(244,250,247,.85), rgba(244,250,247,.6));
-           border-bottom:1px solid var(--line)}
-    .nav{display:flex; align-items:center; gap:18px;}
-    .nav .spacer{flex:1}
+    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.85), rgba(244,250,247,.6)); border-bottom:1px solid var(--line)}
+    .nav{display:flex; align-items:center; gap:18px;} .nav .spacer{flex:1}
     .brandmark{width:32px; height:32px; border-radius:10px; background:linear-gradient(135deg,#8be0ba,#45a877); border:1px solid #72c49c}
-
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px;
-         background:linear-gradient(180deg,#5ec08f,#45a877); color:white; border:1px solid #4fb083;
-         box-shadow:0 6px 18px rgba(36,140,96,.20); cursor:pointer; font-weight:600}
-    .btn:hover{filter:brightness(1.06)}
-    .btn.ghost{background:transparent; color:var(--accent); border:1px solid var(--accent); box-shadow:none}
-
-    .hero{padding:64px 24px 32px}
-    .hero .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:36px}
-
-    .card{background:var(--panel); border:1px solid var(--line);
-          border-radius:20px; padding:22px; box-shadow: 0 8px 18px rgba(24,60,42,.06)}
-    h1{font-size:clamp(30px, 3.6vw, 46px); line-height:1.08; margin:0 0 12px}
-    h2{font-size:clamp(22px, 2.4vw, 32px); margin:0 0 12px}
-    h3{font-size:20px; margin:16px 0 8px}
-    p{color:var(--muted); line-height:1.65}
-    .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:16px}
-    .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px}
-    .k strong{display:block; font-size:18px; color:var(--ink)}
-
-    section{padding:44px 24px}
-    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
-    .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line);
-          background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:var(--muted); font-size:12px}
-
-    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
-    .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
-
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:linear-gradient(180deg,#5ec08f,#45a877); color:white; border:1px solid #4fb083; box-shadow:0 6px 18px rgba(36,140,96,.20); cursor:pointer; font-weight:600}
+    .btn:hover{filter:brightness(1.06)} .btn.ghost{background:transparent; color:var(--accent); border:1px solid var(--accent); box-shadow:none}
+    .hero{padding:64px 24px 32px} .hero .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:36px}
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:22px; box-shadow: 0 8px 18px rgba(24,60,42,.06)}
+    h1{font-size:clamp(30px, 3.6vw, 46px); line-height:1.08; margin:0 0 12px} h2{font-size:clamp(22px, 2.4vw, 32px); margin:0 0 12px} h3{font-size:20px; margin:16px 0 8px} p{color:var(--muted); line-height:1.65}
+    .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:16px} .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px} .k strong{display:block; font-size:18px; color:var(--ink)}
+    section{padding:44px 24px} .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:var(--muted); font-size:12px}
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px} .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
     /* Carousel */
     .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:20px; border:1px solid var(--line); background:#eef7f1}
     .slide{position:absolute; inset:0; opacity:0; transition:opacity .7s ease; display:flex; align-items:center; justify-content:center}
-    .slide.active{opacity:1}
-    .slide img{width:100%; height:100%; object-fit:cover}
+    .slide.active{opacity:1} .slide img{width:100%; height:100%; object-fit:cover}
     .dots{position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px}
     .dot{width:8px; height:8px; border-radius:50%; background:#ffffffaa; border:1px solid #ffffff; box-shadow:0 0 0 1px #00000022 inset}
     .dot.active{background:#45a877}
-
     /* Form */
-    form{display:grid; gap:12px}
-    label{font-weight:600; color:#1c372a}
-    input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink);
-      background:#ffffff; border:1px solid var(--line); outline:none}
-    input::placeholder, textarea::placeholder{color:#7b9788}
-    input:focus, textarea:focus, select:focus{border-color:#84c9a8; box-shadow:0 0 0 3px #a7e0c44d}
-    .inline{display:flex; gap:12px}
-    .hint{font-size:12px; color:var(--muted)}
-    .success{background:#e8f7ee; border:1px solid #bfe8d0; color:#1f3b2d; padding:10px 12px; border-radius:12px}
-    .error{background:#fdeaea; border:1px solid #f3c0c0; color:#6b1111; padding:10px 12px; border-radius:12px}
-
+    form{display:grid; gap:12px} label{font-weight:600; color:#1c372a}
+    input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid var(--line); outline:none}
+    input::placeholder, textarea::placeholder{color:#7b9788} input:focus, textarea:focus, select:focus{border-color:#84c9a8; box-shadow:0 0 0 3px #a7e0c44d}
+    .inline{display:flex; gap:12px} .hint{font-size:12px; color:var(--muted)} .success{background:#e8f7ee; border:1px solid #bfe8d0; color:#1f3b2d; padding:10px 12px; border-radius:12px} .error{background:#fdeaea; border:1px solid #f3c0c0; color:#6b1111; padding:10px 12px; border-radius:12px}
     footer{padding:28px 24px; border-top:1px solid var(--line); color:var(--muted)}
-
-    @media (max-width: 900px){
-      .hero .grid{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
-      header .nav{gap:10px}
-    }
+    @media (max-width: 900px){ .hero .grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} header .nav{gap:10px} }
   </style>
 </head>
 <body>
   <!-- 
     One Path Health Coaching (Melbourne + online)
-
     HOSTING: Upload this file as **index.html** to your GitHub repo and turn on GitHub Pages.
-
-    ABOUT IMAGES:
-    • You provided HEIC photos. Many browsers don't display HEIC. Convert to JPG/PNG and place them in an /images folder:
-      images/IMG_6289.jpg, images/IMG_6256.jpg, images/IMG_1133.jpg, images/IMG_9327.jpg
-    • Then update the `aboutImages` array below if filenames differ.
-
-    FORM WIRING (choose one):
-    1) GOOGLE SHEETS (Apps Script) — recommended
-       • Make a new Google Sheet → Extensions → Apps Script. Paste this sample:
-
-function doPost(e){
-  const sheet = SpreadsheetApp.getActiveSheet();
-  const data = JSON.parse(e.postData.contents);
-  sheet.appendRow([new Date(), data.name, data.birthday, data.email, data.suburb, data.goal, data.limits, data.ref]);
-  return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
-}
-       • Deploy → New deployment → type: Web app → Execute as: Me; Who has access: Anyone.
-       • Copy the web app URL and paste it as the value of data-endpoint on the #intakeForm.
-       • Optional: in onSubmitSuccess(), also send your Google Form link via window.location or an auto-email from Apps Script.
-
-    2) MAILTO FALLBACK (no server):
-       • If no endpoint is set, the form will open the user's email client with a prefilled email to you.
-       • This file is prefilled to email: bschmitz799@gmail.com — change if needed.
-
-    NOTE: GitHub repo names cannot contain spaces. Consider `one-path-health` as the repo name.
+    ABOUT IMAGES: Converted JPGs are referenced below as /images/IMG_6289.jpg etc.
   -->
 
   <header>
@@ -160,9 +79,7 @@ function doPost(e){
         <div class="grid">
           <div>
             <h1>Build healthy habits you actually enjoy.</h1>
-            <p>
-              Melbourne & online coaching that fits your life—simple training, kinder nutrition, and steady support so results stick.
-            </p>
+            <p>Melbourne & online coaching that fits your life—simple training, kinder nutrition, and steady support so results stick.</p>
             <div style="display:flex; gap:12px; margin-top:14px">
               <button class="btn" id="bookCallBtn" type="button">Book a free intro call</button>
               <a class="btn ghost" href="#contact">Start your intake</a>
@@ -172,7 +89,6 @@ function doPost(e){
               <div class="k"><strong>Melbourne</strong><span class="hint">Local clients welcome</span></div>
               <div class="k"><strong>Habits-first</strong><span class="hint">Education over restriction</span></div>
             </div>
-            <!-- Trust strip -->
             <div class="kpis" aria-label="Trust and scope">
               <div class="k"><strong>Kind coaching</strong><span class="hint">No fads or shaming</span></div>
               <div class="k"><strong>Clear scope</strong><span class="hint">Nutrition education only</span></div>
@@ -209,10 +125,7 @@ function doPost(e){
               <div class="slide"><img alt="Beau Schmitz" src="images/IMG_1133.jpg" /></div>
               <div class="slide"><img alt="Beau Schmitz" src="images/IMG_9327.jpg" /></div>
               <div class="dots" aria-hidden="true">
-                <div class="dot active"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+                <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
               </div>
             </div>
           </div>
@@ -228,22 +141,11 @@ function doPost(e){
     <!-- SERVICES (placeholders) -->
     <section id="services">
       <div class="wrap">
-        <div class="section-title">
-          <h2>Services</h2><span class="pill">Edit this later</span>
-        </div>
+        <div class="section-title"><h2>Services</h2><span class="pill">Edit this later</span></div>
         <div class="grid-3">
-          <div class="card">
-            <h3>Training Programs</h3>
-            <p><!-- Plan format: PDF or Google Sheet, 3–5 days/week. Progression built‑in (deloads where appropriate). Mobility/activation mini‑blocks per day. Gym or at‑home variations. --></p>
-          </div>
-          <div class="card">
-            <h3>Nutrition Guidance</h3>
-            <p><!-- Simple swaps list and portion visual. Meal ideas by preference and budget. Education on sleep, hunger, and energy. Treats are allowed—no blanket restrictions. --></p>
-          </div>
-          <div class="card">
-            <h3>Accountability & Support</h3>
-            <p><!-- Weekly or fortnightly check‑ins. Plan adjustments based on feedback. Message support (response window stated). --></p>
-          </div>
+          <div class="card"><h3>Training Programs</h3><p><!-- Details here. --></p></div>
+          <div class="card"><h3>Nutrition Guidance</h3><p><!-- Details here. --></p></div>
+          <div class="card"><h3>Accountability & Support</h3><p><!-- Details here. --></p></div>
         </div>
       </div>
     </section>
@@ -251,9 +153,7 @@ function doPost(e){
     <!-- HOW IT WORKS -->
     <section id="approach">
       <div class="wrap">
-        <div class="section-title">
-          <h2>How it works</h2><span class="pill">Edit this later</span>
-        </div>
+        <div class="section-title"><h2>How it works</h2><span class="pill">Edit this later</span></div>
         <ol class="card" style="margin:0; padding-left:22px; line-height:1.9">
           <li>Submit the intake form below.</li>
           <li>Free 15–20 min intro call to learn your goals, preferences, and schedule.</li>
@@ -264,12 +164,10 @@ function doPost(e){
       </div>
     </section>
 
-    <!-- TESTIMONIALS (placeholders) -->
+    <!-- TESTIMONIALS -->
     <section id="testimonials">
       <div class="wrap">
-        <div class="section-title">
-          <h2>Client Wins</h2><span class="pill">Add later</span>
-        </div>
+        <div class="section-title"><h2>Client Wins</h2><span class="pill">Add later</span></div>
         <div class="grid-3">
           <div class="card"><em>“I felt supported from day one. The plan was simple to follow and didn’t take over my life.”</em><p class="hint">— J., Brunswick</p></div>
           <div class="card"><em>“Practical advice that fit my schedule. I finally enjoy training again.”</em><p class="hint">— S., Fitzroy</p></div>
@@ -278,12 +176,10 @@ function doPost(e){
       </div>
     </section>
 
-    <!-- PRICING (customized) -->
+    <!-- PRICING -->
     <section id="pricing">
       <div class="wrap">
-        <div class="section-title">
-          <h2>Packages & Pricing</h2><span class="pill">AUD</span>
-        </div>
+        <div class="section-title"><h2>Packages & Pricing</h2><span class="pill">AUD</span></div>
         <div class="grid-3">
           <div class="card">
             <h3>Exercise/Nutrition Plan</h3>
@@ -322,21 +218,13 @@ function doPost(e){
       </div>
     </section>
 
-    <!-- FAQ (placeholders) -->
+    <!-- FAQ -->
     <section id="faq">
       <div class="wrap">
-        <div class="section-title">
-          <h2>FAQ</h2><span class="pill">Add later</span>
-        </div>
+        <div class="section-title"><h2>FAQ</h2><span class="pill">Add later</span></div>
         <div class="grid-2">
-          <div class="card">
-            <h3>Do I need a gym?</h3>
-            <p><!-- Your answer. --></p>
-          </div>
-          <div class="card">
-            <h3>What about nutrition advice?</h3>
-            <p><!-- I provide general nutrition education and lifestyle guidance. I don’t provide medical nutrition therapy. --></p>
-          </div>
+          <div class="card"><h3>Do I need a gym?</h3><p><!-- Your answer. --></p></div>
+          <div class="card"><h3>What about nutrition advice?</h3><p><!-- General nutrition education; not medical nutrition therapy. --></p></div>
         </div>
       </div>
     </section>
@@ -344,66 +232,33 @@ function doPost(e){
     <!-- CONTACT / INTAKE FORM -->
     <section id="contact">
       <div class="wrap">
-        <div class="section-title">
-          <h2>Get Started</h2>
-          <span class="pill">Intake • Melbourne & Online</span>
-        </div>
+        <div class="section-title"><h2>Get Started</h2><span class="pill">Intake • Melbourne & Online</span></div>
         <div class="grid-2">
           <div class="card">
             <h3>Quick intake</h3>
             <p class="hint">Enter your details and I'll reach out with next steps and a longer questionnaire.</p>
             <div id="formMsg" role="status" aria-live="polite"></div>
-            <form id="intakeForm" autocomplete="on" novalidate
-                  data-endpoint=""  
-                  data-google-form-link="https://docs.google.com/forms/d/1uxxEI6G5Q-CvHuDkeM8qIfFZ_8EZdWJb3OzCp5jSaCk/viewform">
-              <!-- Honeypot (anti‑spam) -->
+            <form id="intakeForm" autocomplete="on" novalidate data-endpoint="" data-google-form-link="https://docs.google.com/forms/d/1uxxEI6G5Q-CvHuDkeM8qIfFZ_8EZdWJb3OzCp5jSaCk/viewform">
               <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" aria-hidden="true">
               <div class="inline">
-                <div style="flex:1">
-                  <label for="name">Full name</label>
-                  <input id="name" name="name" type="text" placeholder="Jane Doe" required />
-                </div>
-                <div style="flex:1">
-                  <label for="birthday">Birthday</label>
-                  <input id="birthday" name="birthday" type="date" required />
-                </div>
+                <div style="flex:1"><label for="name">Full name</label><input id="name" name="name" type="text" placeholder="Jane Doe" required /></div>
+                <div style="flex:1"><label for="birthday">Birthday</label><input id="birthday" name="birthday" type="date" required /></div>
               </div>
               <div class="inline">
-                <div style="flex:1">
-                  <label for="suburb">Suburb</label>
-                  <input id="suburb" name="suburb" type="text" placeholder="Brunswick" />
-                </div>
-                <div style="flex:1">
-                  <label for="goal">Primary goal</label>
-                  <input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" />
-                </div>
+                <div style="flex:1"><label for="suburb">Suburb</label><input id="suburb" name="suburb" type="text" placeholder="Brunswick" /></div>
+                <div style="flex:1"><label for="goal">Primary goal</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" /></div>
               </div>
-              <div>
-                <label for="limits">Injuries or limitations (optional)</label>
-                <textarea id="limits" name="limits" rows="3" placeholder="Any injuries or movements to avoid?"></textarea>
-              </div>
-              <div>
-                <label for="ref">How did you hear about me?</label>
-                <input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer" />
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" required />
-              </div>
-              <div>
-                <label class="hint"><input type="checkbox" id="consent" required /> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy.</label>
-              </div>
-              <div class="inline">
-                <button class="btn" type="submit">Join the list</button>
-                <a class="btn ghost" href="#about">How it works</a>
-              </div>
+              <div><label for="limits">Injuries or limitations (optional)</label><textarea id="limits" name="limits" rows="3" placeholder="Any injuries or movements to avoid?"></textarea></div>
+              <div><label for="ref">How did you hear about me?</label><input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer" /></div>
+              <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
+              <div><label class="hint"><input type="checkbox" id="consent" required /> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy.</label></div>
+              <div class="inline"><button class="btn" type="submit">Join the list</button><a class="btn ghost" href="#about">How it works</a></div>
               <p class="hint">Your details are kept private and used only to contact you about coaching.</p>
             </form>
           </div>
           <div class="card">
             <h3>Contact</h3>
-            <p><strong>Email:</strong> 
-              <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
+            <p><strong>Email:</strong> <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
             <p><strong>Instagram:</strong> <a href="https://www.instagram.com/beauyup/" target="_blank" rel="noopener">@beauyup</a></p>
             <p><strong>Location:</strong> Melbourne, Australia • Sessions online or local</p>
             <hr style="border-color:var(--line); margin:14px 0">
@@ -421,10 +276,7 @@ function doPost(e){
     <!-- PRIVACY POLICY -->
     <section id="privacy">
       <div class="wrap">
-        <div class="section-title">
-          <h2>Privacy Policy</h2>
-          <span class="pill">Last updated: <span id="ppDate"></span></span>
-        </div>
+        <div class="section-title"><h2>Privacy Policy</h2><span class="pill">Last updated: <span id="ppDate"></span></span></div>
         <div class="card">
           <p>We respect your privacy. This page explains what we collect, why we collect it, and how we keep it safe.</p>
           <h3>What we collect</h3>
@@ -451,133 +303,64 @@ function doPost(e){
         </div>
       </div>
     </section>
+
+    <!-- TERMS -->
+    <section id="terms">
+      <div class="wrap">
+        <div class="section-title"><h2>Terms of Service</h2><span class="pill">Plain-English summary</span></div>
+        <div class="card">
+          <h3>Scope of services</h3>
+          <p>Coaching includes general fitness guidance, habit support, and general nutrition education. It does not include medical nutrition therapy or medical advice.</p>
+          <h3>Eligibility</h3>
+          <p>By engaging services, you confirm you are 18+ and medically cleared for exercise. If you have a medical condition, please consult your GP and/or an Accredited Practising Dietitian.</p>
+          <h3>Payments & cancellations</h3>
+          <p>Payments are in AUD. You can pause or cancel anytime with 48‑hour notice before scheduled calls. Missed sessions without notice may be forfeited.</p>
+          <h3>Communication</h3>
+          <p>Message support is provided within reasonable hours. I aim to respond within 1–2 business days.</p>
+          <h3>Liability</h3>
+          <p>By participating, you accept the inherent risks of exercise. To the extent permitted by law, One Path Health Coaching is not liable for injuries or outcomes resulting from improper form or non‑adherence to guidance.</p>
+          <h3>Privacy</h3>
+          <p>Your information is handled per the <a href="#privacy">Privacy Policy</a>. We do not sell or share your data.</p>
+          <h3>Governing law</h3>
+          <p>These terms are governed by the laws of Victoria, Australia.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="wrap">
       <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
         <span>© <span id="y"></span> One Path Health Coaching</span>
-        <span class="hint">ABN coming soon • Public liability & PI insured • Privacy-first • <a href="#privacy">Privacy</a> • <a href="#">Terms</a></span>
+        <span class="hint">ABN coming soon • Public liability & PI insured • Privacy-first • <a href="#privacy">Privacy</a> • <a href="#terms">Terms</a></span>
       </div>
     </div>
   </footer>
 
   <script>
-    // Year in footer & PP date (today)
+    // Year in footer & Privacy date
     document.getElementById('y').textContent = new Date().getFullYear();
-    (function(){
-      const d = new Date();
-      const fmt = d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
-      const el = document.getElementById('ppDate'); if(el) el.textContent = fmt;
-    })();
+    (function(){ const d = new Date(); const fmt = d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'}); const el = document.getElementById('ppDate'); if(el) el.textContent = fmt; })();
 
     // Booking buttons
-    function openBooking(){
-      const booking = 'https://calendly.com/'; // TODO: replace when ready
-      if(booking && booking !== 'https://calendly.com/') window.open(booking, '_blank');
-      else alert('Add your booking link in the code (search for openBooking).');
-    }
+    function openBooking(){ const booking = 'https://calendly.com/'; if(booking && booking !== 'https://calendly.com/') window.open(booking, '_blank'); else alert('Add your booking link in the code (search for openBooking).'); }
     document.getElementById('bookCallBtn').addEventListener('click', openBooking);
     document.getElementById('heroBookBtn').addEventListener('click', openBooking);
 
     // ABOUT carousel (5s rotation)
-    (function(){
-      const container = document.querySelector('#about .carousel');
-      if(!container) return;
-      const slides = Array.from(container.querySelectorAll('.slide'));
-      const dots = Array.from(container.querySelectorAll('.dot'));
-      let i = 0; let timer = null;
-      function show(n){
-        slides[i].classList.remove('active'); dots[i].classList.remove('active');
-        i = n; if(i<0) i = slides.length-1; if(i>=slides.length) i = 0;
-        slides[i].classList.add('active'); dots[i].classList.add('active');
-      }
-      function next(){ show(i+1); }
-      function start(){ timer = setInterval(next, 5000); }
-      function stop(){ if(timer) clearInterval(timer); }
-      container.addEventListener('mouseenter', stop);
-      container.addEventListener('mouseleave', start);
-      dots.forEach((d, idx)=> d.addEventListener('click', ()=>{ stop(); show(idx); start(); }));
-      start();
-    })();
+    (function(){ const container = document.querySelector('#about .carousel'); if(!container) return; const slides = Array.from(container.querySelectorAll('.slide')); const dots = Array.from(container.querySelectorAll('.dot')); let i = 0; let timer = null; function show(n){ slides[i].classList.remove('active'); dots[i].classList.remove('active'); i = n; if(i<0) i = slides.length-1; if(i>=slides.length) i = 0; slides[i].classList.add('active'); dots[i].classList.add('active'); } function next(){ show(i+1); } function start(){ timer = setInterval(next, 5000); } function stop(){ if(timer) clearInterval(timer); } container.addEventListener('mouseenter', stop); container.addEventListener('mouseleave', start); dots.forEach((d, idx)=> d.addEventListener('click', ()=>{ stop(); show(idx); start(); })); start(); })();
 
-    const form = document.getElementById('intakeForm');
-    const msg = document.getElementById('formMsg');
-
-    function show(type, text){ msg.className = type; msg.textContent = text; }
-    function validEmail(e){ return /.+@.+\..+/.test(e); }
-
-    function onSubmitSuccess(){
-      show('success', "Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire.");
-      const gf = form.dataset.googleFormLink || '';
-      if(gf){ setTimeout(()=>{ window.location.href = gf; }, 900); }
-      form.reset();
-    }
-
-    function mailtoFallback(payload){
-      const to = 'bschmitz799@gmail.com';
-      const subject = encodeURIComponent('New Coaching Intake');
-      const body = encodeURIComponent(
-        `Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`
-      );
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      onSubmitSuccess();
-    }
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const f = new FormData(form);
-      const payload = {
-        name: f.get('name')?.trim(),
-        birthday: f.get('birthday'),
-        email: f.get('email')?.trim(),
-        suburb: f.get('suburb')?.trim(),
-        goal: f.get('goal')?.trim(),
-        limits: f.get('limits')?.trim(),
-        ref: f.get('ref')?.trim()
-      };
-
-      // Honeypot check
-      if((document.getElementById('website')||{}).value){ return; }
-
-      if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; }
-      if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; }
-      if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; }
-
-      // Save locally as a backup
-      try{
-        const list = JSON.parse(localStorage.getItem('intakes')||'[]');
-        list.push({...payload, ts:Date.now()});
-        localStorage.setItem('intakes', JSON.stringify(list));
-      }catch(err){/* ignore */}
-
-      const endpoint = form.dataset.endpoint?.trim();
-      if(endpoint){
-        try{
-          const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-          const data = await res.json().catch(()=>({}));
-          if(res.ok){ onSubmitSuccess(data); }
-          else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); }
-        }catch(err){ show('error', 'Couldn\'t reach the server. Using email instead…'); mailtoFallback(payload); }
-      } else {
-        mailtoFallback(payload);
-      }
-    });
+    // Intake form
+    const form = document.getElementById('intakeForm'); const msg = document.getElementById('formMsg');
+    function show(type, text){ msg.className = type; msg.textContent = text; } function validEmail(e){ return /.+@.+\..+/.test(e); }
+    function onSubmitSuccess(){ show('success', "Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire."); const gf = form.dataset.googleFormLink || ''; if(gf){ setTimeout(()=>{ window.location.href = gf; }, 900); } form.reset(); }
+    function mailtoFallback(payload){ const to = 'bschmitz799@gmail.com'; const subject = encodeURIComponent('New Coaching Intake'); const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`); window.location.href = `mailto:${to}?subject=${subject}&body=${body}`; onSubmitSuccess(); }
+    form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), suburb: f.get('suburb')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn\'t reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
   </script>
 
   <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "One Path Health Coaching",
-    "url": "https://beaubit.github.io/one-path-health/",
-    "areaServed": "Melbourne, Australia",
-    "description": "Sustainable exercise and nutrition coaching with a kind, practical approach.",
-    "email": "mailto:bschmitz799@gmail.com",
-    "sameAs": ["https://www.instagram.com/beauyup/"],
-    "priceRange": "$$"
-  }
+  { "@context": "https://schema.org", "@type": "LocalBusiness", "name": "One Path Health Coaching", "url": "https://beaubit.github.io/one-path-health/", "areaServed": "Melbourne, Australia", "description": "Sustainable exercise and nutrition coaching with a kind, practical approach.", "email": "mailto:bschmitz799@gmail.com", "sameAs": ["https://www.instagram.com/beauyup/"], "priceRange": "$$" }
   </script>
 </body>
 </html>
