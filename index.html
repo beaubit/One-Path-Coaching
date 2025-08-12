@@ -18,6 +18,7 @@
     :root{ --bg:#f4faf7; --panel:#ffffff; --ink:#0f1f17; --muted:#506a5b; --accent:#45a877; --accent-2:#a7e0c4; --line:#d6e9df; --chip:#e9f6ef; --ok:#2e7d32; --warn:#b07c00; --error:#b3261e; }
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink); background: radial-gradient(1200px 800px at 15% -10%, #e7f6ee 0%, var(--bg) 55%) no-repeat fixed, linear-gradient(180deg, #f4faf7 0%, #f6fbf8 100%); }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
@@ -48,16 +49,18 @@
     input::placeholder, textarea::placeholder{color:#7b9788} input:focus, textarea:focus, select:focus{border-color:#84c9a8; box-shadow:0 0 0 3px #a7e0c44d}
     .inline{display:flex; gap:12px} .hint{font-size:12px; color:var(--muted)} .success{background:#e8f7ee; border:1px solid #bfe8d0; color:#1f3b2d; padding:10px 12px; border-radius:12px} .error{background:#fdeaea; border:1px solid #f3c0c0; color:#6b1111; padding:10px 12px; border-radius:12px}
     footer{padding:28px 24px; border-top:1px solid var(--line); color:var(--muted)}
+
+    /* Accordion (smooth collapse/expand) */
+    .accordion .item{border:1px solid var(--line); border-radius:16px; background:var(--panel); overflow:hidden}
+    .acc-head{width:100%; text-align:left; background:transparent; border:0; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; font-weight:600}
+    .acc-icon{transition:transform .35s ease}
+    .acc-panel{max-height:0; overflow:hidden; opacity:.0; padding:0 16px; transition:max-height .45s ease, opacity .45s ease, padding .3s ease}
+    .item.open .acc-panel{opacity:1; padding:0 16px 16px}
+
     @media (max-width: 900px){ .hero .grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} header .nav{gap:10px} }
   </style>
 </head>
 <body>
-  <!-- 
-    One Path Health Coaching (Melbourne + online)
-    HOSTING: Upload this file as **index.html** to your GitHub repo and turn on GitHub Pages.
-    ABOUT IMAGES: Converted JPGs are referenced below as /images/IMG_6289.jpg etc.
-  -->
-
   <header>
     <div class="wrap nav">
       <div style="display:flex; align-items:center; gap:12px">
@@ -117,7 +120,6 @@
           <h2>About Me</h2><span class="pill">Meet Beau</span>
         </div>
         <div class="grid-2">
-          <!-- Carousel -->
           <div class="card" style="padding:12px">
             <div class="carousel" aria-label="Photo slideshow" aria-live="polite">
               <div class="slide active"><img alt="Beau Schmitz" src="images/IMG_6289.jpg" /></div>
@@ -129,7 +131,6 @@
               </div>
             </div>
           </div>
-          <!-- Copy -->
           <div class="card">
             <h3>Health is Wealth</h3>
             <p>My name is Beau Schmitz. I have been passionately dedicated to health and fitness for over 6 years. Constantly learning and applying healthy habits. My personal journey has helped me understand the mental and physical benefits of leading a health conscious life. My goal is to empower others through this knowledge and help them achieve the goal of loving the way they feel in their own body through sustainable life practices. <strong>Health is Wealth!</strong> When we take control of our health, all other areas of our life start to thrive!</p>
@@ -273,56 +274,69 @@
       </div>
     </section>
 
-    <!-- PRIVACY POLICY -->
-    <section id="privacy">
+    <!-- LEGAL (collapsible) -->
+    <section id="legal">
       <div class="wrap">
-        <div class="section-title"><h2>Privacy Policy</h2><span class="pill">Last updated: <span id="ppDate"></span></span></div>
-        <div class="card">
-          <p>We respect your privacy. This page explains what we collect, why we collect it, and how we keep it safe.</p>
-          <h3>What we collect</h3>
-          <ul>
-            <li>Contact details you provide (name, email, optional suburb and notes) via the intake form.</li>
-            <li>Any information you choose to share during coaching (e.g., goals, preferences).</li>
-          </ul>
-          <h3>How we use your information</h3>
-          <ul>
-            <li>To reply to your enquiry and provide coaching services.</li>
-            <li>To schedule calls, send resources, and manage your plan.</li>
-            <li>We do not sell or share your data.</li>
-          </ul>
-          <h3>Storage & security</h3>
-          <p>Information is stored securely in tools we use to deliver services (e.g., email, Google Drive/Sheets if you opt in). Access is limited to the coach.</p>
-          <h3>Your choices</h3>
-          <ul>
-            <li>Ask to access or correct your information at any time.</li>
-            <li>Ask to delete your information (unless we’re required to keep it by law).</li>
-            <li>Unsubscribe from messages by replying or contacting us.</li>
-          </ul>
-          <h3>Contact</h3>
-          <p>Email: <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TERMS -->
-    <section id="terms">
-      <div class="wrap">
-        <div class="section-title"><h2>Terms of Service</h2><span class="pill">Plain-English summary</span></div>
-        <div class="card">
-          <h3>Scope of services</h3>
-          <p>Coaching includes general fitness guidance, habit support, and general nutrition education. It does not include medical nutrition therapy or medical advice.</p>
-          <h3>Eligibility</h3>
-          <p>By engaging services, you confirm you are 18+ and medically cleared for exercise. If you have a medical condition, please consult your GP and/or an Accredited Practising Dietitian.</p>
-          <h3>Payments & cancellations</h3>
-          <p>Payments are in AUD. You can pause or cancel anytime with 48‑hour notice before scheduled calls. Missed sessions without notice may be forfeited.</p>
-          <h3>Communication</h3>
-          <p>Message support is provided within reasonable hours. I aim to respond within 1–2 business days.</p>
-          <h3>Liability</h3>
-          <p>By participating, you accept the inherent risks of exercise. To the extent permitted by law, One Path Health Coaching is not liable for injuries or outcomes resulting from improper form or non‑adherence to guidance.</p>
-          <h3>Privacy</h3>
-          <p>Your information is handled per the <a href="#privacy">Privacy Policy</a>. We do not sell or share your data.</p>
-          <h3>Governing law</h3>
-          <p>These terms are governed by the laws of Victoria, Australia.</p>
+        <div class="section-title"><h2>Legal</h2><span class="pill">Privacy & Terms</span></div>
+        <div class="accordion" id="legalAcc" style="display:grid; gap:12px">
+          <!-- Privacy -->
+          <div class="item" id="privacy">
+            <button class="acc-head" aria-expanded="false" aria-controls="privacy-panel" id="privacy-head">
+              <span>Privacy Policy <small class="hint" style="font-weight:400">(Last updated: <span id="ppDate"></span>)</small></span>
+              <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="acc-panel" id="privacy-panel" role="region" aria-labelledby="privacy-head">
+              <div class="content">
+                <p>We respect your privacy. This page explains what we collect, why we collect it, and how we keep it safe.</p>
+                <h3>What we collect</h3>
+                <ul>
+                  <li>Contact details you provide (name, email, optional suburb and notes) via the intake form.</li>
+                  <li>Any information you choose to share during coaching (e.g., goals, preferences).</li>
+                </ul>
+                <h3>How we use your information</h3>
+                <ul>
+                  <li>To reply to your enquiry and provide coaching services.</li>
+                  <li>To schedule calls, send resources, and manage your plan.</li>
+                  <li>We do not sell or share your data.</li>
+                </ul>
+                <h3>Storage & security</h3>
+                <p>Information is stored securely in tools we use to deliver services (e.g., email, Google Drive/Sheets if you opt in). Access is limited to the coach.</p>
+                <h3>Your choices</h3>
+                <ul>
+                  <li>Ask to access or correct your information at any time.</li>
+                  <li>Ask to delete your information (unless we’re required to keep it by law).</li>
+                  <li>Unsubscribe from messages by replying or contacting us.</li>
+                </ul>
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+          <!-- Terms -->
+          <div class="item" id="terms">
+            <button class="acc-head" aria-expanded="false" aria-controls="terms-panel" id="terms-head">
+              <span>Terms of Service <small class="hint" style="font-weight:400">(Plain-English summary)</small></span>
+              <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="acc-panel" id="terms-panel" role="region" aria-labelledby="terms-head">
+              <div class="content">
+                <h3>Scope of services</h3>
+                <p>Coaching includes general fitness guidance, habit support, and general nutrition education. It does not include medical nutrition therapy or medical advice.</p>
+                <h3>Eligibility</h3>
+                <p>By engaging services, you confirm you are 18+ and medically cleared for exercise. If you have a medical condition, please consult your GP and/or an Accredited Practising Dietitian.</p>
+                <h3>Payments & cancellations</h3>
+                <p>Payments are in AUD. You can pause or cancel anytime with 48‑hour notice before scheduled calls. Missed sessions without notice may be forfeited.</p>
+                <h3>Communication</h3>
+                <p>Message support is provided within reasonable hours. I aim to respond within 1–2 business days.</p>
+                <h3>Liability</h3>
+                <p>By participating, you accept the inherent risks of exercise. To the extent permitted by law, One Path Health Coaching is not liable for injuries or outcomes resulting from improper form or non‑adherence to guidance.</p>
+                <h3>Privacy</h3>
+                <p>Your information is handled per the <a href="#privacy">Privacy Policy</a>. We do not sell or share your data.</p>
+                <h3>Governing law</h3>
+                <p>These terms are governed by the laws of Victoria, Australia.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -342,13 +356,32 @@
     document.getElementById('y').textContent = new Date().getFullYear();
     (function(){ const d = new Date(); const fmt = d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'}); const el = document.getElementById('ppDate'); if(el) el.textContent = fmt; })();
 
-    // Booking buttons
-    function openBooking(){ const booking = 'https://calendly.com/'; if(booking && booking !== 'https://calendly.com/') window.open(booking, '_blank'); else alert('Add your booking link in the code (search for openBooking).'); }
+    // Booking buttons → wired to your Google Calendar Appointment Schedule link
+    function openBooking(){
+      const booking = 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3mqABYyAyWhRngVoOsYlBSJ_eDoMJ-RKxBTVtmLka1Vg98ir_0YV_633IHrCjCSpQUIskrQnDc';
+      if(booking){ window.open(booking, '_blank', 'noopener'); }
+    }
     document.getElementById('bookCallBtn').addEventListener('click', openBooking);
     document.getElementById('heroBookBtn').addEventListener('click', openBooking);
 
     // ABOUT carousel (5s rotation)
     (function(){ const container = document.querySelector('#about .carousel'); if(!container) return; const slides = Array.from(container.querySelectorAll('.slide')); const dots = Array.from(container.querySelectorAll('.dot')); let i = 0; let timer = null; function show(n){ slides[i].classList.remove('active'); dots[i].classList.remove('active'); i = n; if(i<0) i = slides.length-1; if(i>=slides.length) i = 0; slides[i].classList.add('active'); dots[i].classList.add('active'); } function next(){ show(i+1); } function start(){ timer = setInterval(next, 5000); } function stop(){ if(timer) clearInterval(timer); } container.addEventListener('mouseenter', stop); container.addEventListener('mouseleave', start); dots.forEach((d, idx)=> d.addEventListener('click', ()=>{ stop(); show(idx); start(); })); start(); })();
+
+    // Accordion behaviour
+    (function(){
+      const items = document.querySelectorAll('.accordion .item');
+      items.forEach(item => {
+        const head = item.querySelector('.acc-head');
+        const icon = item.querySelector('.acc-icon');
+        const panel = item.querySelector('.acc-panel');
+        const setHeight = () => { if(item.classList.contains('open')) { panel.style.maxHeight = panel.scrollHeight + 'px'; icon.style.transform = 'rotate(180deg)'; } else { panel.style.maxHeight = '0px'; icon.style.transform = 'rotate(0)'; } };
+        head.addEventListener('click', () => { item.classList.toggle('open'); head.setAttribute('aria-expanded', item.classList.contains('open')); setHeight(); });
+        // Initialize closed
+        head.setAttribute('aria-expanded', 'false'); panel.style.maxHeight = '0px';
+        // Recompute on resize
+        window.addEventListener('resize', () => { if(item.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px'; });
+      });
+    })();
 
     // Intake form
     const form = document.getElementById('intakeForm'); const msg = document.getElementById('formMsg');
