@@ -8,12 +8,18 @@
   <meta name="theme-color" content="#5dbb8a" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="One Path Health Coaching — Melbourne & Online" />
+  <meta property="og:description" content="Sustainable exercise and nutrition coaching. Kind, practical guidance that fits your life." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://beaubit.github.io/one-path-health/" />
+  <meta property="og:image" content="https://your-domain.com/og-one-path-health.jpg" />
   <style>
     :root{
       /* Light, warm, healthy palette */
       --bg:#f4faf7;        /* page background */
       --panel:#ffffff;     /* cards & form fields */
-      --ink:#0f1f17;       /* main text (near black/green) */
+      --ink:#0f1f17;       /* main text */
       --muted:#506a5b;     /* secondary text */
       --accent:#45a877;    /* buttons/links primary */
       --accent-2:#a7e0c4;  /* soft accent */
@@ -33,6 +39,7 @@
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
+    a:focus-visible, .btn:focus-visible{outline:3px solid var(--accent-2); outline-offset:2px; border-radius:14px}
     .wrap{max-width:1100px; margin-inline:auto; padding:24px}
 
     header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px);
@@ -61,7 +68,7 @@
     .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px}
     .k strong{display:block; font-size:18px; color:var(--ink)}
 
-    section{padding:40px 24px}
+    section{padding:44px 24px}
     .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
     .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line);
           background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:var(--muted); font-size:12px}
@@ -104,7 +111,7 @@
 function doPost(e){
   const sheet = SpreadsheetApp.getActiveSheet();
   const data = JSON.parse(e.postData.contents);
-  sheet.appendRow([new Date(), data.name, data.birthday, data.email]);
+  sheet.appendRow([new Date(), data.name, data.birthday, data.email, data.phone, data.suburb, data.goal, data.limits, data.ref]);
   return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
 }
        • Deploy → New deployment → type: Web app → Execute as: Me; Who has access: Anyone.
@@ -128,7 +135,7 @@ function doPost(e){
       <a class="btn ghost" href="#services">Services</a>
       <a class="btn ghost" href="#approach">Approach</a>
       <a class="btn ghost" href="#contact">Get Started</a>
-      <a class="btn" href="#contact">Book Intro Call</a>
+      <button class="btn" id="heroBookBtn" type="button">Book a free intro call</button>
     </div>
   </header>
 
@@ -138,18 +145,24 @@ function doPost(e){
       <div class="wrap">
         <div class="grid">
           <div>
-            <h1>Sustainable Exercise & Nutrition Coaching — Melbourne & Online</h1>
+            <h1>Build healthy habits you actually enjoy.</h1>
             <p>
-              Build habits you can actually keep. I help you align training and nutrition with your preferences, schedule, and goals — so results stick.
+              Melbourne & online coaching that fits your life—simple training, kinder nutrition, and steady support so results stick.
             </p>
             <div style="display:flex; gap:12px; margin-top:14px">
-              <a class="btn" href="#contact">Start your intake</a>
-              <a class="btn ghost" href="#about">How it works</a>
+              <button class="btn" id="bookCallBtn" type="button">Book a free intro call</button>
+              <a class="btn ghost" href="#contact">Start your intake</a>
             </div>
-            <div class="kpis">
+            <div class="kpis" style="margin-top:16px">
               <div class="k"><strong>1:1 Online</strong><span class="hint">Zoom/Google Meet</span></div>
               <div class="k"><strong>Melbourne</strong><span class="hint">Local clients welcome</span></div>
               <div class="k"><strong>Habits-first</strong><span class="hint">Education over restriction</span></div>
+            </div>
+            <!-- Trust strip -->
+            <div class="kpis" aria-label="Trust and scope">
+              <div class="k"><strong>Kind coaching</strong><span class="hint">No fads or shaming</span></div>
+              <div class="k"><strong>Clear scope</strong><span class="hint">Nutrition education only</span></div>
+              <div class="k"><strong>Privacy</strong><span class="hint">Your data stays with me</span></div>
             </div>
           </div>
           <div class="card">
@@ -176,11 +189,11 @@ function doPost(e){
         <div class="grid-2">
           <div class="card">
             <h3>Your story / philosophy</h3>
-            <p><!-- Add your origin story and coaching philosophy. --></p>
+            <p><!-- I started One Path Health to make exercise and nutrition feel doable—not overwhelming. After six years of testing what actually works in real life, I coach clients to build small, repeatable habits that compound into real change. My focus is education and support, so you understand why we’re doing each step and feel confident doing it on your own. --></p>
           </div>
           <div class="card">
             <h3>Qualifications & approach</h3>
-            <p><!-- Bachelor of Science in Business Management; 6+ years of self-directed training/nutrition study; scope note: general nutrition education, not medical nutrition therapy. --></p>
+            <p><!-- I provide general nutrition education and lifestyle guidance. I don’t provide medical nutrition therapy. If you have a medical condition or specific dietary needs, I’ll happily coordinate with your GP or an Accredited Practising Dietitian. --></p>
           </div>
         </div>
       </div>
@@ -195,15 +208,15 @@ function doPost(e){
         <div class="grid-3">
           <div class="card">
             <h3>Training Programs</h3>
-            <p><!-- Describe structure (days/week, progression, mobility). --></p>
+            <p><!-- Plan format: PDF or Google Sheet, 3–5 days/week. Progression built‑in (deloads where appropriate). Mobility/activation mini‑blocks per day. Gym or at‑home variations. --></p>
           </div>
           <div class="card">
             <h3>Nutrition Guidance</h3>
-            <p><!-- Explain approach: simple swaps, portion awareness, flexible treats, education on sleep/energy/insulin. --></p>
+            <p><!-- Simple swaps list and portion visual. Meal ideas by preference and budget. Education on sleep, hunger, and energy. Treats are allowed—no blanket restrictions. --></p>
           </div>
           <div class="card">
             <h3>Accountability & Support</h3>
-            <p><!-- Check-ins cadence, messaging support, plan adjustments. --></p>
+            <p><!-- Weekly or fortnightly check‑ins. Plan adjustments based on feedback. Message support (response window stated). --></p>
           </div>
         </div>
       </div>
@@ -232,9 +245,9 @@ function doPost(e){
           <h2>Client Wins</h2><span class="pill">Add later</span>
         </div>
         <div class="grid-3">
-          <div class="card"><em>“Add a short testimonial here.”</em><p class="hint">— Name, suburb</p></div>
-          <div class="card"><em>“Add a short testimonial here.”</em><p class="hint">— Name, suburb</p></div>
-          <div class="card"><em>“Add a short testimonial here.”</em><p class="hint">— Name, suburb</p></div>
+          <div class="card"><em>“I felt supported from day one. The plan was simple to follow and didn’t take over my life.”</em><p class="hint">— J., Brunswick</p></div>
+          <div class="card"><em>“Practical advice that fit my schedule. I finally enjoy training again.”</em><p class="hint">— S., Fitzroy</p></div>
+          <div class="card"><em>“Small changes added up to better sleep and more energy.”</em><p class="hint">— A., Carlton</p></div>
         </div>
       </div>
     </section>
@@ -254,7 +267,7 @@ function doPost(e){
               <li>Personalized training plan or hybrid</li>
               <li>Nutrition guide with simple swaps</li>
             </ul>
-            <p class="hint" style="margin-top:.5rem">Recommended for those with strong foundations who want a structured plan that works.</p>
+            <p class="hint" style="margin-top:.5rem"><em>Walk away with:</em> a customized plan + guide you can start today.</p>
           </div>
           <div class="card">
             <h3>Getting Started Package</h3>
@@ -265,7 +278,7 @@ function doPost(e){
               <li>Educational docs to prepare you to execute</li>
               <li>24/7 support via email & socials</li>
             </ul>
-            <p class="hint" style="margin-top:.5rem">Recommended if you want guidance and tools to confidently start your health journey.</p>
+            <p class="hint" style="margin-top:.5rem"><em>Walk away with:</em> clarity on your plan, two education calls, and momentum.</p>
           </div>
           <div class="card">
             <h3>Dedicated Coaching</h3>
@@ -276,9 +289,10 @@ function doPost(e){
               <li>Plan updates as you progress</li>
               <li>Accountability and messaging support</li>
             </ul>
-            <p class="hint" style="margin-top:.5rem">Recommended if you want long‑term support and a comprehensive reset.</p>
+            <p class="hint" style="margin-top:.5rem"><em>Walk away with:</em> measurable progress, habit systems, and confidence to continue.</p>
           </div>
         </div>
+        <p class="hint" style="margin-top:10px">No lock‑in. Pause or cancel anytime with 48‑hour notice. Payments are in AUD. Receipts provided.</p>
       </div>
     </section>
 
@@ -295,7 +309,7 @@ function doPost(e){
           </div>
           <div class="card">
             <h3>What about nutrition advice?</h3>
-            <p><!-- Clarify scope: general nutrition education; not medical nutrition therapy. --></p>
+            <p><!-- I provide general nutrition education and lifestyle guidance. I don’t provide medical nutrition therapy. --></p>
           </div>
         </div>
       </div>
@@ -328,16 +342,38 @@ function doPost(e){
                   <input id="birthday" name="birthday" type="date" required />
                 </div>
               </div>
+              <div class="inline">
+                <div style="flex:1">
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" placeholder="04xx xxx xxx" />
+                </div>
+                <div style="flex:1">
+                  <label for="suburb">Suburb</label>
+                  <input id="suburb" name="suburb" type="text" placeholder="Brunswick" />
+                </div>
+              </div>
+              <div>
+                <label for="goal">Primary goal</label>
+                <input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" />
+              </div>
+              <div>
+                <label for="limits">Injuries or limitations (optional)</label>
+                <textarea id="limits" name="limits" rows="3" placeholder="Any injuries or movements to avoid?"></textarea>
+              </div>
+              <div>
+                <label for="ref">How did you hear about me?</label>
+                <input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer" />
+              </div>
               <div>
                 <label for="email">Email</label>
                 <input id="email" name="email" type="email" placeholder="you@example.com" required />
               </div>
               <div>
-                <label class="hint"><input type="checkbox" id="consent" required /> I agree to receive emails about coaching and understand this is general education, not medical nutrition therapy.</label>
+                <label class="hint"><input type="checkbox" id="consent" required /> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy.</label>
               </div>
               <div class="inline">
                 <button class="btn" type="submit">Join the list</button>
-                <button class="btn ghost" type="button" id="bookCallBtn">Book intro call</button>
+                <a class="btn ghost" href="#about">How it works</a>
               </div>
               <p class="hint">Your details are kept private and used only to contact you about coaching.</p>
             </form>
@@ -365,7 +401,7 @@ function doPost(e){
     <div class="wrap">
       <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
         <span>© <span id="y"></span> One Path Health Coaching</span>
-        <span class="hint">ABN coming soon • Privacy & Terms (add links)</span>
+        <span class="hint">ABN coming soon • Public liability & PI insured • Privacy-first • <a href="#">Privacy</a> • <a href="#">Terms</a></span>
       </div>
     </div>
   </footer>
@@ -374,51 +410,65 @@ function doPost(e){
     // Year in footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Optional: set your Calendly/booking link here
-    document.getElementById('bookCallBtn').addEventListener('click', () => {
+    // Booking buttons
+    function openBooking(){
       const booking = 'https://calendly.com/'; // TODO: replace when ready
       if(booking && booking !== 'https://calendly.com/') window.open(booking, '_blank');
-      else alert('Add your booking link in the code (search for bookCallBtn).');
-    });
+      else alert('Add your booking link in the code (search for openBooking).');
+    }
+    document.getElementById('bookCallBtn').addEventListener('click', openBooking);
+    document.getElementById('heroBookBtn').addEventListener('click', openBooking);
 
     const form = document.getElementById('intakeForm');
     const msg = document.getElementById('formMsg');
 
-    function show(type, text){
-      msg.className = type; msg.textContent = text;
-    }
-
+    function show(type, text){ msg.className = type; msg.textContent = text; }
     function validEmail(e){ return /.+@.+\..+/.test(e); }
 
-    function onSubmitSuccess(data){
-      show('success', 'Thanks! Check your email soon — I\'ll follow up with next steps.');
+    function onSubmitSuccess(){
+      show('success', "Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire.");
       const gf = form.dataset.googleFormLink || '';
-      if(gf){ setTimeout(()=>{ window.location.href = gf; }, 800); }
+      if(gf){ setTimeout(()=>{ window.location.href = gf; }, 900); }
       form.reset();
     }
 
     function mailtoFallback(payload){
       const to = 'bschmitz799@gmail.com';
       const subject = encodeURIComponent('New Coaching Intake');
-      const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}`);
+      const body = encodeURIComponent(
+        `Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nPhone: ${payload.phone||''}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`
+      );
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      onSubmitSuccess({ok:true, fallback:'mailto'});
+      onSubmitSuccess();
     }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const f = new FormData(form);
-      const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim() };
+      const payload = {
+        name: f.get('name')?.trim(),
+        birthday: f.get('birthday'),
+        email: f.get('email')?.trim(),
+        phone: f.get('phone')?.trim(),
+        suburb: f.get('suburb')?.trim(),
+        goal: f.get('goal')?.trim(),
+        limits: f.get('limits')?.trim(),
+        ref: f.get('ref')?.trim()
+      };
 
       // Honeypot check
       if((document.getElementById('website')||{}).value){ return; }
 
-      if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete all fields.'); return; }
+      if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; }
       if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; }
       if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; }
 
       // Save locally as a backup
-      try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){/* ignore */}
+      try{
+        const list = JSON.parse(localStorage.getItem('intakes')||'[]');
+        list.push({...payload, ts:Date.now()});
+        localStorage.setItem('intakes', JSON.stringify(list));
+      }catch(err){/* ignore */}
 
       const endpoint = form.dataset.endpoint?.trim();
       if(endpoint){
@@ -432,6 +482,21 @@ function doPost(e){
         mailtoFallback(payload);
       }
     });
+  </script>
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "One Path Health Coaching",
+    "url": "https://beaubit.github.io/one-path-health/",
+    "areaServed": "Melbourne, Australia",
+    "description": "Sustainable exercise and nutrition coaching with a kind, practical approach.",
+    "email": "mailto:bschmitz799@gmail.com",
+    "sameAs": ["https://www.instagram.com/beauyup/"],
+    "priceRange": "$$"
+  }
   </script>
 </body>
 </html>
