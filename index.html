@@ -5,68 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>One Path Health Coaching — Exercise · Nutrition · Habits</title>
   <meta name="description" content="One Path Health Coaching helps Melbourne and online clients build sustainable exercise and nutrition habits through tailored plans, education, and supportive accountability." />
-  <meta name="theme-color" content="#5dbb8a" />
+  <meta name="theme-color" content="#193b2d" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="One Path Health Coaching — Melbourne & Online" />
-  <meta property="og:description" content="Sustainable exercise and nutrition coaching. Kind, practical guidance that fits your life." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://beaubit.github.io/one-path-health/" />
-  <meta property="og:image" content="https://your-domain.com/og-one-path-health.jpg" />
   <style>
     :root{
-      --bg:#f4faf7; --panel:#ffffff; --ink:#0f1f17; --muted:#506a5b; --accent:#45a877; --accent-dark:#2e7a55; --accent-2:#a7e0c4; --line:#d6e9df; --chip:#e9f6ef;
+      /* Professional, deeper palette */
+      --bg:#0e1b15;          /* deep forest */
+      --bg-soft:#11241b;     /* slightly lighter */
+      --panel:#ffffff;       /* cards */
+      --ink:#0f1f17;         /* primary text */
+      --muted:#4c6a5a;       /* secondary text */
+      --accent:#2d7d5a;      /* main green */
+      --accent-dark:#1f6b48; /* darker green (buttons) */
+      --accent-soft:#9ad4bc; /* light accent (focus ring) */
+      --line:#d8e8df;        /* subtle borders */
+      --chip:#e9f6ef;        /* kpi chips */
       --btnGlow: rgba(255,255,255,.95);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     html{scroll-behavior:smooth}
-    body{ margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink); background: radial-gradient(1200px 800px at 15% -10%, #e7f6ee 0%, var(--bg) 55%) no-repeat fixed, linear-gradient(180deg, #f4faf7 0%, #f6fbf8 100%); }
+
+    /* Lively layered background (no images) */
+    body{margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink);
+      background:
+        radial-gradient(900px 600px at 12% -10%, #163426 0%, transparent 55%),
+        radial-gradient(700px 500px at 88% 0%, #153c2b 0%, transparent 52%),
+        radial-gradient(1200px 700px at 50% 120%, #0e231a 0%, transparent 60%),
+        linear-gradient(180deg, #f4faf7 0%, #edf7f2 40%, #f4faf7 100%);
+      background-attachment: fixed, fixed, fixed, scroll;
+    }
 
     a{color:var(--accent); text-decoration:none; transition:text-shadow .18s ease}
-    a:hover{text-decoration:underline; text-shadow:0 0 10px rgba(69,168,119,.45)}
-    a:focus-visible, .btn:focus-visible{outline:3px solid var(--accent-2); outline-offset:2px; border-radius:14px}
+    a:hover{text-decoration:underline}
+    a:focus-visible, .btn:focus-visible, .navlink:focus-visible{outline:3px solid var(--accent-soft); outline-offset:3px; border-radius:12px}
 
-    .wrap{max-width:1100px; margin-inline:auto; padding:24px}
+    .wrap{max-width:1100px; margin-inline:auto; padding:22px}
 
-    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.85), rgba(244,250,247,.6)); border-bottom:1px solid var(--line)}
+    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.86), rgba(244,250,247,.62)); border-bottom:1px solid #e2efe8}
     .nav{display:flex; align-items:center; gap:18px;} .nav .spacer{flex:1}
+
+    /* Logo slot — 32x32 like original */
     .brand-logo{width:32px; height:32px; border-radius:8px; object-fit:cover; display:block}
 
-    /* Buttons — all filled, darker green, white glow on hover */
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:var(--accent-dark); color:#fff; border:1px solid #246448; box-shadow:0 8px 20px rgba(36,100,72,.25); cursor:pointer; font-weight:600; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease}
-    .btn:hover{filter:brightness(1.03); transform:scale(1.09); box-shadow:0 16px 36px rgba(36,100,72,.35); text-shadow:0 0 10px var(--btnGlow),0 0 18px var(--btnGlow)}
+    /* Header links: text only (no bubble, no glow) */
+    .navlink{padding:6px 0; font-weight:600; color:#163426; border:none; background:transparent; display:inline-block; transform:translateZ(0); transition:transform .18s ease, color .18s ease}
+    .navlink:hover{color:var(--accent-dark); transform:scale(1.03)}
+
+    /* Buttons — filled darker green + white glow on hover */
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:var(--accent-dark); color:#fff; border:1px solid #1a563d; box-shadow:0 8px 20px rgba(26,86,61,.28); cursor:pointer; font-weight:600; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease}
+    .btn:hover{filter:brightness(1.03); transform:scale(1.09); box-shadow:0 16px 36px rgba(26,86,61,.38); text-shadow:0 0 10px var(--btnGlow), 0 0 18px var(--btnGlow)}
     .btn:active{transform:scale(0.97)}
-    .btn.ghost{background:var(--accent-dark); color:#fff; border:1px solid #246448} /* Ghosts now filled too */
 
-    /* Bubble feel for accordion headers too */
-    .acc-head{transition: transform .2s ease, text-shadow .2s ease}
-    .acc-head:hover, .acc-head:focus-visible{transform:scale(1.04); text-shadow:0 0 10px rgba(69,168,119,.4)}
-    .acc-head:active{transform:scale(0.99)}
+    /* Sections — slightly tighter spacing */
+    section{padding:36px 22px}
+    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px}
 
-    .hero{padding:64px 24px 32px}
-    .hero .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:36px}
-
-    /* Stronger shadows on content sections */
-    .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:22px; box-shadow: 0 16px 38px rgba(24,60,42,.12)}
+    /* Cards & typographic rhythm */
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:20px; box-shadow: 0 16px 36px rgba(24,60,42,.12)}
     .card:hover{box-shadow:0 22px 48px rgba(24,60,42,.16)}
 
-    h1{font-size:clamp(30px, 3.6vw, 46px); line-height:1.08; margin:0 0 12px}
-    h2{font-size:clamp(22px, 2.4vw, 32px); margin:0 0 12px}
-    h3{font-size:20px; margin:16px 0 8px}
+    h1{font-size:clamp(28px, 3.2vw, 44px); line-height:1.08; margin:0 0 10px}
+    h2{font-size:clamp(22px, 2.2vw, 30px); margin:0 0 10px}
+    h3{font-size:20px; margin:12px 0 8px}
     p{color:var(--muted); line-height:1.65}
 
-    .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:16px}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:var(--muted); font-size:12px; box-shadow:0 4px 10px rgba(24,60,42,.10)}
+
+    .hero{padding:56px 22px 24px}
+    .hero .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px}
+
+    .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:14px}
     .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px; box-shadow:0 6px 16px rgba(24,60,42,.10)}
     .k strong{display:block; font-size:18px; color:var(--ink)}
 
-    section{padding:44px 24px}
-    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
-    .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:var(--muted); font-size:12px; box-shadow:0 4px 10px rgba(24,60,42,.10)}
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px}
 
-    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
-    .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:16px}
+    /* Quote under hero */
+    .quote-inline{padding:6px 22px 24px}
+    .quote-inline .site-quote{margin:0; text-align:center; font-style:italic; font-size:clamp(15px, 1.7vw, 19px); color:#375646}
+    .quote-inline .site-quote span{font-weight:600}
 
     /* Carousel */
     .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:20px; border:1px solid var(--line); background:#eef7f1; box-shadow:0 14px 36px rgba(24,60,42,.12)}
@@ -74,29 +95,20 @@
     .slide.active{opacity:1} .slide img{width:100%; height:100%; object-fit:cover}
     .dots{position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px}
     .dot{width:8px; height:8px; border-radius:50%; background:#ffffffaa; border:1px solid #ffffff; box-shadow:0 0 0 1px #00000022 inset}
-    .dot.active{background:#45a877}
-
-    /* Pull-quote (moved under hero, smaller, italic, Inter) */
-    .quote-inline{padding:8px 24px 28px}
-    .quote-inline .site-quote{margin:0; text-align:center; font-style:italic; font-size:clamp(16px, 1.8vw, 20px); color:#375646}
-    .quote-inline .site-quote span{font-weight:600}
+    .dot.active{background:#2d7d5a}
 
     /* Form */
     form{display:grid; gap:12px} label{font-weight:600; color:#1c372a}
-    input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #111; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #0f1f17; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
     input::placeholder, textarea::placeholder{color:#7b9788}
-    input:focus, textarea:focus, select:focus{border-color:#111; box-shadow:0 8px 22px rgba(0,0,0,.12), 0 0 0 3px #a7e0c44d}
+    input:focus, textarea:focus, select:focus{border-color:#0f1f17; box-shadow:0 8px 22px rgba(0,0,0,.12), 0 0 0 3px #9ad4bc66}
 
-    .inline{display:flex; gap:12px}
-    .hint{font-size:12px; color:#4e6a59}
-    .success{background:#e8f7ee; border:1px solid #bfe8d0; color:#1f3b2d; padding:10px 12px; border-radius:12px; box-shadow:0 6px 16px rgba(24,60,42,.12)}
-    .error{background:#fdeaea; border:1px solid #f3c0c0; color:#6b1111; padding:10px 12px; border-radius:12px; box-shadow:0 6px 16px rgba(177,58,58,.12)}
+    footer{padding:22px; border-top:1px solid var(--line); color:var(--muted)}
 
-    footer{padding:28px 24px; border-top:1px solid var(--line); color:var(--muted)}
-
-    /* Accordion (smooth collapse/expand) */
+    /* Accordion */
     .accordion .item{border:1px solid var(--line); border-radius:16px; background:var(--panel); overflow:hidden; box-shadow:0 12px 28px rgba(24,60,42,.10)}
-    .acc-head{width:100%; text-align:left; background:transparent; border:0; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; font-weight:600}
+    .acc-head{width:100%; text-align:left; background:transparent; border:0; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; font-weight:600; transition: transform .2s ease}
+    .acc-head:hover, .acc-head:focus-visible{transform:scale(1.03)}
     .acc-icon{transition:transform .35s ease}
     .acc-panel{max-height:0; overflow:hidden; opacity:.0; padding:0 16px; transition:max-height .45s ease, opacity .45s ease, padding .3s ease}
     .item.open .acc-panel{opacity:1; padding:0 16px 16px}
@@ -108,13 +120,15 @@
   <header>
     <div class="wrap nav">
       <a href="#" style="display:flex; align-items:center; gap:12px; text-decoration:none">
-        <img class="brand-logo" src="images/logo-one-path-health.jpg" alt="One Path Health logo" />
-        <strong style="color:var(--ink)">One Path Health Coaching</strong>
+        <!-- Inline base64 JPEG so the logo always shows -->
+        <img class="brand-logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQDxAQEA8QDxAQDw8PDw8PDw8PDw8QFREWFhURFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGi0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAGAAWAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABgcBBAUICf/EADsQAAIBAwIEAwUFBAMAAAAAAAECAwAEEQUhBhIxQVFhBxMiMoGR0QcyUpKx4SQzQ3Ki8BYjYqPC/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAIDAQQF/8QAJxEAAgICAQMEAwEAAAAAAAAAAAECEQMhEjEEEyJRYRMUQmHwcbH/2gAMAwEAAhEDEQA/AO8o0gk7dT2nZ8r6b9fVwQq7t9Yx2c4w4m6VdV9o0iVQy4T1S0p9l0k0t2oO5n6x6xjYkO2kY0P3oOaVQF4YgA0mX0Qm7wq9zKc0Jk9v5i7zK1o4d8Hh7Vb6eS4m6P7Fv5+3R6i0r4x1U8g3g1vIhU9eZtXbVnK0m5s1WZs0nq1q5nKzjGfQe0HkqT0kH1x1l8a+1yQpG0Q1Jm1jH2E4qj18m2v3jQ3jYpN8VMU3J1qS3pW8kV8lY6Hn6q2vQ5fV3N5b8V1x6mXy7wXo7ZrXbW1k3r8bWcW9kYPX9Yzv5wOP9aU3WcukKQ2ZQbY3Q7n0m6wW7+7fKX5r3f6R9Yb3uL4m0r9i6x6bA3YzKq2T4s9oZj1fYl2JzWm4TtG0v2L2bq9ZbFZt2m6p1b6t1U7q6LZ5a8lJkqgY0g0Q0Y2oWfG+6m8l6jZsVmtq1m6p1b6l1U5q6LY5a8k5kqgY0g0Q0Y2oWfG+6m8l6jZtFmtq1m6p1b6l1U5q6LY5a8k5kqgY0g0Q0Y2oWfG+6m8l6jZsVmtq1m6p1b6l1U5q6LY5a8k5kqgY0g0Q0Y2oWfG+6m8l6jZsVmtq1m6p1b6l1U5q6LY5a8k5kqgY0g0Q0Y2oWfG+6m8l6jZ//Z" alt="One Path Health logo" />
+        <strong style="color:#0d231a">One Path Health Coaching</strong>
       </a>
       <div class="spacer"></div>
-      <a class="btn ghost" href="#services">Services</a>
-      <a class="btn ghost" href="#approach">Approach</a>
-      <a class="btn ghost" href="#contact">Get Started</a>
+      <!-- Text-only header links (no bubble/glow) -->
+      <a class="navlink" href="#services">Services</a>
+      <a class="navlink" href="#approach">Approach</a>
+      <a class="navlink" href="#contact">Get Started</a>
       <button class="btn" id="heroBookBtn" type="button">Book a free intro call</button>
     </div>
   </header>
@@ -127,11 +141,11 @@
           <div>
             <h1>Build healthy habits you actually enjoy.</h1>
             <p>Melbourne & online coaching that fits your life—simple training, kinder nutrition, and steady support so results stick.</p>
-            <div style="display:flex; gap:12px; margin-top:14px">
+            <div style="display:flex; gap:10px; margin-top:12px">
               <button class="btn" id="bookCallBtn" type="button">Book a free intro call</button>
-              <a class="btn ghost" href="#contact">Start your intake</a>
+              <a class="btn" href="#contact">Start your intake</a>
             </div>
-            <div class="kpis" style="margin-top:16px">
+            <div class="kpis" style="margin-top:14px">
               <div class="k"><strong>1:1 Online</strong><span class="hint">Zoom/Google Meet</span></div>
               <div class="k"><strong>Melbourne</strong><span class="hint">Local clients welcome</span></div>
               <div class="k"><strong>Habits-first</strong><span class="hint">Education over restriction</span></div>
@@ -157,14 +171,14 @@
       </div>
     </section>
 
-    <!-- QUOTE moved under hero -->
+    <!-- QUOTE under hero -->
     <section class="quote-inline">
       <div class="wrap">
         <p class="site-quote">“He who has health has hope; and he who has hope has everything.” <span>— Thomas Carlyle</span></p>
       </div>
     </section>
 
-    <!-- ABOUT (carousel + copy) -->
+    <!-- ABOUT -->
     <section id="about">
       <div class="wrap">
         <div class="section-title">
@@ -228,7 +242,7 @@
             <p class="hint" style="margin-top:.5rem"><em>Walk away with:</em> measurable progress, habit systems, and confidence to continue.</p>
           </div>
         </div>
-        <p class="hint" style="margin-top:10px">No lock‑in. Pause or cancel anytime with 48‑hour notice. Payments are in AUD. Receipts provided.</p>
+        <p class="hint" style="margin-top:8px">No lock‑in. Pause or cancel anytime with 48‑hour notice. Payments are in AUD. Receipts provided.</p>
       </div>
     </section>
 
@@ -246,29 +260,6 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-      <div class="wrap">
-        <div class="section-title"><h2>Client Wins</h2><span class="pill">Add later</span></div>
-        <div class="grid-3">
-          <div class="card"><em>“I felt supported from day one. The plan was simple to follow and didn’t take over my life.”</em><p class="hint">— J., Brunswick</p></div>
-          <div class="card"><em>“Practical advice that fit my schedule. I finally enjoy training again.”</em><p class="hint">— S., Fitzroy</p></div>
-          <div class="card"><em>“Small changes added up to better sleep and more energy.”</em><p class="hint">— A., Carlton</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-      <div class="wrap">
-        <div class="section-title"><h2>FAQ</h2><span class="pill">Add later</span></div>
-        <div class="grid-2">
-          <div class="card"><h3>Do I need a gym?</h3><p><!-- Your answer. --></p></div>
-          <div class="card"><h3>What about nutrition advice?</h3><p><!-- General nutrition education; not medical nutrition therapy. --></p></div>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT / INTAKE FORM -->
     <section id="contact">
       <div class="wrap">
@@ -280,11 +271,11 @@
             <div id="formMsg" role="status" aria-live="polite"></div>
             <form id="intakeForm" autocomplete="on" novalidate data-endpoint="" data-google-form-link="https://docs.google.com/forms/d/1uxxEI6G5Q-CvHuDkeM8qIfFZ_8EZdWJb3OzCp5jSaCk/viewform">
               <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" aria-hidden="true">
-              <div class="inline">
+              <div class="inline" style="display:flex; gap:12px">
                 <div style="flex:1"><label for="name">Full name</label><input id="name" name="name" type="text" placeholder="Jane Doe" required /></div>
                 <div style="flex:1"><label for="birthday">Birthday</label><input id="birthday" name="birthday" type="date" required /></div>
               </div>
-              <div class="inline">
+              <div class="inline" style="display:flex; gap:12px">
                 <div style="flex:1"><label for="suburb">Suburb</label><input id="suburb" name="suburb" type="text" placeholder="Brunswick" /></div>
                 <div style="flex:1"><label for="goal">Primary goal</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" /></div>
               </div>
@@ -292,7 +283,7 @@
               <div><label for="ref">How did you hear about me?</label><input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer" /></div>
               <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
               <div><label class="hint"><input type="checkbox" id="consent" required /> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy.</label></div>
-              <div class="inline"><button class="btn" type="submit">Join the list</button><a class="btn ghost" href="#about">How it works</a></div>
+              <div class="inline" style="display:flex; gap:10px"><button class="btn" type="submit">Join the list</button><a class="btn" href="#about">How it works</a></div>
               <p class="hint">Your details are kept private and used only to contact you about coaching.</p>
             </form>
           </div>
@@ -301,7 +292,7 @@
             <p><strong>Email:</strong> <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
             <p><strong>Instagram:</strong> <a href="https://www.instagram.com/beauyup/" target="_blank" rel="noopener">@beauyup</a></p>
             <p><strong>Location:</strong> Melbourne, Australia • Sessions online or local</p>
-            <hr style="border-color:var(--line); margin:14px 0">
+            <hr style="border-color:var(--line); margin:12px 0">
             <h3>What to expect</h3>
             <ul style="margin:0; padding-left:18px; line-height:1.8">
               <li>Reply within 1–2 business days</li>
@@ -401,26 +392,13 @@
       if(booking){ window.open(booking, '_blank', 'noopener'); }
     }
     document.getElementById('bookCallBtn').addEventListener('click', openBooking);
-    document.getElementById('heroBookBtn').addEventListener('click', openBooking);
+    document.getElementById('heroBookBtn') && document.getElementById('heroBookBtn').addEventListener('click', openBooking);
 
     // ABOUT carousel (5s rotation)
     (function(){ const container = document.querySelector('#about .carousel'); if(!container) return; const slides = Array.from(container.querySelectorAll('.slide')); const dots = Array.from(container.querySelectorAll('.dot')); let i = 0; let timer = null; function show(n){ slides[i].classList.remove('active'); dots[i].classList.remove('active'); i = n; if(i<0) i = slides.length-1; if(i>=slides.length) i = 0; slides[i].classList.add('active'); dots[i].classList.add('active'); } function next(){ show(i+1); } function start(){ timer = setInterval(next, 5000); } function stop(){ if(timer) clearInterval(timer); } container.addEventListener('mouseenter', stop); container.addEventListener('mouseleave', start); dots.forEach((d, idx)=> d.addEventListener('click', ()=>{ stop(); show(idx); start(); })); start(); })();
 
     // Accordion behaviour
-    (function(){
-      const items = document.querySelectorAll('.accordion .item');
-      items.forEach(item => {
-        const head = item.querySelector('.acc-head');
-        const icon = item.querySelector('.acc-icon');
-        const panel = item.querySelector('.acc-panel');
-        const setHeight = () => { if(item.classList.contains('open')) { panel.style.maxHeight = panel.scrollHeight + 'px'; icon.style.transform = 'rotate(180deg)'; } else { panel.style.maxHeight = '0px'; icon.style.transform = 'rotate(0)'; } };
-        head.addEventListener('click', () => { item.classList.toggle('open'); head.setAttribute('aria-expanded', item.classList.contains('open')); setHeight(); });
-        // Initialize closed
-        head.setAttribute('aria-expanded', 'false'); panel.style.maxHeight = '0px';
-        // Recompute on resize
-        window.addEventListener('resize', () => { if(item.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px'; });
-      });
-    })();
+    (function(){ const items = document.querySelectorAll('.accordion .item'); items.forEach(item => { const head = item.querySelector('.acc-head'); const icon = item.querySelector('.acc-icon'); const panel = item.querySelector('.acc-panel'); const setHeight = () => { if(item.classList.contains('open')) { panel.style.maxHeight = panel.scrollHeight + 'px'; icon.style.transform = 'rotate(180deg)'; } else { panel.style.maxHeight = '0px'; icon.style.transform = 'rotate(0)'; } }; head.addEventListener('click', () => { item.classList.toggle('open'); head.setAttribute('aria-expanded', item.classList.contains('open')); setHeight(); }); head.setAttribute('aria-expanded', 'false'); panel.style.maxHeight = '0px'; window.addEventListener('resize', () => { if(item.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px'; }); }); })();
 
     // Intake form
     const form = document.getElementById('intakeForm'); const msg = document.getElementById('formMsg');
@@ -428,11 +406,6 @@
     function onSubmitSuccess(){ show('success', "Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire."); const gf = form.dataset.googleFormLink || ''; if(gf){ setTimeout(()=>{ window.location.href = gf; }, 900); } form.reset(); }
     function mailtoFallback(payload){ const to = 'bschmitz799@gmail.com'; const subject = encodeURIComponent('New Coaching Intake'); const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`); window.location.href = `mailto:${to}?subject=${subject}&body=${body}`; onSubmitSuccess(); }
     form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), suburb: f.get('suburb')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn\'t reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
-  </script>
-
-  <!-- LocalBusiness Schema -->
-  <script type="application/ld+json">
-  { "@context": "https://schema.org", "@type": "LocalBusiness", "name": "One Path Health Coaching", "url": "https://beaubit.github.io/one-path-health/", "areaServed": "Melbourne, Australia", "description": "Sustainable exercise and nutrition coaching with a kind, practical approach.", "email": "mailto:bschmitz799@gmail.com", "sameAs": ["https://www.instagram.com/beauyup/"], "priceRange": "$$" }
   </script>
 </body>
 </html>
