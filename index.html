@@ -5,38 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>One Path Health Coaching — Exercise · Nutrition · Habits</title>
   <meta name="description" content="One Path Health Coaching helps Melbourne and online clients build sustainable exercise and nutrition habits through tailored plans, education, and supportive accountability." />
-  <meta name="theme-color" content="#193b2d" />
+  <meta name="theme-color" content="#0b1a14" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      /* Professional, deeper palette */
-      --bg:#0e1b15;          /* deep forest */
-      --bg-soft:#11241b;     /* slightly lighter */
-      --panel:#ffffff;       /* cards */
-      --ink:#0f1f17;         /* primary text */
-      --muted:#4c6a5a;       /* secondary text */
-      --accent:#2d7d5a;      /* main green */
-      --accent-dark:#1f6b48; /* darker green (buttons) */
-      --accent-soft:#9ad4bc; /* light accent (focus ring) */
-      --line:#d8e8df;        /* subtle borders */
-      --chip:#e9f6ef;        /* kpi chips */
-      --btnGlow: rgba(255,255,255,.95);
+    :root{ /* Deeper, professional palette */
+      --bg:#07140f; --bg-soft:#0b1a14; --panel:#ffffff; --ink:#0f1f17; --muted:#4c6a5a; --accent:#2a7c59; --accent-dark:#1e5f43; --accent-soft:#a7e0c4; --line:#d8e8df; --chip:#e9f6ef; --btnGlow: rgba(255,255,255,.95);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     html{scroll-behavior:smooth}
 
-    /* Lively layered background (no images) */
+    /* Darker green base with minty edge glow */
     body{margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--ink);
       background:
-        radial-gradient(900px 600px at 12% -10%, #163426 0%, transparent 55%),
-        radial-gradient(700px 500px at 88% 0%, #153c2b 0%, transparent 52%),
-        radial-gradient(1200px 700px at 50% 120%, #0e231a 0%, transparent 60%),
-        linear-gradient(180deg, #f4faf7 0%, #edf7f2 40%, #f4faf7 100%);
-      background-attachment: fixed, fixed, fixed, scroll;
+        radial-gradient(1100px 800px at -10% -10%, rgba(154,224,196,.18) 0%, rgba(154,224,196,.06) 35%, transparent 60%),
+        radial-gradient(900px 700px at 110% 110%, rgba(154,224,196,.16) 0%, rgba(154,224,196,.05) 36%, transparent 62%),
+        radial-gradient(1000px 700px at 20% 120%, #0c2018 0%, transparent 60%),
+        radial-gradient(1000px 700px at 80% -20%, #0b1d16 0%, transparent 60%),
+        linear-gradient(180deg, #0b1a14 0%, #0e2018 45%, #10251c 100%);
+      background-attachment: fixed, fixed, fixed, fixed, scroll;
     }
+    /* Minty inner-glow along the edges */
+    body::before{ content:""; position:fixed; inset:0; pointer-events:none; box-shadow: inset 0 0 160px 40px rgba(154,224,196,.20); }
 
     a{color:var(--accent); text-decoration:none; transition:text-shadow .18s ease}
     a:hover{text-decoration:underline}
@@ -47,7 +39,7 @@
     header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.86), rgba(244,250,247,.62)); border-bottom:1px solid #e2efe8}
     .nav{display:flex; align-items:center; gap:18px;} .nav .spacer{flex:1}
 
-    /* Logo slot — 32x32 like original */<img class="brand-logo" src="images/logo-one-path-health.jpg?v=1" alt="One Path Health logo" />
+    /* Logo slot — 32x32 like original */
     .brand-logo{width:32px; height:32px; border-radius:8px; object-fit:cover; display:block}
 
     /* Header links: text only (no bubble, no glow) */
@@ -64,8 +56,8 @@
     .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px}
 
     /* Cards & typographic rhythm */
-    .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:20px; box-shadow: 0 16px 36px rgba(24,60,42,.12)}
-    .card:hover{box-shadow:0 22px 48px rgba(24,60,42,.16)}
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:20px; box-shadow: 0 16px 36px rgba(24,60,42,.18)}
+    .card:hover{box-shadow:0 22px 48px rgba(24,60,42,.22)}
 
     h1{font-size:clamp(28px, 3.2vw, 44px); line-height:1.08; margin:0 0 10px}
     h2{font-size:clamp(22px, 2.2vw, 30px); margin:0 0 10px}
@@ -120,8 +112,8 @@
   <header>
     <div class="wrap nav">
       <a href="#" style="display:flex; align-items:center; gap:12px; text-decoration:none">
-        <!-- Inline base64 JPEG so the logo always shows -->
-        <img class="brand-logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQDxAQEA8QDxAQDw8PDw8PDw8PDw8QFREWFhURFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGi0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAGAAWAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABgcBBAUICf/EADsQAAIBAwIEAwUFBAMAAAAAAAECAwAEEQUhBhIxQVFhBxMiMoGR0QcyUpKx4SQzQ3Ki8BYjYqPC/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAIDAQQF/8QAJxEAAgICAQMEAwEAAAAAAAAAAAECEQMhEjEEEyJRYRMUQmHwcbH/2gAMAwEAAhEDEQA/AO8o0gk7dT2nZ8r6b9fVwQq7t9Yx2c4w4m6VdV9o0iVQy4T1S0p9l0k0t2oO5n6x6xjYkO2kY0P3oOaVQF4YgA0mX0Qm7wq9zKc0Jk9v5i7zK1o4d8Hh7Vb6eS4m6P7Fv5+3R6i0r4x1U8g3g1vIhU9eZtXbVnK0m5s1WZs0nq1q5nKzjGfQe0HkqT0kH1x1l8a+1yQpG0Q1Jm1jH2E4qj18m2v3jQ3jYpN8VMU3J1qS3pW8kV8lY6Hn6q2vQ5fV3N5b8V1x6mXy7wXo7ZrXbW1k3r8bWcW9kYPX9Yzv5wOP9aU3WcukKQ2ZQbY3Q7n0m6wW7+7fKX5r3f6R9Yb3uL4m0r9i6x6bA3YzKq2T4s9oZj1fYl2JzWm4TtG0v2L2bq9ZbFZt2m6p1b6t1U7q6LZ5a8lJkqgY0g0Q0Y2oWfG+6m8l6jZsVmtq1m6p1b6l1U5q6LY5a8k5kqgY0g0Q0Y2oWfG+6m8l6jZtFmtq1m6p1b6l1U5q6LY5a8k5kqgY0g0Q0Y2oWfG+6m8l6jZsVmtq1m6p1b6l1U5q6LY5a8k5kqgY0g0Q0Y2oWfG+6m8l6jZsVmtq1m6p1b6l1U5q6LY5a8k5kqgY0g0Q0Y2oWfG+6m8l6jZ//Z" alt="One Path Health logo" />
+        <!-- Use the file you uploaded in /images -->
+        <img class="brand-logo" src="images/logo-one-path-health.jpg?v=1" alt="One Path Health logo" />
         <strong style="color:#0d231a">One Path Health Coaching</strong>
       </a>
       <div class="spacer"></div>
