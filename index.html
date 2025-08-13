@@ -40,7 +40,7 @@
     header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.86), rgba(244,250,247,.62)); border-bottom:1px solid #e2efe8}
     .nav{display:flex; align-items:center; gap:18px;} .nav .spacer{flex:1}
 
-    /* Logo slot — now 48x48 */
+    /* Logo slot — 48x48 */
     .brand-logo{width:48px; height:48px; border-radius:10px; object-fit:cover; display:block}
 
     /* Header links: text only (no bubble, no glow) */
@@ -70,6 +70,7 @@
     .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:14px}
     .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px; box-shadow:0 6px 16px rgba(24,60,42,.10)}
     .k strong{display:block; font-size:18px; color:var(--ink)}
+    .k .hint{color:var(--ink)} /* Make caption lines black inside KPI chips */
 
     .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
     .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px}
@@ -107,6 +108,11 @@
     .acc-icon{transition:transform .35s ease}
     .acc-panel{max-height:0; overflow:hidden; opacity:.0; padding:0 16px; transition:max-height .45s ease, opacity .45s ease, padding .3s ease}
     .item.open .acc-panel{opacity:1; padding:0 16px 16px}
+    /* Make legal content text black */
+    #legal .content, #legal .content p, #legal .content li { color: var(--ink); }
+
+    /* "What I offer" headshot */
+    .offer-photo{width:100%; aspect-ratio: 4/3; object-fit:cover; border-radius:14px; border:1px solid var(--line); box-shadow:0 10px 24px rgba(24,60,42,.14); margin-bottom:12px}
 
     @media (max-width: 900px){ .hero .grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} header .nav{gap:10px} }
   </style>
@@ -152,6 +158,7 @@
             </div>
           </div>
           <div class="card">
+            <img class="offer-photo" src="images/beau-headshot.jpg" alt="Coach Beau Schmitz" />
             <h3>What I offer</h3>
             <ul style="margin:0; padding-left:18px; line-height:1.8">
               <li>Tailored training programs (gym or at-home)</li>
@@ -192,8 +199,10 @@
             </div>
           </div>
           <div class="card">
-            <h3>Health is Wealth</h3>
-            <p>My name is Beau Schmitz. I have been passionately dedicated to health and fitness for over 6 years. Constantly learning and applying healthy habits. My personal journey has helped me understand the mental and physical benefits of leading a health conscious life. My goal is to empower others through this knowledge and help them achieve the goal of loving the way they feel in their own body through sustainable life practices. <strong>Health is Wealth!</strong> When we take control of our health, all other areas of our life start to thrive!</p>
+            <h3>“Health is Wealth”</h3>
+            <p>My name is Beau Schmitz. I have been passionately dedicated to health and fitness for over 6 years—constantly learning and applying healthy habits.</p>
+            <p>My personal journey has helped me understand the mental and physical benefits of leading a health‑conscious life. My goal is to empower others through this knowledge and help them love the way they feel in their own body through sustainable practices.</p>
+            <p><strong>“Health is Wealth.”</strong> When we take control of our health, all other areas of our life start to thrive.</p>
           </div>
         </div>
       </div>
