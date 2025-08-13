@@ -40,8 +40,8 @@
     header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.86), rgba(244,250,247,.62)); border-bottom:1px solid #e2efe8}
     .nav{display:flex; align-items:center; gap:18px;} .nav .spacer{flex:1}
 
-    /* Logo slot — 48x48 */
-    .brand-logo{width:48px; height:48px; border-radius:10px; object-fit:cover; display:block}
+    /* Logo slot — now 64x64 */
+    .brand-logo{width:64px; height:64px; border-radius:10px; object-fit:cover; display:block}
 
     /* Header links: text only (no bubble, no glow) */
     .navlink{padding:6px 0; font-weight:600; color:#163426; border:none; background:transparent; display:inline-block; transform:translateZ(0); transition:transform .18s ease, color .18s ease}
@@ -111,8 +111,14 @@
     /* Make legal content text black */
     #legal .content, #legal .content p, #legal .content li { color: var(--ink); }
 
-    /* "What I offer" headshot */
-    .offer-photo{width:100%; aspect-ratio: 4/3; object-fit:cover; border-radius:14px; border:1px solid var(--line); box-shadow:0 10px 24px rgba(24,60,42,.14); margin-bottom:12px}
+    /* Offer card: avatar + title row */
+    .offer-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
+    .offer-avatar{width:64px; height:64px; border-radius:10px; object-fit:cover; border:1px solid var(--line); box-shadow:0 10px 20px rgba(24,60,42,.14)}
+
+    /* Approach readability enhancements */
+    #approach .section-title h2{color:#ffffff}
+    #approach ol{color:var(--ink); font-weight:700; font-size:17px;}
+    #approach li{margin:6px 0}
 
     @media (max-width: 900px){ .hero .grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} header .nav{gap:10px} }
   </style>
@@ -158,8 +164,11 @@
             </div>
           </div>
           <div class="card">
-            <img class="offer-photo" src="images/beau-headshot.jpg" alt="Coach Beau Schmitz" />
-            <h3>What I offer</h3>
+            <div class="offer-head">
+              <img class="offer-avatar" src="images/beau-headshot.jpg" alt="Coach Beau Schmitz" />
+              <h3 style="margin:0">What I offer</h3>
+            </div>
+            <p class="hint" style="margin:0 0 8px 0">Tailored training, kinder nutrition education, and simple, sustainable habit systems—no fads or shaming.</p>
             <ul style="margin:0; padding-left:18px; line-height:1.8">
               <li>Tailored training programs (gym or at-home)</li>
               <li>Small, winnable daily goals (steps, runs, swims)</li>
@@ -167,7 +176,6 @@
               <li>Meal ideas, guides, and allergy-aware plans</li>
               <li>Accountability check-ins & messaging support</li>
             </ul>
-            <p class="hint" style="margin-top:8px">No food shaming. Flexible, sustainable, evidence-informed.</p>
           </div>
         </div>
       </div>
@@ -253,7 +261,7 @@
     <!-- HOW IT WORKS -->
     <section id="approach">
       <div class="wrap">
-        <div class="section-title"><h2>How it works</h2><span class="pill">Edit this later</span></div>
+        <div class="section-title"><h2>How Our Coaching Works</h2><span class="pill">Step‑by‑step</span></div>
         <ol class="card" style="margin:0; padding-left:22px; line-height:1.9">
           <li>Submit the intake form below.</li>
           <li>Free 15–20 min intro call to learn your goals, preferences, and schedule.</li>
@@ -409,7 +417,7 @@
     function show(type, text){ msg.className = type; msg.textContent = text; } function validEmail(e){ return /.+@.+\..+/.test(e); }
     function onSubmitSuccess(){ show('success', "Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire."); const gf = form.dataset.googleFormLink || ''; if(gf){ setTimeout(()=>{ window.location.href = gf; }, 900); } form.reset(); }
     function mailtoFallback(payload){ const to = 'bschmitz799@gmail.com'; const subject = encodeURIComponent('New Coaching Intake'); const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`); window.location.href = `mailto:${to}?subject=${subject}&body=${body}`; onSubmitSuccess(); }
-    form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), suburb: f.get('suburb')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn\'t reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
+    form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), suburb: f.get('suburb')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn't reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
   </script>
 </body>
 </html>
