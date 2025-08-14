@@ -9,18 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      /* Professional, modern green palette */
-      --bg:#07140f; --bg-soft:#0b1a14; --panel:#ffffff; --ink:#0f1f17; --muted:#4c6a5a; --accent:#2a7c59; --accent-dark:#1e5f43; --accent-soft:#a7e0c4; --line:#d8e8df; --chip:#e9f6ef; --btnGlow: rgba(255,255,255,.95);
-      --onDark: rgba(255,255,255,.92); --onDarkMuted: rgba(255,255,255,.78);
-      --radius:20px; --space:28px; --space-lg:36px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    html{scroll-behavior:smooth}
-
-    /* Darker green base with minty edge glow */
+    :root{ --bg:#07140f; --bg-soft:#0b1a14; --panel:#ffffff; --ink:#0f1f17; --muted:#4c6a5a; --accent:#2a7c59; --accent-dark:#1e5f43; --accent-soft:#a7e0c4; --line:#d8e8df; --chip:#e9f6ef; --btnGlow: rgba(255,255,255,.95); --onDark: rgba(255,255,255,.92); --onDarkMuted: rgba(255,255,255,.78); --radius:20px; --space:28px; --space-lg:36px; }
+    *{box-sizing:border-box} html,body{height:100%} html{scroll-behavior:smooth}
     body{margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--onDark);
       background:
         radial-gradient(1100px 800px at -10% -10%, rgba(154,224,196,.18) 0%, rgba(154,224,196,.06) 35%, transparent 60%),
@@ -28,9 +18,7 @@
         radial-gradient(1000px 700px at 20% 120%, #0c2018 0%, transparent 60%),
         radial-gradient(1000px 700px at 80% -20%, #0b1d16 0%, transparent 60%),
         linear-gradient(180deg, #0b1a14 0%, #0e2018 45%, #10251c 100%);
-      background-attachment: fixed, fixed, fixed, fixed, scroll;
-    }
-    /* Minty inner-glow along the edges */
+      background-attachment: fixed, fixed, fixed, fixed, scroll; }
     body::before{ content:""; position:fixed; inset:0; pointer-events:none; box-shadow: inset 0 0 160px 40px rgba(154,224,196,.20); }
 
     a{color:var(--accent); text-decoration:none; transition:text-shadow .18s ease}
@@ -39,7 +27,6 @@
 
     .wrap{max-width:1100px; margin-inline:auto; padding:16px}
 
-    /* Mobile-first header with toggle */
     header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.92), rgba(244,250,247,.70)); border-bottom:1px solid #e2efe8}
     .nav{display:flex; align-items:center; gap:12px}
     .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
@@ -53,17 +40,8 @@
     .navlinks-row{display:grid; grid-template-columns:1fr; gap:8px; align-items:center}
     .navlink{padding:10px 0; font-weight:600; color:#163426; border:none; background:transparent; display:block; transform:translateZ(0); transition:transform .18s ease, color .18s ease}
     .navlink:hover{color:var(--accent-dark); transform:scale(1.03)}
+    @media (min-width: 880px){ .nav{gap:18px} .nav-toggle{display:none} .nav-links{position:static; max-height:none; padding:0; background:transparent; border:0} .navlinks-row{display:flex; gap:14px} .navlink{display:inline-block; padding:6px 0} }
 
-    /* Desktop header layout */
-    @media (min-width: 880px){
-      .nav{gap:18px}
-      .nav-toggle{display:none}
-      .nav-links{position:static; max-height:none; padding:0; background:transparent; border:0}
-      .navlinks-row{display:flex; gap:14px}
-      .navlink{display:inline-block; padding:6px 0}
-    }
-
-    /* Typography (mobile-first, scalable) */
     h1{color:#fff; font-size:clamp(24px, 6.4vw, 38px); line-height:1.2; margin:0 0 8px}
     h2{color:#fff; font-size:clamp(20px, 5.2vw, 28px); line-height:1.25; margin:0}
     h3{color:#fff; font-size:clamp(18px, 4.6vw, 22px); line-height:1.3; margin:0 0 6px}
@@ -72,22 +50,19 @@
     section{padding:var(--space) 16px}
     @media (min-width: 900px){ .wrap{padding:22px} section{padding:var(--space-lg) 22px} }
 
-    /* Cards */
     .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px; box-shadow: 0 16px 36px rgba(24,60,42,.18); color:var(--ink)}
     @media (min-width: 900px){ .card{padding:20px} }
     .card h1, .card h2, .card h3{color:var(--bg)}
     .card p, .card li, .card .hint{color:var(--muted)}
 
     .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:#2a5846; font-size:12px; box-shadow:0 4px 10px rgba(24,60,42,.10)}
-
     .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px}
 
-    /* Hero layout → single column on mobile */
     .hero .grid{display:grid; grid-template-columns:1fr; gap:16px}
     @media (min-width: 900px){ .hero .grid{grid-template-columns:1.1fr .9fr; gap:28px}}
 
     .kpis{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px}
-    @media (min-width: 520px){ .kpis{grid-template-columns:repeat(3,1fr)} }
+    @media (min-width: 520px){ .kpis{grid-template-columns:repeat(4,1fr)} }
     .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px; box-shadow:0 6px 16px rgba(24,60,42,.10)}
     .k strong{display:block; font-size:16px; color:var(--ink)}
     .k .hint{color:var(--ink)}
@@ -97,12 +72,10 @@
     .grid-2{display:grid; grid-template-columns:1fr; gap:12px}
     @media (min-width: 900px){ .grid-2{grid-template-columns: repeat(2, 1fr); gap:14px} }
 
-    /* Quote under hero */
     .quote-inline{padding:6px 16px 22px}
     .quote-inline .site-quote{margin:0; text-align:center; font-style:italic; font-size:clamp(14px, 4.2vw, 18px); color:#ffffff}
     .quote-inline .site-quote span{font-weight:600}
 
-    /* Carousel */
     .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:var(--radius); border:1px solid var(--line); background:#eef7f1; box-shadow:0 14px 36px rgba(24,60,42,.12)}
     .slide{position:absolute; inset:0; opacity:0; transition:opacity .6s ease; display:flex; align-items:center; justify-content:center}
     .slide.active{opacity:1} .slide img{width:100%; height:100%; object-fit:cover}
@@ -110,12 +83,10 @@
     .dot{width:8px; height:8px; border-radius:50%; background:#ffffffaa; border:1px solid #ffffff; box-shadow:0 0 0 1px #00000022 inset}
     .dot.active{background:#2d7d5a}
 
-    /* Buttons — touch-friendly */
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; min-height:44px; border-radius:12px; background:var(--accent-dark); color:#fff; border:1px solid #1a563d; box-shadow:0 8px 20px rgba(26,86,61,.28); cursor:pointer; font-weight:600; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; min-height:44px; border-radius:12px; background:var(--accent-dark); color:#fff; border:1px solid #1a563d; box-shadow:0 8px 20px rgba(26,86,61,.28); cursor:pointer; font-weight:600; text-decoration:underline; text-underline-offset:2px; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease}
     .btn:hover{filter:brightness(1.03); transform:scale(1.05); box-shadow:0 16px 36px rgba(26,86,61,.38); text-shadow:0 0 10px var(--btnGlow), 0 0 18px var(--btnGlow)}
     .btn:active{transform:scale(0.98)}
 
-    /* Form */
     form{display:grid; gap:12px}
     label{font-weight:600; color:#1c372a}
     input, textarea, select{width:100%; padding:12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #0f1f17; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
@@ -124,7 +95,6 @@
 
     footer{padding:22px; border-top:1px solid var(--line); color:rgba(255,255,255,.82)}
 
-    /* Accordion */
     .accordion .item{border:1px solid var(--line); border-radius:16px; background:var(--panel); overflow:hidden; box-shadow:0 12px 28px rgba(24,60,42,.10)}
     .acc-head{width:100%; text-align:left; background:transparent; border:0; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; font-weight:600; transition: transform .2s ease; color:var(--ink)}
     .acc-head:hover, .acc-head:focus-visible{transform:scale(1.03)}
@@ -133,16 +103,20 @@
     .item.open .acc-panel{opacity:1; padding:0 16px 16px}
     #legal .content, #legal .content p, #legal .content li { color: var(--ink); }
 
-    /* Offer card: avatar + title row (kept responsive) */
+    /* Services accordion small styles */
+    #services .acc-title{display:flex; flex-wrap:wrap; gap:6px; align-items:baseline}
+    #services .acc-title strong{color:var(--bg)}
+    #services .price{color:#174e38}
+    #services .time{color:#316b52}
+    #services .acc-aside{display:flex; align-items:center; gap:8px; color:#3e5a4d}
+
     .offer-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
     .offer-avatar{width:clamp(96px, 26vw, 128px); height:clamp(96px, 26vw, 128px); border-radius:10px; object-fit:cover; border:1px solid var(--line); box-shadow:0 10px 20px rgba(24,60,42,.14)}
 
-    /* Approach readability */
     #approach .section-title h2{color:#ffffff}
     #approach ol{color:var(--ink); font-weight:700; font-size:clamp(16px, 4.4vw, 17px)}
     #approach li{margin:6px 0}
 
-    /* Testimonials */
     #testimonials .t-grid{display:grid; grid-template-columns:1fr; gap:12px}
     @media (min-width: 900px){ #testimonials .t-grid{grid-template-columns:repeat(3,1fr); gap:14px} }
     #testimonials .t-card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:16px; box-shadow:0 14px 36px rgba(24,60,42,.14); color:var(--ink)}
@@ -153,10 +127,7 @@
     .t-quote{font-size:15px; line-height:1.6; color:#2a5846}
     .t-name{font-weight:700; margin-top:6px}
 
-    @media (prefers-reduced-motion: reduce){
-      .btn:hover{transform:none; box-shadow:none; text-shadow:none}
-      .slide{transition:none}
-    }
+    @media (prefers-reduced-motion: reduce){ .btn:hover{transform:none; box-shadow:none; text-shadow:none} .slide{transition:none} }
   </style>
 </head>
 <body>
@@ -175,13 +146,12 @@
         <a class="navlink" href="#services">Services</a>
         <a class="navlink" href="#approach">Approach</a>
         <a class="navlink" href="#contact">Get Started</a>
-        <button class="btn" id="heroBookBtn" type="button">Book a free intro call</button>
+        <button class="btn" id="heroBookBtn" type="button">Book a Free Call</button>
       </div>
     </nav>
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero">
       <div class="wrap">
         <div class="grid">
@@ -189,18 +159,14 @@
             <h1>Build healthy habits you actually enjoy.</h1>
             <p>Melbourne & online coaching that fits your life—simple training, kinder nutrition, and steady support so results stick.</p>
             <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
-              <button class="btn" id="bookCallBtn" type="button">Book a free intro call</button>
-              <a class="btn" href="#contact">Start your intake</a>
+              <button class="btn" id="bookCallBtn" type="button">Book a Free Call</button>
+              <a class="btn" href="#contact">Sign Up Now</a>
             </div>
             <div class="kpis" style="margin-top:14px">
               <div class="k"><strong>1:1 Online</strong><span class="hint">Zoom/Google Meet</span></div>
               <div class="k"><strong>Melbourne</strong><span class="hint">Local clients welcome</span></div>
-              <div class="k"><strong>Habits-first</strong><span class="hint">Education over restriction</span></div>
-            </div>
-            <div class="kpis" aria-label="Trust and scope">
+              <div class="k"><strong>Habits‑first</strong><span class="hint">Education over restriction</span></div>
               <div class="k"><strong>Kind coaching</strong><span class="hint">No fads or shaming</span></div>
-              <div class="k"><strong>Clear scope</strong><span class="hint">Nutrition education only</span></div>
-              <div class="k"><strong>Privacy</strong><span class="hint">Your data stays with me</span></div>
             </div>
           </div>
           <div class="card">
@@ -221,14 +187,12 @@
       </div>
     </section>
 
-    <!-- QUOTE under hero -->
     <section class="quote-inline">
       <div class="wrap">
         <p class="site-quote">“He who has health has hope; and he who has hope has everything.” <span>— Thomas Carlyle</span></p>
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="wrap">
         <div class="section-title">
@@ -241,9 +205,7 @@
               <div class="slide"><img alt="Beau Schmitz" src="images/IMG_6256.jpg" /></div>
               <div class="slide"><img alt="Beau Schmitz" src="images/IMG_1133.jpg" /></div>
               <div class="slide"><img alt="Beau Schmitz" src="images/IMG_9327.jpg" /></div>
-              <div class="dots" aria-hidden="true">
-                <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-              </div>
+              <div class="dots" aria-hidden="true"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
             </div>
           </div>
           <div class="card">
@@ -256,49 +218,87 @@
       </div>
     </section>
 
-    <!-- SERVICES & PACKAGES -->
+    <!-- SERVICES: Collapsible like Terms -->
     <section id="services">
       <div class="wrap">
         <div class="section-title"><h2>Services & Packages</h2><span class="pill">AUD</span></div>
-        <div class="grid-3">
-          <div class="card">
-            <h3>Exercise/Nutrition Plan</h3>
-            <p style="margin:.25rem 0 .5rem; font-weight:700; color:var(--bg)">$50</p>
-            <p>Customized nutrition and exercise protocols you can use immediately to start your journey.</p>
-            <ul style="margin:.5rem 0 0; padding-left:18px; line-height:1.8">
-              <li>Personalized training plan or hybrid</li>
-              <li>Nutrition guide with simple swaps</li>
-            </ul>
-            <p class="hint" style="margin-top:.5rem"><em>Walk away with:</em> a customized plan + guide you can start today.</p>
+        <div class="accordion" id="svcAcc" style="display:grid; gap:12px">
+          <!-- Pkg 1 -->
+          <div class="item" id="pkg-plan">
+            <button class="acc-head" aria-expanded="false" aria-controls="pkg-plan-panel" id="pkg-plan-head">
+              <span class="acc-title">
+                <strong>Exercise/Nutrition Plan</strong>
+                <span class="price">— $50</span>
+                <span class="time">• One‑off</span>
+              </span>
+              <span class="acc-aside">Read more
+                <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+            <div class="acc-panel" id="pkg-plan-panel" role="region" aria-labelledby="pkg-plan-head">
+              <div class="content">
+                <p>Customized nutrition and exercise protocols you can use immediately to start your journey. Best for those with a solid base who want a structure to follow.</p>
+                <ul>
+                  <li>Personalized training plan (gym or at‑home)</li>
+                  <li>Nutrition guide with simple swaps</li>
+                </ul>
+                <p class="hint"><em>Walk away with:</em> a customized plan + guide you can start today.</p>
+              </div>
+            </div>
           </div>
-          <div class="card">
-            <h3>Getting Started Package</h3>
-            <p style="margin:.25rem 0 .5rem; font-weight:700; color:var(--bg)">$225 • 4 weeks</p>
-            <p>Everything in the Exercise/Nutrition Plan plus support to lay a strong foundation.</p>
-            <ul style="margin:.5rem 0 0; padding-left:18px; line-height:1.8">
-              <li>2 × 60‑min calls in your first month</li>
-              <li>Educational docs to prepare you to execute</li>
-              <li>24/7 support via email & socials</li>
-            </ul>
-            <p class="hint" style="margin-top:.5rem"><em>Walk away with:</em> clarity on your plan, two education calls, and momentum.</p>
+          <!-- Pkg 2 -->
+          <div class="item" id="pkg-gs">
+            <button class="acc-head" aria-expanded="false" aria-controls="pkg-gs-panel" id="pkg-gs-head">
+              <span class="acc-title">
+                <strong>Getting Started Package</strong>
+                <span class="price">— $225</span>
+                <span class="time">• 4 weeks</span>
+              </span>
+              <span class="acc-aside">Read more
+                <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+            <div class="acc-panel" id="pkg-gs-panel" role="region" aria-labelledby="pkg-gs-head">
+              <div class="content">
+                <p>Everything in the Exercise/Nutrition Plan plus guided support to lay a strong foundation in your first month.</p>
+                <ul>
+                  <li>2 × 60‑min calls in your first month</li>
+                  <li>Educational docs to prepare you to execute</li>
+                  <li>24/7 support via email & socials</li>
+                </ul>
+                <p class="hint"><em>Walk away with:</em> clarity on your plan, two education calls, and momentum.</p>
+              </div>
+            </div>
           </div>
-          <div class="card">
-            <h3>Dedicated Coaching</h3>
-            <p style="margin:.25rem 0 .5rem; font-weight:700; color:var(--bg)">$600 • 12 weeks</p>
-            <p>Ongoing, hands‑on coaching to transform your routines and results.</p>
-            <ul style="margin:.5rem 0 0; padding-left:18px; line-height:1.8">
-              <li>Everything in Getting Started, extended</li>
-              <li>Plan updates as you progress</li>
-              <li>Accountability and messaging support</li>
-            </ul>
-            <p class="hint" style="margin-top:.5rem"><em>Walk away with:</em> measurable progress, habit systems, and confidence to continue.</p>
+          <!-- Pkg 3 -->
+          <div class="item" id="pkg-dedicated">
+            <button class="acc-head" aria-expanded="false" aria-controls="pkg-dedicated-panel" id="pkg-dedicated-head">
+              <span class="acc-title">
+                <strong>Dedicated Coaching</strong>
+                <span class="price">— $600</span>
+                <span class="time">• 12 weeks</span>
+              </span>
+              <span class="acc-aside">Read more
+                <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+            <div class="acc-panel" id="pkg-dedicated-panel" role="region" aria-labelledby="pkg-dedicated-head">
+              <div class="content">
+                <p>Ongoing, hands‑on coaching to transform your routines and results with steady accountability and plan updates.</p>
+                <ul>
+                  <li>Everything in Getting Started, extended</li>
+                  <li>Plan updates as you progress</li>
+                  <li>Accountability and messaging support</li>
+                </ul>
+                <p class="hint"><em>Walk away with:</em> measurable progress, habit systems, and confidence to continue.</p>
+              </div>
+            </div>
           </div>
         </div>
         <p class="hint" style="margin-top:8px; color:var(--onDarkMuted)">No lock‑in. Pause or cancel anytime with 48‑hour notice. Payments are in AUD. Receipts provided.</p>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
     <section id="approach">
       <div class="wrap">
         <div class="section-title"><h2>How Our Coaching Works</h2><span class="pill">Step‑by‑step</span></div>
@@ -312,7 +312,6 @@
       </div>
     </section>
 
-    <!-- CONTACT / INTAKE FORM -->
     <section id="contact">
       <div class="wrap">
         <div class="section-title"><h2>Get Started</h2><span class="pill">Intake • Melbourne & Online</span></div>
@@ -328,14 +327,13 @@
                 <div style="flex:1 1 180px"><label for="birthday">Birthday</label><input id="birthday" name="birthday" type="date" required /></div>
               </div>
               <div class="inline" style="display:flex; gap:12px; flex-wrap:wrap">
-                <div style="flex:1 1 200px"><label for="suburb">Suburb</label><input id="suburb" name="suburb" type="text" placeholder="Brunswick" /></div>
-                <div style="flex:1 1 260px"><label for="goal">Primary goal</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" /></div>
+                <div style="flex:1 1 260px"><label for="goal">Primary Goal(s)</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" /></div>
               </div>
               <div><label for="limits">Injuries or limitations (optional)</label><textarea id="limits" name="limits" rows="3" placeholder="Any injuries or movements to avoid?"></textarea></div>
               <div><label for="ref">How did you hear about me?</label><input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer" /></div>
               <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
               <div><label class="hint"><input type="checkbox" id="consent" required /> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy.</label></div>
-              <div class="inline" style="display:flex; gap:10px; flex-wrap:wrap"><button class="btn" type="submit">Join the list</button><a class="btn" href="#about">How it works</a></div>
+              <div class="inline" style="display:flex; gap:10px; flex-wrap:wrap"><button class="btn" type="submit">Sign Up Now</button><a class="btn" href="#about">How it works</a></div>
               <p class="hint">Your details are kept private and used only to contact you about coaching.</p>
             </form>
           </div>
@@ -343,6 +341,7 @@
             <h3>Contact</h3>
             <p><strong>Email:</strong> <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
             <p><strong>Instagram:</strong> <a href="https://www.instagram.com/beauyup/" target="_blank" rel="noopener">@beauyup</a></p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/12533136021" target="_blank" rel="noopener">+1 (253) 313‑6021</a></p>
             <p><strong>Location:</strong> Melbourne, Australia • Sessions online or local</p>
             <hr style="border-color:var(--line); margin:12px 0">
             <h3>What to expect</h3>
@@ -356,35 +355,22 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
     <section id="testimonials">
       <div class="wrap">
         <div class="section-title"><h2>Client Stories</h2><span class="pill">Before & After</span></div>
         <div class="t-grid">
-          <!-- Upload images to: images/testimonials/t1-before.jpg and t1-after.jpg -->
           <article class="t-card">
-            <div class="ba-grid">
-              <div class="ba-box"><img class="ba-img" src="images/testimonials/t1-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div>
-              <div class="ba-box"><img class="ba-img" src="images/testimonials/t1-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div>
-            </div>
+            <div class="ba-grid"><div class="ba-box"><img class="ba-img" src="images/testimonials/t1-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div><div class="ba-box"><img class="ba-img" src="images/testimonials/t1-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div></div>
             <p class="t-quote">“I finally stopped overthinking. Two simple routines, better food choices, and I’ve got my energy back.”</p>
             <div class="t-name">— J., Brunswick</div>
           </article>
-          <!-- Upload images to: images/testimonials/t2-before.jpg and t2-after.jpg -->
           <article class="t-card">
-            <div class="ba-grid">
-              <div class="ba-box"><img class="ba-img" src="images/testimonials/t2-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div>
-              <div class="ba-box"><img class="ba-img" src="images/testimonials/t2-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div>
-            </div>
+            <div class="ba-grid"><div class="ba-box"><img class="ba-img" src="images/testimonials/t2-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div><div class="ba-box"><img class="ba-img" src="images/testimonials/t2-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div></div>
             <p class="t-quote">“Beau broke it down so I could actually stick with it. I’m sleeping better and training feels fun.”</p>
             <div class="t-name">— A., Carlton</div>
           </article>
-          <!-- Upload images to: images/testimonials/t3-before.jpg and t3-after.jpg -->
           <article class="t-card">
-            <div class="ba-grid">
-              <div class="ba-box"><img class="ba-img" src="images/testimonials/t3-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div>
-              <div class="ba-box"><img class="ba-img" src="images/testimonials/t3-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div>
-            </div>
+            <div class="ba-grid"><div class="ba-box"><img class="ba-img" src="images/testimonials/t3-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div><div class="ba-box"><img class="ba-img" src="images/testimonials/t3-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div></div>
             <p class="t-quote">“The nutrition education changed everything. I’m not scared of food anymore—just making better choices.”</p>
             <div class="t-name">— S., Fitzroy</div>
           </article>
@@ -393,7 +379,6 @@
       </div>
     </section>
 
-    <!-- LEGAL (collapsible) -->
     <section id="legal">
       <div class="wrap">
         <div class="section-title"><h2>Legal</h2><span class="pill">Privacy & Terms</span></div>
@@ -408,7 +393,7 @@
                 <p>We respect your privacy. This page explains what we collect, why we collect it, and how we keep it safe.</p>
                 <h3>What we collect</h3>
                 <ul>
-                  <li>Contact details you provide (name, email, optional suburb and notes) via the intake form.</li>
+                  <li>Contact details you provide (name, email, optional notes) via the intake form.</li>
                   <li>Any information you choose to share during coaching (e.g., goals, preferences).</li>
                 </ul>
                 <h3>How we use your information</h3>
@@ -469,47 +454,26 @@
   </footer>
 
   <script>
-    // Year in footer & Privacy date
     document.getElementById('y').textContent = new Date().getFullYear();
     (function(){ const d = new Date(); const fmt = d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'}); const el = document.getElementById('ppDate'); if(el) el.textContent = fmt; })();
 
-    // Mobile nav toggle
-    (function(){
-      const toggle = document.querySelector('.nav-toggle');
-      const links = document.getElementById('primary-nav');
-      if(toggle && links){
-        toggle.addEventListener('click', () => {
-          const open = links.classList.toggle('open');
-          toggle.setAttribute('aria-expanded', open);
-        });
-        // Close on link click (mobile UX)
-        links.querySelectorAll('a,button').forEach(el => el.addEventListener('click', ()=>{
-          links.classList.remove('open');
-          toggle.setAttribute('aria-expanded', 'false');
-        }));
-      }
-    })();
+    (function(){ const toggle = document.querySelector('.nav-toggle'); const links = document.getElementById('primary-nav'); if(toggle && links){ toggle.addEventListener('click', () => { const open = links.classList.toggle('open'); toggle.setAttribute('aria-expanded', open); }); links.querySelectorAll('a,button').forEach(el => el.addEventListener('click', ()=>{ links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); })); } })();
 
-    // Booking buttons → wired to your Google Calendar Appointment Schedule link
-    function openBooking(){
-      const booking = 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3mqABYyAyWhRngVoOsYlBSJ_eDoMJ-RKxBTVtmLka1Vg98ir_0YV_633IHrCjCSpQUIskrQnDc';
-      if(booking){ window.open(booking, '_blank', 'noopener'); }
-    }
+    function openBooking(){ const booking = 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3mqABYyAyWhRngVoOsYlBSJ_eDoMJ-RKxBTVtmLka1Vg98ir_0YV_633IHrCjCSpQUIskrQnDc'; if(booking){ window.open(booking, '_blank', 'noopener'); } }
     document.getElementById('bookCallBtn').addEventListener('click', openBooking);
     document.getElementById('heroBookBtn') && document.getElementById('heroBookBtn').addEventListener('click', openBooking);
 
-    // ABOUT carousel (5s rotation)
     (function(){ const container = document.querySelector('#about .carousel'); if(!container) return; const slides = Array.from(container.querySelectorAll('.slide')); const dots = Array.from(container.querySelectorAll('.dot')); let i = 0; let timer = null; function show(n){ slides[i].classList.remove('active'); dots[i].classList.remove('active'); i = n; if(i<0) i = slides.length-1; if(i>=slides.length) i = 0; slides[i].classList.add('active'); dots[i].classList.add('active'); } function next(){ show(i+1); } function start(){ timer = setInterval(next, 5000); } function stop(){ if(timer) clearInterval(timer); } container.addEventListener('mouseenter', stop); container.addEventListener('mouseleave', start); dots.forEach((d, idx)=> d.addEventListener('click', ()=>{ stop(); show(idx); start(); })); start(); })();
 
-    // Accordion behaviour
+    // Accordion behaviour (shared for services and legal)
     (function(){ const items = document.querySelectorAll('.accordion .item'); items.forEach(item => { const head = item.querySelector('.acc-head'); const icon = item.querySelector('.acc-icon'); const panel = item.querySelector('.acc-panel'); const setHeight = () => { if(item.classList.contains('open')) { panel.style.maxHeight = panel.scrollHeight + 'px'; icon.style.transform = 'rotate(180deg)'; } else { panel.style.maxHeight = '0px'; icon.style.transform = 'rotate(0)'; } }; head.addEventListener('click', () => { item.classList.toggle('open'); head.setAttribute('aria-expanded', item.classList.contains('open')); setHeight(); }); head.setAttribute('aria-expanded', 'false'); panel.style.maxHeight = '0px'; window.addEventListener('resize', () => { if(item.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px'; }); }); })();
 
     // Intake form
     const form = document.getElementById('intakeForm'); const msg = document.getElementById('formMsg');
     function show(type, text){ msg.className = type; msg.textContent = text; } function validEmail(e){ return /.+@.+\..+/.test(e); }
     function onSubmitSuccess(){ show('success', "Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire."); const gf = form.dataset.googleFormLink || ''; if(gf){ setTimeout(()=>{ window.location.href = gf; }, 900); } form.reset(); }
-    function mailtoFallback(payload){ const to = 'bschmitz799@gmail.com'; const subject = encodeURIComponent('New Coaching Intake'); const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`); window.location.href = `mailto:${to}?subject=${subject}&body=${body}`; onSubmitSuccess(); }
-    form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), suburb: f.get('suburb')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn\'t reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
+    function mailtoFallback(payload){ const to = 'bschmitz799@gmail.com'; const subject = encodeURIComponent('New Coaching Intake'); const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nPrimary Goal(s): ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`); window.location.href = `mailto:${to}?subject=${subject}&body=${body}`; onSubmitSuccess(); }
+    form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn't reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
   </script>
 </body>
 </html>
