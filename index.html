@@ -7,7 +7,7 @@
   <meta name="description" content="One Path Health Coaching helps Melbourne and online clients build sustainable exercise and nutrition habits through tailored plans, education, and supportive accountability." />
   <meta name="theme-color" content="#0b1a14" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{ --bg:#07140f; --bg-soft:#0b1a14; --panel:#ffffff; --ink:#0f1f17; --muted:#4c6a5a; --accent:#2a7c59; --accent-dark:#1e5f43; --accent-soft:#a7e0c4; --line:#d8e8df; --chip:#e9f6ef; --btnGlow: rgba(255,255,255,.95); --onDark: rgba(255,255,255,.92); --onDarkMuted: rgba(255,255,255,.78); --radius:20px; --space:28px; --space-lg:36px; }
     *{box-sizing:border-box} html,body{height:100%} html{scroll-behavior:smooth}
@@ -87,6 +87,10 @@
     .btn:hover{filter:brightness(1.03); transform:scale(1.05); box-shadow:0 16px 36px rgba(26,86,61,.38); text-shadow:0 0 10px var(--btnGlow), 0 0 18px var(--btnGlow)}
     .btn:active{transform:scale(0.98)}
 
+    /* Intake form required asterisks */
+    .req{color:#b34040; font-weight:800; margin-left:3px}
+    .required-note{font-size:13px; color:#6b8576; margin-top:-4px; margin-bottom:8px}
+
     form{display:grid; gap:12px}
     label{font-weight:600; color:#1c372a}
     input, textarea, select{width:100%; padding:12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #0f1f17; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
@@ -103,12 +107,14 @@
     .item.open .acc-panel{opacity:1; padding:0 16px 16px}
     #legal .content, #legal .content p, #legal .content li { color: var(--ink); }
 
-    /* Services accordion small styles */
-    #services .acc-title{display:flex; flex-wrap:wrap; gap:6px; align-items:baseline}
-    #services .acc-title strong{color:var(--bg)}
-    #services .price{color:#174e38}
-    #services .time{color:#316b52}
-    #services .acc-aside{display:flex; align-items:center; gap:8px; color:#3e5a4d}
+    /* Services accordion visuals */
+    #services .item{border-radius:18px}
+    #services .acc-title{display:flex; flex-direction:column; gap:4px}
+    #services .plan-name{font-weight:800; font-size:clamp(18px, 5.2vw, 22px); color:var(--bg)}
+    #services .plan-meta{font-weight:600; font-size:clamp(14px, 4.2vw, 16px); color:#2a5846}
+    #services .acc-aside{display:flex; align-items:center; gap:8px; color:#3e5a4d; font-weight:600}
+    #services .content ul{margin:.4rem 0 .3rem; padding-left:18px; line-height:1.8}
+    #services .note{color:#6a7f75; font-size:13px}
 
     .offer-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
     .offer-avatar{width:clamp(96px, 26vw, 128px); height:clamp(96px, 26vw, 128px); border-radius:10px; object-fit:cover; border:1px solid var(--line); box-shadow:0 10px 20px rgba(24,60,42,.14)}
@@ -218,7 +224,7 @@
       </div>
     </section>
 
-    <!-- SERVICES: Collapsible like Terms -->
+    <!-- SERVICES: Collapsible with stronger headings & new bullets -->
     <section id="services">
       <div class="wrap">
         <div class="section-title"><h2>Services & Packages</h2><span class="pill">AUD</span></div>
@@ -227,9 +233,8 @@
           <div class="item" id="pkg-plan">
             <button class="acc-head" aria-expanded="false" aria-controls="pkg-plan-panel" id="pkg-plan-head">
               <span class="acc-title">
-                <strong>Exercise/Nutrition Plan</strong>
-                <span class="price">— $50</span>
-                <span class="time">• One‑off</span>
+                <span class="plan-name">Exercise/Nutrition Plan</span>
+                <span class="plan-meta">$50 • One‑off</span>
               </span>
               <span class="acc-aside">Read more
                 <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -237,12 +242,13 @@
             </button>
             <div class="acc-panel" id="pkg-plan-panel" role="region" aria-labelledby="pkg-plan-head">
               <div class="content">
-                <p>Customized nutrition and exercise protocols you can use immediately to start your journey. Best for those with a solid base who want a structure to follow.</p>
                 <ul>
-                  <li>Personalized training plan (gym or at‑home)</li>
-                  <li>Nutrition guide with simple swaps</li>
+                  <li>Receive a custom made Exercise and Nutrition Plan in PDF form</li>
+                  <li>Receive useful resources that are specific to your training, and nutritional goals</li>
+                  <li>1 Hour Deep Dive Call with me to ensure you understand your plan and how to implement it into your life</li>
+                  <li>Messaging support for future questions or changes</li>
                 </ul>
-                <p class="hint"><em>Walk away with:</em> a customized plan + guide you can start today.</p>
+                <p class="note">* available for in person meetings in the Melbourne area</p>
               </div>
             </div>
           </div>
@@ -250,9 +256,8 @@
           <div class="item" id="pkg-gs">
             <button class="acc-head" aria-expanded="false" aria-controls="pkg-gs-panel" id="pkg-gs-head">
               <span class="acc-title">
-                <strong>Getting Started Package</strong>
-                <span class="price">— $225</span>
-                <span class="time">• 4 weeks</span>
+                <span class="plan-name">Getting Started Package</span>
+                <span class="plan-meta">$225 • 4 weeks</span>
               </span>
               <span class="acc-aside">Read more
                 <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -260,13 +265,13 @@
             </button>
             <div class="acc-panel" id="pkg-gs-panel" role="region" aria-labelledby="pkg-gs-head">
               <div class="content">
-                <p>Everything in the Exercise/Nutrition Plan plus guided support to lay a strong foundation in your first month.</p>
                 <ul>
-                  <li>2 × 60‑min calls in your first month</li>
-                  <li>Educational docs to prepare you to execute</li>
-                  <li>24/7 support via email & socials</li>
+                  <li>Everything in Exercise/Nutrition Plan</li>
+                  <li>2 Additional 1 hour calls for progression to your plan</li>
+                  <li>7 days a week messaging support for accountability</li>
+                  <li>Final recap at the end of the month to ensure you are confident in your program</li>
                 </ul>
-                <p class="hint"><em>Walk away with:</em> clarity on your plan, two education calls, and momentum.</p>
+                <p class="note">* available for in person meetings in the Melbourne area</p>
               </div>
             </div>
           </div>
@@ -274,9 +279,8 @@
           <div class="item" id="pkg-dedicated">
             <button class="acc-head" aria-expanded="false" aria-controls="pkg-dedicated-panel" id="pkg-dedicated-head">
               <span class="acc-title">
-                <strong>Dedicated Coaching</strong>
-                <span class="price">— $600</span>
-                <span class="time">• 12 weeks</span>
+                <span class="plan-name">Dedicated Coaching</span>
+                <span class="plan-meta">$600 • 12 weeks</span>
               </span>
               <span class="acc-aside">Read more
                 <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -284,13 +288,12 @@
             </button>
             <div class="acc-panel" id="pkg-dedicated-panel" role="region" aria-labelledby="pkg-dedicated-head">
               <div class="content">
-                <p>Ongoing, hands‑on coaching to transform your routines and results with steady accountability and plan updates.</p>
                 <ul>
-                  <li>Everything in Getting Started, extended</li>
-                  <li>Plan updates as you progress</li>
-                  <li>Accountability and messaging support</li>
+                  <li>Everything Included in Getting Started Package</li>
+                  <li>Personalized 1:1 coaching with weekly calls and updates where we fine tune your plan for ultimate success</li>
+                  <li>Meal and workout plan updates as you progress</li>
                 </ul>
-                <p class="hint"><em>Walk away with:</em> measurable progress, habit systems, and confidence to continue.</p>
+                <p class="note">* available for in person meetings in the Melbourne area</p>
               </div>
             </div>
           </div>
@@ -319,20 +322,21 @@
           <div class="card">
             <h3>Quick intake</h3>
             <p class="hint">Enter your details and I'll reach out with next steps and a longer questionnaire.</p>
+            <p class="required-note"><span class="req">*</span> Required</p>
             <div id="formMsg" role="status" aria-live="polite"></div>
             <form id="intakeForm" autocomplete="on" novalidate data-endpoint="" data-google-form-link="https://docs.google.com/forms/d/1uxxEI6G5Q-CvHuDkeM8qIfFZ_8EZdWJb3OzCp5jSaCk/viewform">
               <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" aria-hidden="true">
               <div class="inline" style="display:flex; gap:12px; flex-wrap:wrap">
-                <div style="flex:1 1 220px"><label for="name">Full name</label><input id="name" name="name" type="text" placeholder="Jane Doe" required /></div>
-                <div style="flex:1 1 180px"><label for="birthday">Birthday</label><input id="birthday" name="birthday" type="date" required /></div>
+                <div style="flex:1 1 220px"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" type="text" placeholder="Jane Doe" required /></div>
+                <div style="flex:1 1 180px"><label for="birthday">Birthday <span class="req">*</span></label><input id="birthday" name="birthday" type="date" required /></div>
               </div>
               <div class="inline" style="display:flex; gap:12px; flex-wrap:wrap">
                 <div style="flex:1 1 260px"><label for="goal">Primary Goal(s)</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" /></div>
               </div>
               <div><label for="limits">Injuries or limitations (optional)</label><textarea id="limits" name="limits" rows="3" placeholder="Any injuries or movements to avoid?"></textarea></div>
               <div><label for="ref">How did you hear about me?</label><input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer" /></div>
-              <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
-              <div><label class="hint"><input type="checkbox" id="consent" required /> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy.</label></div>
+              <div><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
+              <div><label class="hint"><span class="req">*</span> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy. <input type="checkbox" id="consent" required style="margin-left:8px"/></label></div>
               <div class="inline" style="display:flex; gap:10px; flex-wrap:wrap"><button class="btn" type="submit">Sign Up Now</button><a class="btn" href="#about">How it works</a></div>
               <p class="hint">Your details are kept private and used only to contact you about coaching.</p>
             </form>
