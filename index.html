@@ -1,483 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>One Path Health Coaching — Exercise · Nutrition · Habits</title>
-  <meta name="description" content="One Path Health Coaching helps Melbourne and online clients build sustainable exercise and nutrition habits through tailored plans, education, and supportive accountability." />
-  <meta name="theme-color" content="#0b1a14" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{ --bg:#07140f; --bg-soft:#0b1a14; --panel:#ffffff; --ink:#0f1f17; --muted:#4c6a5a; --accent:#2a7c59; --accent-dark:#1e5f43; --accent-soft:#a7e0c4; --line:#d8e8df; --chip:#e9f6ef; --btnGlow: rgba(255,255,255,.95); --onDark: rgba(255,255,255,.92); --onDarkMuted: rgba(255,255,255,.78); --radius:20px; --space:28px; --space-lg:36px; }
-    *{box-sizing:border-box} html,body{height:100%} html{scroll-behavior:smooth}
-    body{margin:0; font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial; color:var(--onDark);
-      background:
-        radial-gradient(1100px 800px at -10% -10%, rgba(154,224,196,.18) 0%, rgba(154,224,196,.06) 35%, transparent 60%),
-        radial-gradient(900px 700px at 110% 110%, rgba(154,224,196,.16) 0%, rgba(154,224,196,.05) 36%, transparent 62%),
-        radial-gradient(1000px 700px at 20% 120%, #0c2018 0%, transparent 60%),
-        radial-gradient(1000px 700px at 80% -20%, #0b1d16 0%, transparent 60%),
-        linear-gradient(180deg, #0b1a14 0%, #0e2018 45%, #10251c 100%);
-      background-attachment: fixed, fixed, fixed, fixed, scroll; }
-    body::before{ content:""; position:fixed; inset:0; pointer-events:none; box-shadow: inset 0 0 160px 40px rgba(154,224,196,.20); }
-
-    a{color:var(--accent); text-decoration:none; transition:text-shadow .18s ease}
-    a:hover{text-decoration:underline}
-    a:focus-visible, .btn:focus-visible, .navlink:focus-visible{outline:3px solid var(--accent-soft); outline-offset:3px; border-radius:12px}
-
-    .wrap{max-width:1100px; margin-inline:auto; padding:16px}
-
-    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.92), rgba(244,250,247,.70)); border-bottom:1px solid #e2efe8}
-    .nav{display:flex; align-items:center; gap:12px}
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
-    .brand-logo{width:64px; height:64px; border-radius:10px; object-fit:cover; display:block}
-    .brand-name{color:#0d231a; font-weight:700}
-
-    .nav-toggle{margin-left:auto; background:transparent; border:0; display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:10px; cursor:pointer}
-    .nav-toggle svg{width:24px; height:24px; color:#163426}
-    .nav-links{position:fixed; left:0; right:0; top:64px; background:rgba(244,250,247,.98); border-bottom:1px solid #e2efe8; max-height:0; overflow:hidden; transition:max-height .3s ease, padding .25s ease; padding:0 16px}
-    .nav-links.open{max-height:260px; padding:10px 16px}
-    .navlinks-row{display:grid; grid-template-columns:1fr; gap:8px; align-items:center}
-    .navlink{padding:10px 0; font-weight:600; color:#163426; border:none; background:transparent; display:block; transform:translateZ(0); transition:transform .18s ease, color .18s ease}
-    .navlink:hover{color:var(--accent-dark); transform:scale(1.03)}
-    @media (min-width: 880px){ .nav{gap:18px} .nav-toggle{display:none} .nav-links{position:static; max-height:none; padding:0; background:transparent; border:0} .navlinks-row{display:flex; gap:14px} .navlink{display:inline-block; padding:6px 0} }
-
-    h1{color:#fff; font-size:clamp(24px, 6.4vw, 38px); line-height:1.2; margin:0 0 8px}
-    h2{color:#fff; font-size:clamp(20px, 5.2vw, 28px); line-height:1.25; margin:0}
-    h3{color:#fff; font-size:clamp(18px, 4.6vw, 22px); line-height:1.3; margin:0 0 6px}
-    p, li{font-size:clamp(15px, 4.2vw, 17px); color:var(--onDarkMuted)}
-
-    section{padding:var(--space) 16px}
-    @media (min-width: 900px){ .wrap{padding:22px} section{padding:var(--space-lg) 22px} }
-
-    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px; box-shadow: 0 16px 36px rgba(24,60,42,.18); color:var(--ink)}
-    @media (min-width: 900px){ .card{padding:20px} }
-    .card h1, .card h2, .card h3{color:var(--bg)}
-    .card p, .card li, .card .hint{color:var(--muted)}
-
-    .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:#2a5846; font-size:12px; box-shadow:0 4px 10px rgba(24,60,42,.10)}
-    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px}
-
-    .hero .grid{display:grid; grid-template-columns:1fr; gap:16px}
-    @media (min-width: 900px){ .hero .grid{grid-template-columns:1.1fr .9fr; gap:28px}}
-
-    .kpis{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px}
-    @media (min-width: 520px){ .kpis{grid-template-columns:repeat(4,1fr)} }
-    .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px; box-shadow:0 6px 16px rgba(24,60,42,.10)}
-    .k strong{display:block; font-size:16px; color:var(--ink)}
-    .k .hint{color:var(--ink)}
-
-    .grid-3{display:grid; grid-template-columns:1fr; gap:12px}
-    @media (min-width: 900px){ .grid-3{grid-template-columns: repeat(3, 1fr); gap:14px} }
-    .grid-2{display:grid; grid-template-columns:1fr; gap:12px}
-    @media (min-width: 900px){ .grid-2{grid-template-columns: repeat(2, 1fr); gap:14px} }
-
-    .quote-inline{padding:6px 16px 22px}
-    .quote-inline .site-quote{margin:0; text-align:center; font-style:italic; font-size:clamp(14px, 4.2vw, 18px); color:#ffffff}
-    .quote-inline .site-quote span{font-weight:600}
-
-    .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:var(--radius); border:1px solid var(--line); background:#eef7f1; box-shadow:0 14px 36px rgba(24,60,42,.12)}
-    .slide{position:absolute; inset:0; opacity:0; transition:opacity .6s ease; display:flex; align-items:center; justify-content:center}
-    .slide.active{opacity:1} .slide img{width:100%; height:100%; object-fit:cover}
-    .dots{position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px}
-    .dot{width:8px; height:8px; border-radius:50%; background:#ffffffaa; border:1px solid #ffffff; box-shadow:0 0 0 1px #00000022 inset}
-    .dot.active{background:#2d7d5a}
-
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; min-height:44px; border-radius:12px; background:var(--accent-dark); color:#fff; border:1px solid #1a563d; box-shadow:0 8px 20px rgba(26,86,61,.28); cursor:pointer; font-weight:600; text-decoration:underline; text-underline-offset:2px; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease}
-    .btn:hover{filter:brightness(1.03); transform:scale(1.05); box-shadow:0 16px 36px rgba(26,86,61,.38); text-shadow:0 0 10px var(--btnGlow), 0 0 18px var(--btnGlow)}
-    .btn:active{transform:scale(0.98)}
-
-    /* Intake form required asterisks */
-    .req{color:#b34040; font-weight:800; margin-left:3px}
-    .required-note{font-size:13px; color:#6b8576; margin-top:-4px; margin-bottom:8px}
-
-    form{display:grid; gap:12px}
-    label{font-weight:600; color:#1c372a}
-    input, textarea, select{width:100%; padding:12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #0f1f17; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
-    input::placeholder, textarea::placeholder{color:#7b9788}
-    input:focus, textarea:focus, select:focus{border-color:#0f1f17; box-shadow:0 8px 22px rgba(0,0,0,.12), 0 0 0 3px #9ad4bc66}
-
-    footer{padding:22px; border-top:1px solid var(--line); color:rgba(255,255,255,.82)}
-
-    .accordion .item{border:1px solid var(--line); border-radius:16px; background:var(--panel); overflow:hidden; box-shadow:0 12px 28px rgba(24,60,42,.10)}
-    .acc-head{width:100%; text-align:left; background:transparent; border:0; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; font-weight:600; transition: transform .2s ease; color:var(--ink)}
-    .acc-head:hover, .acc-head:focus-visible{transform:scale(1.03)}
-    .acc-icon{transition:transform .35s ease}
-    .acc-panel{max-height:0; overflow:hidden; opacity:.0; padding:0 16px; transition:max-height .45s ease, opacity .45s ease, padding .3s ease}
-    .item.open .acc-panel{opacity:1; padding:0 16px 16px}
-    #legal .content, #legal .content p, #legal .content li { color: var(--ink); }
-
-    /* Services accordion visuals */
-    #services .item{border-radius:18px}
-    #services .acc-title{display:flex; flex-direction:column; gap:4px}
-    #services .plan-name{font-weight:800; font-size:clamp(18px, 5.2vw, 22px); color:var(--bg)}
-    #services .plan-meta{font-weight:600; font-size:clamp(14px, 4.2vw, 16px); color:#2a5846}
-    #services .acc-aside{display:flex; align-items:center; gap:8px; color:#3e5a4d; font-weight:600}
-    #services .content ul{margin:.4rem 0 .3rem; padding-left:18px; line-height:1.8}
-    #services .note{color:#6a7f75; font-size:13px}
-
-    .offer-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
-    .offer-avatar{width:clamp(96px, 26vw, 128px); height:clamp(96px, 26vw, 128px); border-radius:10px; object-fit:cover; border:1px solid var(--line); box-shadow:0 10px 20px rgba(24,60,42,.14)}
-
-    #approach .section-title h2{color:#ffffff}
-    #approach ol{color:var(--ink); font-weight:700; font-size:clamp(16px, 4.4vw, 17px)}
-    #approach li{margin:6px 0}
-
-    #testimonials .t-grid{display:grid; grid-template-columns:1fr; gap:12px}
-    @media (min-width: 900px){ #testimonials .t-grid{grid-template-columns:repeat(3,1fr); gap:14px} }
-    #testimonials .t-card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:16px; box-shadow:0 14px 36px rgba(24,60,42,.14); color:var(--ink)}
-    .ba-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px}
-    .ba-box{position:relative}
-    .ba-img{width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:12px; border:1px solid var(--line)}
-    .ba-tag{position:absolute; left:8px; top:8px; background:#0f1f17; color:#fff; font-size:12px; padding:3px 6px; border-radius:999px; opacity:.9}
-    .t-quote{font-size:15px; line-height:1.6; color:#2a5846}
-    .t-name{font-weight:700; margin-top:6px}
-
-    @media (prefers-reduced-motion: reduce){ .btn:hover{transform:none; box-shadow:none; text-shadow:none} .slide{transition:none} }
-  </style>
-</head>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>One Path Health Coaching — Exercise · Nutrition · Habits</title><meta name="description" content="One Path Health Coaching helps Melbourne and online clients build sustainable exercise and nutrition habits through tailored plans, education, and supportive accountability."/><meta name="theme-color" content="#0b1a14"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07140f;--panel:#fff;--ink:#0f1f17;--muted:#4c6a5a;--accent:#2a7c59;--accent-d:#1e5f43;--line:#d8e8df;--onD:rgba(255,255,255,.92);--onDm:rgba(255,255,255,.78);--r:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,Arial;color:var(--onD);background:radial-gradient(1100px 800px at -10% -10%,rgba(154,224,196,.18),rgba(154,224,196,.06) 35%,transparent 60%),radial-gradient(900px 700px at 110% 110%,rgba(154,224,196,.16),rgba(154,224,196,.05) 36%,transparent 62%),linear-gradient(180deg,#0b1a14 0%,#0e2018 45%,#10251c 100%)}body::before{content:"";position:fixed;inset:0;pointer-events:none;box-shadow:inset 0 0 160px 40px rgba(154,224,196,.2)}
+.wrap{max-width:1100px;margin:auto;padding:16px}
+header{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);background:linear-gradient(180deg,rgba(244,250,247,.92),rgba(244,250,247,.7));border-bottom:1px solid #e2efe8}
+.nav{display:flex;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand-logo{width:64px;height:64px;border-radius:10px;object-fit:cover;display:block}.brand-name{color:#0d231a;font-weight:700}
+.nav-toggle{margin-left:auto;background:0 0;border:0;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;cursor:pointer}.nav-toggle svg{width:24px;height:24px;color:#163426}
+.nav-links{position:fixed;left:0;right:0;top:64px;background:rgba(244,250,247,.98);border-bottom:1px solid #e2efe8;max-height:0;overflow:hidden;transition:max-height .3s,padding .25s;padding:0 16px}.nav-links.open{max-height:260px;padding:10px 16px}.navlinks-row{display:grid;grid-template-columns:1fr;gap:8px}.navlink{padding:10px 0;font-weight:600;color:#163426;border:0;background:0 0;display:block;transition:transform .18s,color .18s}.navlink:hover{color:var(--accent-d);transform:scale(1.03)}
+@media(min-width:880px){.nav-toggle{display:none}.nav-links{position:static;max-height:none;padding:0;background:0;border:0}.navlinks-row{display:flex;gap:14px}.navlink{display:inline-block;padding:6px 0}}
+section{padding:28px 16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:0 16px 36px rgba(24,60,42,.18);color:var(--ink)}.card h1,.card h2,.card h3{color:var(--bg)}.card .hint,.card p,.card li{color:var(--muted)}
+h1{color:#fff;font-size:clamp(24px,6.4vw,38px);line-height:1.2;margin:0 0 8px}h2{color:#fff;font-size:clamp(20px,5.2vw,28px);margin:0}h3{color:#fff;font-size:clamp(18px,4.6vw,22px);margin:0 0 6px}p,li{font-size:clamp(15px,4.2vw,17px);color:var(--onDm)}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.k{background:#e9f6ef;border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:0 6px 16px rgba(24,60,42,.1)}.k strong{display:block;color:var(--ink)}
+.grid-2,.grid-3{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:900px){.grid-2{grid-template-columns:repeat(2,1fr);gap:14px}.grid-3{grid-template-columns:repeat(3,1fr);gap:14px}}
+.quote-inline{padding:6px 16px 22px}.site-quote{margin:0;text-align:center;font-style:italic;font-size:clamp(14px,4.2vw,18px);color:#fff}
+.carousel{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:#eef7f1;box-shadow:0 14px 36px rgba(24,60,42,.12)}.slide{position:absolute;inset:0;opacity:0;transition:opacity .6s}.slide.active{opacity:1}.slide img{width:100%;height:100%;object-fit:cover}.dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px}.dot{width:8px;height:8px;border-radius:50%;background:#fff9;border:1px solid #fff;box-shadow:0 0 0 1px #0002 inset}.dot.active{background:#2d7d5a}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;min-height:44px;border-radius:12px;background:var(--accent-d);color:#fff;border:1px solid #1a563d;box-shadow:0 8px 20px rgba(26,86,61,.28);cursor:pointer;font-weight:700;text-decoration:underline;text-underline-offset:2px;transition:transform .22s,box-shadow .22s,filter .22s,text-shadow .22s}.btn:hover{filter:brightness(1.03);transform:scale(1.06);box-shadow:0 16px 36px rgba(26,86,61,.38);text-shadow:0 0 10px #fff,0 0 18px #fff}.btn:active{transform:scale(.98)}
+.req{color:#b34040;font-weight:800;margin-left:3px}.required-note{font-size:13px;color:#6b8576;margin:-4px 0 8px}
+form{display:grid;gap:12px}label{font-weight:600;color:#1c372a}input,textarea,select{width:100%;padding:12px;border-radius:12px;color:var(--ink);background:#fff;border:1px solid #0f1f17;outline:0;box-shadow:0 6px 16px rgba(0,0,0,.08)}input::placeholder,textarea::placeholder{color:#7b9788}input:focus,textarea:focus,select:focus{border-color:#0f1f17;box-shadow:0 8px 22px rgba(0,0,0,.12),0 0 0 3px #9ad4bc66}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:linear-gradient(180deg,#f2fbf6,#e9f6ef);color:#2a5846;font-size:12px;box-shadow:0 4px 10px rgba(24,60,42,.10)}.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.accordion .item{border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden;box-shadow:0 12px 28px rgba(24,60,42,.10)}.acc-head{width:100%;text-align:left;background:0;border:0;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-weight:700;color:var(--ink);transition:transform .2s}.acc-head:hover,.acc-head:focus-visible{transform:scale(1.03)}.acc-icon{transition:transform .35s}.acc-panel{max-height:0;overflow:hidden;opacity:0;padding:0 16px;transition:max-height .45s,opacity .45s,padding .3s}.item.open .acc-panel{opacity:1;padding:0 16px 16px}
+#legal .content,#legal .content p,#legal .content li{color:var(--ink)}
+#services .acc-title{display:flex;flex-direction:column;gap:2px}.plan-name{font-weight:900;font-size:clamp(20px,5.6vw,26px);color:var(--bg)}.plan-price{font-weight:900;font-size:clamp(20px,6vw,26px);color:#0b1a14}.plan-time{font-weight:700;font-size:clamp(13px,4vw,15px);color:#2a5846}.acc-aside{display:flex;align-items:center;gap:8px;color:#3e5a4d;font-weight:600}
+.offer-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}.offer-title{margin:0;font-weight:900;font-size:clamp(20px,5.6vw,26px);color:var(--bg)}.offer-avatar{width:clamp(96px,26vw,128px);height:clamp(96px,26vw,128px);border-radius:10px;object-fit:cover;border:1px solid var(--line);box-shadow:0 10px 20px rgba(24,60,42,.14)}
+#approach .steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}#approach .steps li{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 14px 14px 52px;color:var(--ink);box-shadow:0 12px 28px rgba(24,60,42,.12)}#approach .steps li::before{content:counter(step);counter-increment:step;position:absolute;left:14px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:999px;background:var(--accent-d);color:#fff;display:grid;place-items:center;font-weight:900}
+#testimonials .t-grid{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:900px){#testimonials .t-grid{grid-template-columns:repeat(3,1fr);gap:14px}}.t-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 14px 36px rgba(24,60,42,.14);color:var(--ink)}.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}.ba-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;border:1px solid var(--line)}.ba-tag{position:absolute;left:8px;top:8px;background:#0f1f17;color:#fff;font-size:12px;padding:3px 6px;border-radius:999px;opacity:.9}.t-quote{font-size:15px;line-height:1.6;color:#2a5846}.t-name{font-weight:700;margin-top:6px}
+footer{padding:22px;border-top:1px solid var(--line);color:rgba(255,255,255,.82)}
+@media(prefers-reduced-motion:reduce){.btn:hover{transform:none;box-shadow:none;text-shadow:none}.slide{transition:none}}
+</style></head>
 <body>
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#">
-        <img class="brand-logo" src="images/logo-one-path-health.jpg?v=1" alt="One Path Health logo" />
-        <strong class="brand-name">One Path Health Coaching</strong>
-      </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
-    </div>
-    <nav id="primary-nav" class="nav-links" aria-label="Primary">
-      <div class="wrap navlinks-row">
-        <a class="navlink" href="#services">Services</a>
-        <a class="navlink" href="#approach">Approach</a>
-        <a class="navlink" href="#contact">Get Started</a>
-        <button class="btn" id="heroBookBtn" type="button">Book a Free Call</button>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div class="grid">
-          <div>
-            <h1>Build healthy habits you actually enjoy.</h1>
-            <p>Melbourne & online coaching that fits your life—simple training, kinder nutrition, and steady support so results stick.</p>
-            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
-              <button class="btn" id="bookCallBtn" type="button">Book a Free Call</button>
-              <a class="btn" href="#contact">Sign Up Now</a>
-            </div>
-            <div class="kpis" style="margin-top:14px">
-              <div class="k"><strong>1:1 Online</strong><span class="hint">Zoom/Google Meet</span></div>
-              <div class="k"><strong>Melbourne</strong><span class="hint">Local clients welcome</span></div>
-              <div class="k"><strong>Habits‑first</strong><span class="hint">Education over restriction</span></div>
-              <div class="k"><strong>Kind coaching</strong><span class="hint">No fads or shaming</span></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="offer-head">
-              <img class="offer-avatar" src="images/beau-headshot.jpg" alt="Coach Beau Schmitz" />
-              <h3 style="margin:0">What I offer</h3>
-            </div>
-            <p class="hint" style="margin:0 0 8px 0">Tailored training, kinder nutrition education, and simple, sustainable habit systems—no fads or shaming.</p>
-            <ul style="margin:0; padding-left:18px; line-height:1.8">
-              <li>Tailored training programs (gym or at-home)</li>
-              <li>Small, winnable daily goals (steps, runs, swims)</li>
-              <li>Nutrition education & simple food swaps</li>
-              <li>Meal ideas, guides, and allergy-aware plans</li>
-              <li>Accountability check-ins & messaging support</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="quote-inline">
-      <div class="wrap">
-        <p class="site-quote">“He who has health has hope; and he who has hope has everything.” <span>— Thomas Carlyle</span></p>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>About Me</h2><span class="pill">Meet Beau</span>
-        </div>
-        <div class="grid-2">
-          <div class="card" style="padding:12px">
-            <div class="carousel" aria-label="Photo slideshow" aria-live="polite">
-              <div class="slide active"><img alt="Beau Schmitz" src="images/IMG_6289.jpg" /></div>
-              <div class="slide"><img alt="Beau Schmitz" src="images/IMG_6256.jpg" /></div>
-              <div class="slide"><img alt="Beau Schmitz" src="images/IMG_1133.jpg" /></div>
-              <div class="slide"><img alt="Beau Schmitz" src="images/IMG_9327.jpg" /></div>
-              <div class="dots" aria-hidden="true"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-            </div>
-          </div>
-          <div class="card">
-            <h3>“Health is Wealth”</h3>
-            <p>My name is Beau Schmitz. I have been passionately dedicated to health and fitness for over 6 years—constantly learning and applying healthy habits.</p>
-            <p>My personal journey has helped me understand the mental and physical benefits of leading a health‑conscious life. My goal is to empower others through this knowledge and help them love the way they feel in their own body through sustainable practices.</p>
-            <p><strong>“Health is Wealth.”</strong> When we take control of our health, all other areas of our life start to thrive.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES: Collapsible with stronger headings & new bullets -->
-    <section id="services">
-      <div class="wrap">
-        <div class="section-title"><h2>Services & Packages</h2><span class="pill">AUD</span></div>
-        <div class="accordion" id="svcAcc" style="display:grid; gap:12px">
-          <!-- Pkg 1 -->
-          <div class="item" id="pkg-plan">
-            <button class="acc-head" aria-expanded="false" aria-controls="pkg-plan-panel" id="pkg-plan-head">
-              <span class="acc-title">
-                <span class="plan-name">Exercise/Nutrition Plan</span>
-                <span class="plan-meta">$50 • One‑off</span>
-              </span>
-              <span class="acc-aside">Read more
-                <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </button>
-            <div class="acc-panel" id="pkg-plan-panel" role="region" aria-labelledby="pkg-plan-head">
-              <div class="content">
-                <ul>
-                  <li>Receive a custom made Exercise and Nutrition Plan in PDF form</li>
-                  <li>Receive useful resources that are specific to your training, and nutritional goals</li>
-                  <li>1 Hour Deep Dive Call with me to ensure you understand your plan and how to implement it into your life</li>
-                  <li>Messaging support for future questions or changes</li>
-                </ul>
-                <p class="note">* available for in person meetings in the Melbourne area</p>
-              </div>
-            </div>
-          </div>
-          <!-- Pkg 2 -->
-          <div class="item" id="pkg-gs">
-            <button class="acc-head" aria-expanded="false" aria-controls="pkg-gs-panel" id="pkg-gs-head">
-              <span class="acc-title">
-                <span class="plan-name">Getting Started Package</span>
-                <span class="plan-meta">$225 • 4 weeks</span>
-              </span>
-              <span class="acc-aside">Read more
-                <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </button>
-            <div class="acc-panel" id="pkg-gs-panel" role="region" aria-labelledby="pkg-gs-head">
-              <div class="content">
-                <ul>
-                  <li>Everything in Exercise/Nutrition Plan</li>
-                  <li>2 Additional 1 hour calls for progression to your plan</li>
-                  <li>7 days a week messaging support for accountability</li>
-                  <li>Final recap at the end of the month to ensure you are confident in your program</li>
-                </ul>
-                <p class="note">* available for in person meetings in the Melbourne area</p>
-              </div>
-            </div>
-          </div>
-          <!-- Pkg 3 -->
-          <div class="item" id="pkg-dedicated">
-            <button class="acc-head" aria-expanded="false" aria-controls="pkg-dedicated-panel" id="pkg-dedicated-head">
-              <span class="acc-title">
-                <span class="plan-name">Dedicated Coaching</span>
-                <span class="plan-meta">$600 • 12 weeks</span>
-              </span>
-              <span class="acc-aside">Read more
-                <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </button>
-            <div class="acc-panel" id="pkg-dedicated-panel" role="region" aria-labelledby="pkg-dedicated-head">
-              <div class="content">
-                <ul>
-                  <li>Everything Included in Getting Started Package</li>
-                  <li>Personalized 1:1 coaching with weekly calls and updates where we fine tune your plan for ultimate success</li>
-                  <li>Meal and workout plan updates as you progress</li>
-                </ul>
-                <p class="note">* available for in person meetings in the Melbourne area</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="hint" style="margin-top:8px; color:var(--onDarkMuted)">No lock‑in. Pause or cancel anytime with 48‑hour notice. Payments are in AUD. Receipts provided.</p>
-      </div>
-    </section>
-
-    <section id="approach">
-      <div class="wrap">
-        <div class="section-title"><h2>How Our Coaching Works</h2><span class="pill">Step‑by‑step</span></div>
-        <ol class="card" style="margin:0; padding-left:22px; line-height:1.9">
-          <li>Submit the intake form below.</li>
-          <li>Free 15–20 min intro call to learn your goals, preferences, and schedule.</li>
-          <li>I design your plan and walk you through it on an education call.</li>
-          <li>Weekly/fortnightly check-ins; adjust training/nutrition based on feedback.</li>
-          <li>Build independence: you graduate confident and self-sufficient.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="section-title"><h2>Get Started</h2><span class="pill">Intake • Melbourne & Online</span></div>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Quick intake</h3>
-            <p class="hint">Enter your details and I'll reach out with next steps and a longer questionnaire.</p>
-            <p class="required-note"><span class="req">*</span> Required</p>
-            <div id="formMsg" role="status" aria-live="polite"></div>
-            <form id="intakeForm" autocomplete="on" novalidate data-endpoint="" data-google-form-link="https://docs.google.com/forms/d/1uxxEI6G5Q-CvHuDkeM8qIfFZ_8EZdWJb3OzCp5jSaCk/viewform">
-              <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" aria-hidden="true">
-              <div class="inline" style="display:flex; gap:12px; flex-wrap:wrap">
-                <div style="flex:1 1 220px"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" type="text" placeholder="Jane Doe" required /></div>
-                <div style="flex:1 1 180px"><label for="birthday">Birthday <span class="req">*</span></label><input id="birthday" name="birthday" type="date" required /></div>
-              </div>
-              <div class="inline" style="display:flex; gap:12px; flex-wrap:wrap">
-                <div style="flex:1 1 260px"><label for="goal">Primary Goal(s)</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" /></div>
-              </div>
-              <div><label for="limits">Injuries or limitations (optional)</label><textarea id="limits" name="limits" rows="3" placeholder="Any injuries or movements to avoid?"></textarea></div>
-              <div><label for="ref">How did you hear about me?</label><input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer" /></div>
-              <div><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
-              <div><label class="hint"><span class="req">*</span> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy. <input type="checkbox" id="consent" required style="margin-left:8px"/></label></div>
-              <div class="inline" style="display:flex; gap:10px; flex-wrap:wrap"><button class="btn" type="submit">Sign Up Now</button><a class="btn" href="#about">How it works</a></div>
-              <p class="hint">Your details are kept private and used only to contact you about coaching.</p>
-            </form>
-          </div>
-          <div class="card">
-            <h3>Contact</h3>
-            <p><strong>Email:</strong> <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
-            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/beauyup/" target="_blank" rel="noopener">@beauyup</a></p>
-            <p><strong>WhatsApp:</strong> <a href="https://wa.me/12533136021" target="_blank" rel="noopener">+1 (253) 313‑6021</a></p>
-            <p><strong>Location:</strong> Melbourne, Australia • Sessions online or local</p>
-            <hr style="border-color:var(--line); margin:12px 0">
-            <h3>What to expect</h3>
-            <ul style="margin:0; padding-left:18px; line-height:1.8">
-              <li>Reply within 1–2 business days</li>
-              <li>Short intro call to align on goals</li>
-              <li>Google Form to capture your background</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="testimonials">
-      <div class="wrap">
-        <div class="section-title"><h2>Client Stories</h2><span class="pill">Before & After</span></div>
-        <div class="t-grid">
-          <article class="t-card">
-            <div class="ba-grid"><div class="ba-box"><img class="ba-img" src="images/testimonials/t1-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div><div class="ba-box"><img class="ba-img" src="images/testimonials/t1-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div></div>
-            <p class="t-quote">“I finally stopped overthinking. Two simple routines, better food choices, and I’ve got my energy back.”</p>
-            <div class="t-name">— J., Brunswick</div>
-          </article>
-          <article class="t-card">
-            <div class="ba-grid"><div class="ba-box"><img class="ba-img" src="images/testimonials/t2-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div><div class="ba-box"><img class="ba-img" src="images/testimonials/t2-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div></div>
-            <p class="t-quote">“Beau broke it down so I could actually stick with it. I’m sleeping better and training feels fun.”</p>
-            <div class="t-name">— A., Carlton</div>
-          </article>
-          <article class="t-card">
-            <div class="ba-grid"><div class="ba-box"><img class="ba-img" src="images/testimonials/t3-before.jpg" alt="Client before"/><span class="ba-tag">Before</span></div><div class="ba-box"><img class="ba-img" src="images/testimonials/t3-after.jpg" alt="Client after"/><span class="ba-tag">After</span></div></div>
-            <p class="t-quote">“The nutrition education changed everything. I’m not scared of food anymore—just making better choices.”</p>
-            <div class="t-name">— S., Fitzroy</div>
-          </article>
-        </div>
-        <p class="hint" style="margin-top:10px; color:var(--onDarkMuted)">Replace the placeholders by uploading JPGs to <code>images/testimonials/</code> with the filenames shown above. Photos shared with consent; individual results vary.</p>
-      </div>
-    </section>
-
-    <section id="legal">
-      <div class="wrap">
-        <div class="section-title"><h2>Legal</h2><span class="pill">Privacy & Terms</span></div>
-        <div class="accordion" id="legalAcc" style="display:grid; gap:12px">
-          <div class="item" id="privacy">
-            <button class="acc-head" aria-expanded="false" aria-controls="privacy-panel" id="privacy-head">
-              <span>Privacy Policy <small class="hint" style="font-weight:400">(Last updated: <span id="ppDate"></span>)</small></span>
-              <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <div class="acc-panel" id="privacy-panel" role="region" aria-labelledby="privacy-head">
-              <div class="content">
-                <p>We respect your privacy. This page explains what we collect, why we collect it, and how we keep it safe.</p>
-                <h3>What we collect</h3>
-                <ul>
-                  <li>Contact details you provide (name, email, optional notes) via the intake form.</li>
-                  <li>Any information you choose to share during coaching (e.g., goals, preferences).</li>
-                </ul>
-                <h3>How we use your information</h3>
-                <ul>
-                  <li>To reply to your enquiry and provide coaching services.</li>
-                  <li>To schedule calls, send resources, and manage your plan.</li>
-                  <li>We do not sell or share your data.</li>
-                </ul>
-                <h3>Storage & security</h3>
-                <p>Information is stored securely in tools we use to deliver services (e.g., email, Google Drive/Sheets if you opt in). Access is limited to the coach.</p>
-                <h3>Your choices</h3>
-                <ul>
-                  <li>Ask to access or correct your information at any time.</li>
-                  <li>Ask to delete your information (unless we’re required to keep it by law).</li>
-                  <li>Unsubscribe from messages by replying or contacting us.</li>
-                </ul>
-                <h3>Contact</h3>
-                <p>Email: <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="item" id="terms">
-            <button class="acc-head" aria-expanded="false" aria-controls="terms-panel" id="terms-head">
-              <span>Terms of Service <small class="hint" style="font-weight:400">(Plain-English summary)</small></span>
-              <svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <div class="acc-panel" id="terms-panel" role="region" aria-labelledby="terms-head">
-              <div class="content">
-                <h3>Scope of services</h3>
-                <p>Coaching includes general fitness guidance, habit support, and general nutrition education. It does not include medical nutrition therapy or medical advice.</p>
-                <h3>Eligibility</h3>
-                <p>By engaging services, you confirm you are 18+ and medically cleared for exercise. If you have a medical condition, please consult your GP and/or an Accredited Practising Dietitian.</p>
-                <h3>Payments & cancellations</h3>
-                <p>Payments are in AUD. You can pause or cancel anytime with 48‑hour notice before scheduled calls. Missed sessions without notice may be forfeited.</p>
-                <h3>Communication</h3>
-                <p>Message support is provided within reasonable hours. I aim to respond within 1–2 business days.</p>
-                <h3>Liability</h3>
-                <p>By participating, you accept the inherent risks of exercise. To the extent permitted by law, One Path Health Coaching is not liable for injuries or outcomes resulting from improper form or non‑adherence to guidance.</p>
-                <h3>Privacy</h3>
-                <p>Your information is handled per the <a href="#privacy">Privacy Policy</a>. We do not sell or share your data.</p>
-                <h3>Governing law</h3>
-                <p>These terms are governed by the laws of Victoria, Australia.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
-        <span>© <span id="y"></span> One Path Health Coaching</span>
-        <span style="opacity:.8">ABN coming soon • Public liability & PI insured • Privacy-first • <a style="color:#e3f6ee" href="#privacy">Privacy</a> • <a style="color:#e3f6ee" href="#terms">Terms</a></span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    (function(){ const d = new Date(); const fmt = d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'}); const el = document.getElementById('ppDate'); if(el) el.textContent = fmt; })();
-
-    (function(){ const toggle = document.querySelector('.nav-toggle'); const links = document.getElementById('primary-nav'); if(toggle && links){ toggle.addEventListener('click', () => { const open = links.classList.toggle('open'); toggle.setAttribute('aria-expanded', open); }); links.querySelectorAll('a,button').forEach(el => el.addEventListener('click', ()=>{ links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); })); } })();
-
-    function openBooking(){ const booking = 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3mqABYyAyWhRngVoOsYlBSJ_eDoMJ-RKxBTVtmLka1Vg98ir_0YV_633IHrCjCSpQUIskrQnDc'; if(booking){ window.open(booking, '_blank', 'noopener'); } }
-    document.getElementById('bookCallBtn').addEventListener('click', openBooking);
-    document.getElementById('heroBookBtn') && document.getElementById('heroBookBtn').addEventListener('click', openBooking);
-
-    (function(){ const container = document.querySelector('#about .carousel'); if(!container) return; const slides = Array.from(container.querySelectorAll('.slide')); const dots = Array.from(container.querySelectorAll('.dot')); let i = 0; let timer = null; function show(n){ slides[i].classList.remove('active'); dots[i].classList.remove('active'); i = n; if(i<0) i = slides.length-1; if(i>=slides.length) i = 0; slides[i].classList.add('active'); dots[i].classList.add('active'); } function next(){ show(i+1); } function start(){ timer = setInterval(next, 5000); } function stop(){ if(timer) clearInterval(timer); } container.addEventListener('mouseenter', stop); container.addEventListener('mouseleave', start); dots.forEach((d, idx)=> d.addEventListener('click', ()=>{ stop(); show(idx); start(); })); start(); })();
-
-    // Accordion behaviour (shared for services and legal)
-    (function(){ const items = document.querySelectorAll('.accordion .item'); items.forEach(item => { const head = item.querySelector('.acc-head'); const icon = item.querySelector('.acc-icon'); const panel = item.querySelector('.acc-panel'); const setHeight = () => { if(item.classList.contains('open')) { panel.style.maxHeight = panel.scrollHeight + 'px'; icon.style.transform = 'rotate(180deg)'; } else { panel.style.maxHeight = '0px'; icon.style.transform = 'rotate(0)'; } }; head.addEventListener('click', () => { item.classList.toggle('open'); head.setAttribute('aria-expanded', item.classList.contains('open')); setHeight(); }); head.setAttribute('aria-expanded', 'false'); panel.style.maxHeight = '0px'; window.addEventListener('resize', () => { if(item.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px'; }); }); })();
-
-    // Intake form
-    const form = document.getElementById('intakeForm'); const msg = document.getElementById('formMsg');
-    function show(type, text){ msg.className = type; msg.textContent = text; } function validEmail(e){ return /.+@.+\..+/.test(e); }
-    function onSubmitSuccess(){ show('success', "Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire."); const gf = form.dataset.googleFormLink || ''; if(gf){ setTimeout(()=>{ window.location.href = gf; }, 900); } form.reset(); }
-    function mailtoFallback(payload){ const to = 'bschmitz799@gmail.com'; const subject = encodeURIComponent('New Coaching Intake'); const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nPrimary Goal(s): ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`); window.location.href = `mailto:${to}?subject=${subject}&body=${body}`; onSubmitSuccess(); }
-    form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn't reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
-  </script>
-</body>
-</html>
+<header><div class="wrap nav"><a class="brand" href="#"><img class="brand-logo" src="images/logo-one-path-health.jpg?v=3" alt="One Path Health logo"><strong class="brand-name">One Path Health Coaching</strong></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button></div>
+<nav id="primary-nav" class="nav-links" aria-label="Primary"><div class="wrap navlinks-row"><a class="navlink" href="#services">Services</a><a class="navlink" href="#approach">Approach</a><a class="navlink" href="#education">Education</a><a class="navlink" href="#contact">Get Started</a><button class="btn" id="heroBookBtn" type="button">Book a Free Call</button></div></nav></header>
+<main>
+<section class="hero"><div class="wrap"><div class="grid-2"><div><h1>Build healthy habits you actually enjoy.</h1><p>Melbourne & online coaching that fits your life—simple training, kinder nutrition, and steady support so results stick.</p><div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap"><button class="btn" id="bookCallBtn" type="button">Book a Free Call</button><a class="btn" href="#contact">Sign Up Now</a></div><div class="kpis" style="margin-top:14px"><div class="k"><strong>1:1 Online</strong><span class="hint">Zoom/Google Meet</span></div><div class="k"><strong>Melbourne</strong><span class="hint">Local clients welcome</span></div><div class="k"><strong>Habits‑first</strong><span class="hint">Education over restriction</span></div><div class="k"><strong>Kind coaching</strong><span class="hint">No fads or shaming</span></div></div></div>
+<div class="card"><div class="offer-head"><img class="offer-avatar" src="images/beau-headshot.jpg" alt="Coach Beau Schmitz"><h3 class="offer-title">What I offer</h3></div><p class="hint" style="margin:0 0 8px">Tailored training, kinder nutrition education, and simple, sustainable habit systems—no fads or shaming.</p><ul style="margin:0;padding-left:18px;line-height:1.8"><li>Tailored training programs (gym or at‑home)</li><li>Small, winnable daily goals (steps, runs, swims)</li><li>Nutrition education & simple food swaps</li><li>Meal ideas, guides, and allergy‑aware plans</li><li>Accountability check‑ins & messaging support</li></ul></div></div></div></section>
+<section class="quote-inline"><div class="wrap"><p class="site-quote">“He who has health has hope; and he who has hope has everything.” <span>— Thomas Carlyle</span></p></div></section>
+<section id="about"><div class="wrap"><div class="section-title"><h2>About Me</h2><span class="pill">Meet Beau</span></div><div class="grid-2"><div class="card" style="padding:12px"><div class="carousel" aria-label="Photo slideshow" aria-live="polite"><div class="slide active"><img alt="Beau Schmitz" src="images/IMG_6289.jpg"></div><div class="slide"><img alt="Beau Schmitz" src="images/IMG_6256.jpg"></div><div class="slide"><img alt="Beau Schmitz" src="images/IMG_1133.jpg"></div><div class="slide"><img alt="Beau Schmitz" src="images/IMG_9327.jpg"></div><div class="dots" aria-hidden="true"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div></div><div class="card"><h3>“Health is Wealth”</h3><p>My name is Beau Schmitz. I have been passionately dedicated to health and fitness for over 6 years—constantly learning and applying healthy habits.</p><p>My personal journey has helped me understand the mental and physical benefits of leading a health‑conscious life. My goal is to empower others through this knowledge and help them love the way they feel in their own body through sustainable practices.</p><p><strong>“Health is Wealth.”</strong> When we take control of our health, all other areas of our life start to thrive.</p></div></div></div></section>
+<section id="services"><div class="wrap"><div class="section-title"><h2>Services & Packages</h2><span class="pill">AUD</span></div><div class="accordion" id="svcAcc" style="display:grid;gap:12px">
+<div class="item" id="pkg-plan"><button class="acc-head" id="pkg-plan-head" aria-expanded="false" aria-controls="pkg-plan-panel" type="button"><span class="acc-title"><span class="plan-name">Exercise/Nutrition Plan</span><span class="plan-price">$50</span><span class="plan-time">One‑off</span></span><span class="acc-aside">Read more<svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="acc-panel" id="pkg-plan-panel" role="region" aria-labelledby="pkg-plan-head"><div class="content"><ul><li>Receive a custom made Exercise and Nutrition Plan in PDF form</li><li>Receive useful resources specific to your training and nutrition goals</li><li>1 Hour Deep Dive Call to ensure you understand and can implement your plan</li><li>Messaging support for future questions or changes</li></ul><p class="note" style="color:#6a7f75;font-size:13px">* available for in person meetings in the Melbourne area</p></div></div></div>
+<div class="item" id="pkg-gs"><button class="acc-head" id="pkg-gs-head" aria-expanded="false" aria-controls="pkg-gs-panel" type="button"><span class="acc-title"><span class="plan-name">Getting Started Package</span><span class="plan-price">$225</span><span class="plan-time">4 weeks</span></span><span class="acc-aside">Read more<svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="acc-panel" id="pkg-gs-panel" role="region" aria-labelledby="pkg-gs-head"><div class="content"><ul><li>Everything in Exercise/Nutrition Plan</li><li>2 additional 1‑hour calls for progression to your plan</li><li>7 days/week messaging support for accountability</li><li>Final recap at the end of the month to ensure confidence in your program</li></ul><p class="note" style="color:#6a7f75;font-size:13px">* available for in person meetings in the Melbourne area</p></div></div></div>
+<div class="item" id="pkg-dedicated"><button class="acc-head" id="pkg-dedicated-head" aria-expanded="false" aria-controls="pkg-dedicated-panel" type="button"><span class="acc-title"><span class="plan-name">Dedicated Coaching</span><span class="plan-price">$600</span><span class="plan-time">12 weeks</span></span><span class="acc-aside">Read more<svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="acc-panel" id="pkg-dedicated-panel" role="region" aria-labelledby="pkg-dedicated-head"><div class="content"><ul><li>Everything Included in Getting Started Package</li><li>Personalized 1:1 coaching with weekly calls and updates to fine‑tune your plan</li><li>Meal and workout plan updates as you progress</li></ul><p class="note" style="color:#6a7f75;font-size:13px">* available for in person meetings in the Melbourne area</p></div></div></div>
+</div><p class="hint" style="margin-top:8px;color:var(--onDm)">No lock‑in. Pause or cancel anytime with 48‑hour notice. Payments are in AUD. Receipts provided.</p></div></section>
+<section id="approach"><div class="wrap"><div class="section-title"><h2>How Our Coaching Works</h2><span class="pill">Step‑by‑step</span></div><ol class="steps card" style="counter-reset:step;padding:16px"><li><strong>Quick intake.</strong> Submit the short form below so I can learn your goals and preferences.</li><li><strong>Free intro call.</strong> 15–20 minutes to align on goals, schedule, and fit.</li><li><strong>Your plan, built for you.</strong> I design your training + nutrition and walk you through it on an education call.</li><li><strong>Support & updates.</strong> Weekly or fortnightly check‑ins; adjust based on feedback.</li><li><strong>Graduate confident.</strong> Build repeatable habits and keep results going.</li></ol></div></section>
+<section id="contact"><div class="wrap"><div class="section-title"><h2>Get Started</h2><span class="pill">Intake • Melbourne & Online</span></div><div class="grid-2"><div class="card"><h3>Quick intake</h3><p class="hint">Enter your details and I'll reach out with next steps and a longer questionnaire.</p><p class="required-note"><span class="req">*</span> Required</p><div id="formMsg" role="status" aria-live="polite"></div><form id="intakeForm" autocomplete="on" novalidate data-endpoint="" data-google-form-link="https://docs.google.com/forms/d/1uxxEI6G5Q-CvHuDkeM8qIfFZ_8EZdWJb3OzCp5jSaCk/viewform"><input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true"><div class="inline" style="display:flex;gap:12px;flex-wrap:wrap"><div style="flex:1 1 220px"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" type="text" placeholder="Jane Doe" required></div><div style="flex:1 1 180px"><label for="birthday">Birthday <span class="req">*</span></label><input id="birthday" name="birthday" type="date" required></div></div><div class="inline" style="display:flex;gap:12px;flex-wrap:wrap"><div style="flex:1 1 260px"><label for="goal">Primary Goal(s)</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy"></div></div><div><label for="limits">Injuries or limitations (optional)</label><textarea id="limits" name="limits" rows="3" placeholder="Any injuries or movements to avoid?"></textarea></div><div><label for="ref">How did you hear about me?</label><input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer"></div><div><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" placeholder="you@example.com" required></div><div><label class="hint"><span class="req">*</span> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy. <input type="checkbox" id="consent" required style="margin-left:8px"></label></div><div class="inline" style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="submit">Sign Up Now</button><a class="btn" href="#approach">How it works</a></div><p class="hint">Your details are kept private and used only to contact you about coaching.</p></form></div><div class="card"><h3>Contact</h3><p><strong>Email:</strong> <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p><p><strong>Instagram:</strong> <a href="https://www.instagram.com/beauyup/" target="_blank" rel="noopener">@beauyup</a></p><p><strong>WhatsApp:</strong> <a href="https://wa.me/12533136021" target="_blank" rel="noopener">+1 (253) 313‑6021</a></p><p><strong>Location:</strong> Melbourne, Australia • Sessions online or local</p><hr style="border-color:var(--line);margin:12px 0"><h3>What to expect</h3><ul style="margin:0;padding-left:18px;line-height:1.8"><li>Reply within 1–2 business days</li><li>Short intro call to align on goals</li><li>Google Form to capture your background</li></ul></div></div></div></section>
+<section id="testimonials"><div class="wrap"><div class="section-title"><h2>Client Stories</h2><span class="pill">Before & After</span></div><div class="t-grid"><article class="t-card"><div class="ba-grid"><div class="ba-box" style="position:relative"><img class="ba-img" src="images/testimonials/t1-before.jpg" alt="Client before"><span class="ba-tag">Before</span></div><div class="ba-box" style="position:relative"><img class="ba-img" src="images/testimonials/t1-after.jpg" alt="Client after"><span class="ba-tag">After</span></div></div><p class="t-quote">“I finally stopped overthinking. Two simple routines, better food choices, and I’ve got my energy back.”</p><div class="t-name">— J., Brunswick</div></article><article class="t-card"><div class="ba-grid"><div class="ba-box" style="position:relative"><img class="ba-img" src="images/testimonials/t2-before.jpg" alt="Client before"><span class="ba-tag">Before</span></div><div class="ba-box" style="position:relative"><img class="ba-img" src="images/testimonials/t2-after.jpg" alt="Client after"><span class="ba-tag">After</span></div></div><p class="t-quote">“Beau broke it down so I could actually stick with it. I’m sleeping better and training feels fun.”</p><div class="t-name">— A., Carlton</div></article><article class="t-card"><div class="ba-grid"><div class="ba-box" style="position:relative"><img class="ba-img" src="images/testimonials/t3-before.jpg" alt="Client before"><span class="ba-tag">Before</span></div><div class="ba-box" style="position:relative"><img class="ba-img" src="images/testimonials/t3-after.jpg" alt="Client after"><span class="ba-tag">After</span></div></div><p class="t-quote">“The nutrition education changed everything. I’m not scared of food anymore—just making better choices.”</p><div class="t-name">— S., Fitzroy</div></article></div><p class="hint" style="margin-top:10px;color:var(--onDm)">Replace the placeholders by uploading JPGs to <code>images/testimonials/</code> with the filenames shown above. Photos shared with consent; individual results vary.</p></div></section>
+<section id="education"><div class="wrap"><div class="section-title"><h2>Educational Resources</h2><span class="pill">Save & Share</span></div><div class="accordion" id="eduAcc" style="display:grid;gap:12px"><div class="item" id="edu-links"><button class="acc-head" id="edu-head" aria-expanded="false" aria-controls="edu-panel" type="button"><span>Resources</span><span class="acc-aside">Read more<svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button><div class="acc-panel" id="edu-panel" role="region" aria-labelledby="edu-head"><div class="content"><ul><li><a target="_blank" rel="noopener" href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calorie-calculator/itt-20402304">Calorie Calculator</a></li></ul></div></div></div></div></div></section>
+<section id="legal"><div class="wrap"><div class="section-title"><h2>Legal</h2><span class="pill">Privacy & Terms</span></div><div class="accordion" id="legalAcc" style="display:grid;gap:12px"><div class="item" id="privacy"><button class="acc-head" id="privacy-head" aria-expanded="false" aria-controls="privacy-panel" type="button"><span>Privacy Policy <small class="hint" style="font-weight:400">(Last updated: <span id="ppDate"></span>)</small></span><svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="acc-panel" id="privacy-panel" role="region" aria-labelledby="privacy-head"><div class="content"><p>We respect your privacy. This page explains what we collect, why we collect it, and how we keep it safe.</p><h3>What we collect</h3><ul><li>Contact details you provide (name, email, optional notes) via the intake form.</li><li>Any information you choose to share during coaching (e.g., goals, preferences).</li></ul><h3>How we use your information</h3><ul><li>To reply to your enquiry and provide coaching services.</li><li>To schedule calls, send resources, and manage your plan.</li><li>We do not sell or share your data.</li></ul><h3>Storage & security</h3><p>Information is stored securely in tools we use to deliver services (e.g., email, Google Drive/Sheets if you opt in). Access is limited to the coach.</p><h3>Your choices</h3><ul><li>Ask to access or correct your information at any time.</li><li>Ask to delete your information (unless we’re required to keep it by law).</li><li>Unsubscribe from messages by replying or contacting us.</li></ul><h3>Contact</h3><p>Email: <a href="mailto:bschmitz799@gmail.com">bschmitz799@gmail.com</a></p></div></div></div><div class="item" id="terms"><button class="acc-head" id="terms-head" aria-expanded="false" aria-controls="terms-panel" type="button"><span>Terms of Service <small class="hint" style="font-weight:400">(Plain‑English summary)</small></span><svg class="acc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="acc-panel" id="terms-panel" role="region" aria-labelledby="terms-head"><div class="content"><h3>Scope of services</h3><p>Coaching includes general fitness guidance, habit support, and general nutrition education. It does not include medical nutrition therapy or medical advice.</p><h3>Eligibility</h3><p>By engaging services, you confirm you are 18+ and medically cleared for exercise. If you have a medical condition, please consult your GP and/or an Accredited Practising Dietitian.</p><h3>Payments & cancellations</h3><p>Payments are in AUD. You can pause or cancel anytime with 48‑hour notice before scheduled calls. Missed sessions without notice may be forfeited.</p><h3>Communication</h3><p>Message support is provided within reasonable hours. I aim to respond within 1–2 business days.</p><h3>Liability</h3><p>By participating, you accept the inherent risks of exercise. To the extent permitted by law, One Path Health Coaching is not liable for injuries or outcomes resulting from improper form or non‑adherence to guidance.</p><h3>Privacy</h3><p>Your information is handled per the <a href="#privacy">Privacy Policy</a>. We do not sell or share your data.</p><h3>Governing law</h3><p>These terms are governed by the laws of Victoria, Australia.</p></div></div></div></div></section>
+</main>
+<footer><div class="wrap" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span>© <span id="y"></span> One Path Health Coaching</span><span style="opacity:.8">ABN coming soon • Public liability & PI insured • Privacy‑first • <a style="color:#e3f6ee" href="#privacy">Privacy</a> • <a style="color:#e3f6ee" href="#terms">Terms</a></span></div></footer>
+<script>
+(()=>{const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);$('#y').textContent=new Date().getFullYear();const d=new Date();$('#ppDate')&&($('#ppDate').textContent=d.toLocaleDateString(void 0,{year:'numeric',month:'long',day:'numeric'}));const t=$('.nav-toggle'),nav=$('#primary-nav');t&&nav&&(t.addEventListener('click',()=>{const o=nav.classList.toggle('open');t.setAttribute('aria-expanded',o)}),nav.querySelectorAll('a,button').forEach(el=>el.addEventListener('click',()=>{nav.classList.remove('open');t.setAttribute('aria-expanded','false')})));const openBooking=()=>window.open('https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3mqABYyAyWhRngVoOsYlBSJ_eDoMJ-RKxBTVtmLka1Vg98ir_0YV_633IHrCjCSpQUIskrQnDc','_blank','noopener');$('#bookCallBtn')?.addEventListener('click',openBooking);$('#heroBookBtn')?.addEventListener('click',openBooking);
+const c=$('#about .carousel');if(c){const slides=[...c.querySelectorAll('.slide')],dots=[...c.querySelectorAll('.dot')];let i=0,h;const show=n=>{slides[i].classList.remove('active');dots[i].classList.remove('active');i=(n+slides.length)%slides.length;slides[i].classList.add('active');dots[i].classList.add('active')};const next=()=>show(i+1),start=()=>h=setInterval(next,5e3),stop=()=>h&&clearInterval(h);c.addEventListener('mouseenter',stop);c.addEventListener('mouseleave',start);dots.forEach((d,idx)=>d.addEventListener('click',()=>{stop();show(idx);start()}));start()}
+$$('.accordion .item').forEach(item=>{const head=item.querySelector('.acc-head'),icon=item.querySelector('.acc-icon'),panel=item.querySelector('.acc-panel');if(!head||!panel)return;head.type='button';const setH=()=>{if(item.classList.contains('open')){panel.style.maxHeight=panel.scrollHeight+'px';icon&&(icon.style.transform='rotate(180deg)');head.setAttribute('aria-expanded','true')}else{panel.style.maxHeight='0px';icon&&(icon.style.transform='rotate(0)');head.setAttribute('aria-expanded','false')}};head.addEventListener('click',()=>{item.classList.toggle('open');setH()});window.addEventListener('resize',()=>{item.classList.contains('open')&&(panel.style.maxHeight=panel.scrollHeight+'px')});setH()});
+const form=$('#intakeForm'),msg=$('#formMsg');function show(type,text){msg&&(msg.className=type,msg.textContent=text)}function ok(e){return/.+@.+\..+/.test(e)}function success(){show('success',"Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire.");const gf=form?.dataset.googleFormLink||'';gf&&setTimeout(()=>{location.href=gf},900);form?.reset()}function mailto(p){const to='bschmitz799@gmail.com',sub=encodeURIComponent('New Coaching Intake'),body=encodeURIComponent(`Name: ${p.name}\nBirthday: ${p.birthday}\nEmail: ${p.email}\nPrimary Goal(s): ${p.goal||''}\nLimits: ${p.limits||''}\nReferral: ${p.ref||''}`);location.href=`mailto:${to}?subject=${sub}&body=${body}`;success()}form?.addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(form),P={name:f.get('name')?.trim(),birthday:f.get('birthday'),email:f.get('email')?.trim(),goal:f.get('goal')?.trim(),limits:f.get('limits')?.trim(),ref:f.get('ref')?.trim()};if($('#website')?.value)return;if(!P.name||!P.birthday||!P.email)return show('error','Please complete name, birthday, and email.');if(!ok(P.email))return show('error','Please enter a valid email.');if(!$('#consent').checked)return show('error','Please agree to the consent to continue.');try{const list=JSON.parse(localStorage.getItem('intakes')||'[]');list.push({...P,ts:Date.now()});localStorage.setItem('intakes',JSON.stringify(list))}catch{}const ep=form.dataset.endpoint?.trim();if(ep){try{const r=await fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(P)});r.ok?success():(show('error','Submission error. Using email instead…'),mailto(P))}catch{show('error','Couldn’t reach the server. Using email instead…');mailto(P)}}else mailto(P)});
+})();
+</script>
+</body></html>
