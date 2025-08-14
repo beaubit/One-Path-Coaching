@@ -9,9 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{ /* Deeper, professional palette */
+    :root{
+      /* Professional, modern green palette */
       --bg:#07140f; --bg-soft:#0b1a14; --panel:#ffffff; --ink:#0f1f17; --muted:#4c6a5a; --accent:#2a7c59; --accent-dark:#1e5f43; --accent-soft:#a7e0c4; --line:#d8e8df; --chip:#e9f6ef; --btnGlow: rgba(255,255,255,.95);
       --onDark: rgba(255,255,255,.92); --onDarkMuted: rgba(255,255,255,.78);
+      --radius:20px; --space:28px; --space-lg:36px;
     }
 
     *{box-sizing:border-box}
@@ -35,67 +37,88 @@
     a:hover{text-decoration:underline}
     a:focus-visible, .btn:focus-visible, .navlink:focus-visible{outline:3px solid var(--accent-soft); outline-offset:3px; border-radius:12px}
 
-    .wrap{max-width:1100px; margin-inline:auto; padding:22px}
+    .wrap{max-width:1100px; margin-inline:auto; padding:16px}
 
-    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.86), rgba(244,250,247,.62)); border-bottom:1px solid #e2efe8}
-    .nav{display:flex; align-items:center; gap:18px;} .nav .spacer{flex:1}
-
-    /* Logo slot — 64x64 (unchanged) */
+    /* Mobile-first header with toggle */
+    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(244,250,247,.92), rgba(244,250,247,.70)); border-bottom:1px solid #e2efe8}
+    .nav{display:flex; align-items:center; gap:12px}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
     .brand-logo{width:64px; height:64px; border-radius:10px; object-fit:cover; display:block}
+    .brand-name{color:#0d231a; font-weight:700}
 
-    /* Header links: text only (no bubble, no glow) */
-    .navlink{padding:6px 0; font-weight:600; color:#163426; border:none; background:transparent; display:inline-block; transform:translateZ(0); transition:transform .18s ease, color .18s ease}
+    .nav-toggle{margin-left:auto; background:transparent; border:0; display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:10px; cursor:pointer}
+    .nav-toggle svg{width:24px; height:24px; color:#163426}
+    .nav-links{position:fixed; left:0; right:0; top:64px; background:rgba(244,250,247,.98); border-bottom:1px solid #e2efe8; max-height:0; overflow:hidden; transition:max-height .3s ease, padding .25s ease; padding:0 16px}
+    .nav-links.open{max-height:260px; padding:10px 16px}
+    .navlinks-row{display:grid; grid-template-columns:1fr; gap:8px; align-items:center}
+    .navlink{padding:10px 0; font-weight:600; color:#163426; border:none; background:transparent; display:block; transform:translateZ(0); transition:transform .18s ease, color .18s ease}
     .navlink:hover{color:var(--accent-dark); transform:scale(1.03)}
 
-    /* Headings & paragraph colors on dark background */
-    h1,h2{color:#ffffff}
-    h3{color:#ffffff}
-    p{color:var(--onDarkMuted); line-height:1.65}
+    /* Desktop header layout */
+    @media (min-width: 880px){
+      .nav{gap:18px}
+      .nav-toggle{display:none}
+      .nav-links{position:static; max-height:none; padding:0; background:transparent; border:0}
+      .navlinks-row{display:flex; gap:14px}
+      .navlink{display:inline-block; padding:6px 0}
+    }
 
-    /* Sections — slightly tighter spacing */
-    section{padding:36px 22px}
-    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px}
+    /* Typography (mobile-first, scalable) */
+    h1{color:#fff; font-size:clamp(24px, 6.4vw, 38px); line-height:1.2; margin:0 0 8px}
+    h2{color:#fff; font-size:clamp(20px, 5.2vw, 28px); line-height:1.25; margin:0}
+    h3{color:#fff; font-size:clamp(18px, 4.6vw, 22px); line-height:1.3; margin:0 0 6px}
+    p, li{font-size:clamp(15px, 4.2vw, 17px); color:var(--onDarkMuted)}
 
-    /* Cards & typographic rhythm */
-    .card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:20px; box-shadow: 0 16px 36px rgba(24,60,42,.18); color:var(--ink)}
-    .card:hover{box-shadow:0 22px 48px rgba(24,60,42,.22)}
-    .card h1, .card h2, .card h3{color:var(--bg)} /* titles in white boxes = deep green */
+    section{padding:var(--space) 16px}
+    @media (min-width: 900px){ .wrap{padding:22px} section{padding:var(--space-lg) 22px} }
+
+    /* Cards */
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px; box-shadow: 0 16px 36px rgba(24,60,42,.18); color:var(--ink)}
+    @media (min-width: 900px){ .card{padding:20px} }
+    .card h1, .card h2, .card h3{color:var(--bg)}
     .card p, .card li, .card .hint{color:var(--muted)}
 
     .pill{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:linear-gradient(180deg,#f2fbf6,#e9f6ef); color:#2a5846; font-size:12px; box-shadow:0 4px 10px rgba(24,60,42,.10)}
 
-    .hero{padding:56px 22px 24px}
-    .hero .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px}
+    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px}
 
-    .kpis{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:14px}
+    /* Hero layout → single column on mobile */
+    .hero .grid{display:grid; grid-template-columns:1fr; gap:16px}
+    @media (min-width: 900px){ .hero .grid{grid-template-columns:1.1fr .9fr; gap:28px}}
+
+    .kpis{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px}
+    @media (min-width: 520px){ .kpis{grid-template-columns:repeat(3,1fr)} }
     .kpis .k{background:var(--chip); border:1px solid var(--line); border-radius:14px; padding:10px 12px; box-shadow:0 6px 16px rgba(24,60,42,.10)}
-    .k strong{display:block; font-size:18px; color:var(--ink)}
-    .k .hint{color:var(--ink)} /* Make caption lines black inside KPI chips */
+    .k strong{display:block; font-size:16px; color:var(--ink)}
+    .k .hint{color:var(--ink)}
 
-    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
-    .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px}
+    .grid-3{display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width: 900px){ .grid-3{grid-template-columns: repeat(3, 1fr); gap:14px} }
+    .grid-2{display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width: 900px){ .grid-2{grid-template-columns: repeat(2, 1fr); gap:14px} }
 
     /* Quote under hero */
-    .quote-inline{padding:6px 22px 24px}
-    .quote-inline .site-quote{margin:0; text-align:center; font-style:italic; font-size:clamp(15px, 1.7vw, 19px); color:#ffffff}
+    .quote-inline{padding:6px 16px 22px}
+    .quote-inline .site-quote{margin:0; text-align:center; font-style:italic; font-size:clamp(14px, 4.2vw, 18px); color:#ffffff}
     .quote-inline .site-quote span{font-weight:600}
 
     /* Carousel */
-    .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:20px; border:1px solid var(--line); background:#eef7f1; box-shadow:0 14px 36px rgba(24,60,42,.12)}
-    .slide{position:absolute; inset:0; opacity:0; transition:opacity .7s ease; display:flex; align-items:center; justify-content:center}
+    .carousel{position:relative; width:100%; aspect-ratio: 4/3; overflow:hidden; border-radius:var(--radius); border:1px solid var(--line); background:#eef7f1; box-shadow:0 14px 36px rgba(24,60,42,.12)}
+    .slide{position:absolute; inset:0; opacity:0; transition:opacity .6s ease; display:flex; align-items:center; justify-content:center}
     .slide.active{opacity:1} .slide img{width:100%; height:100%; object-fit:cover}
     .dots{position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px}
     .dot{width:8px; height:8px; border-radius:50%; background:#ffffffaa; border:1px solid #ffffff; box-shadow:0 0 0 1px #00000022 inset}
     .dot.active{background:#2d7d5a}
 
-    /* Buttons — filled darker green + white glow on hover */
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:var(--accent-dark); color:#fff; border:1px solid #1a563d; box-shadow:0 8px 20px rgba(26,86,61,.28); cursor:pointer; font-weight:600; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease}
-    .btn:hover{filter:brightness(1.03); transform:scale(1.09); box-shadow:0 16px 36px rgba(26,86,61,.38); text-shadow:0 0 10px var(--btnGlow), 0 0 18px var(--btnGlow)}
-    .btn:active{transform:scale(0.97)}
+    /* Buttons — touch-friendly */
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; min-height:44px; border-radius:12px; background:var(--accent-dark); color:#fff; border:1px solid #1a563d; box-shadow:0 8px 20px rgba(26,86,61,.28); cursor:pointer; font-weight:600; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease, text-shadow .22s ease}
+    .btn:hover{filter:brightness(1.03); transform:scale(1.05); box-shadow:0 16px 36px rgba(26,86,61,.38); text-shadow:0 0 10px var(--btnGlow), 0 0 18px var(--btnGlow)}
+    .btn:active{transform:scale(0.98)}
 
     /* Form */
-    form{display:grid; gap:12px} label{font-weight:600; color:#1c372a}
-    input, textarea, select{width:100%; padding:12px 12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #0f1f17; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    form{display:grid; gap:12px}
+    label{font-weight:600; color:#1c372a}
+    input, textarea, select{width:100%; padding:12px; border-radius:12px; color:var(--ink); background:#ffffff; border:1px solid #0f1f17; outline:none; box-shadow:0 6px 16px rgba(0,0,0,.08)}
     input::placeholder, textarea::placeholder{color:#7b9788}
     input:focus, textarea:focus, select:focus{border-color:#0f1f17; box-shadow:0 8px 22px rgba(0,0,0,.12), 0 0 0 3px #9ad4bc66}
 
@@ -108,20 +131,20 @@
     .acc-icon{transition:transform .35s ease}
     .acc-panel{max-height:0; overflow:hidden; opacity:.0; padding:0 16px; transition:max-height .45s ease, opacity .45s ease, padding .3s ease}
     .item.open .acc-panel{opacity:1; padding:0 16px 16px}
-    /* Make legal content text black */
     #legal .content, #legal .content p, #legal .content li { color: var(--ink); }
 
-    /* Offer card: avatar + title row (now 128x128) */
+    /* Offer card: avatar + title row (kept responsive) */
     .offer-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
-    .offer-avatar{width:128px; height:128px; border-radius:10px; object-fit:cover; border:1px solid var(--line); box-shadow:0 10px 20px rgba(24,60,42,.14)}
+    .offer-avatar{width:clamp(96px, 26vw, 128px); height:clamp(96px, 26vw, 128px); border-radius:10px; object-fit:cover; border:1px solid var(--line); box-shadow:0 10px 20px rgba(24,60,42,.14)}
 
-    /* Approach readability enhancements */
+    /* Approach readability */
     #approach .section-title h2{color:#ffffff}
-    #approach ol{color:var(--ink); font-weight:700; font-size:17px;}
+    #approach ol{color:var(--ink); font-weight:700; font-size:clamp(16px, 4.4vw, 17px)}
     #approach li{margin:6px 0}
 
     /* Testimonials */
-    #testimonials .t-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    #testimonials .t-grid{display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width: 900px){ #testimonials .t-grid{grid-template-columns:repeat(3,1fr); gap:14px} }
     #testimonials .t-card{background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:16px; box-shadow:0 14px 36px rgba(24,60,42,.14); color:var(--ink)}
     .ba-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px}
     .ba-box{position:relative}
@@ -130,24 +153,31 @@
     .t-quote{font-size:15px; line-height:1.6; color:#2a5846}
     .t-name{font-weight:700; margin-top:6px}
 
-    @media (max-width: 900px){ .hero .grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} header .nav{gap:10px} #testimonials .t-grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion: reduce){
+      .btn:hover{transform:none; box-shadow:none; text-shadow:none}
+      .slide{transition:none}
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap nav">
-      <a href="#" style="display:flex; align-items:center; gap:12px; text-decoration:none">
-        <!-- Use the file you uploaded in /images -->
+      <a class="brand" href="#">
         <img class="brand-logo" src="images/logo-one-path-health.jpg?v=1" alt="One Path Health logo" />
-        <strong style="color:#0d231a">One Path Health Coaching</strong>
+        <strong class="brand-name">One Path Health Coaching</strong>
       </a>
-      <div class="spacer"></div>
-      <!-- Text-only header links (no bubble/glow) -->
-      <a class="navlink" href="#services">Services</a>
-      <a class="navlink" href="#approach">Approach</a>
-      <a class="navlink" href="#contact">Get Started</a>
-      <button class="btn" id="heroBookBtn" type="button">Book a free intro call</button>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
     </div>
+    <nav id="primary-nav" class="nav-links" aria-label="Primary">
+      <div class="wrap navlinks-row">
+        <a class="navlink" href="#services">Services</a>
+        <a class="navlink" href="#approach">Approach</a>
+        <a class="navlink" href="#contact">Get Started</a>
+        <button class="btn" id="heroBookBtn" type="button">Book a free intro call</button>
+      </div>
+    </nav>
   </header>
 
   <main>
@@ -158,7 +188,7 @@
           <div>
             <h1>Build healthy habits you actually enjoy.</h1>
             <p>Melbourne & online coaching that fits your life—simple training, kinder nutrition, and steady support so results stick.</p>
-            <div style="display:flex; gap:10px; margin-top:12px">
+            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
               <button class="btn" id="bookCallBtn" type="button">Book a free intro call</button>
               <a class="btn" href="#contact">Start your intake</a>
             </div>
@@ -293,19 +323,19 @@
             <div id="formMsg" role="status" aria-live="polite"></div>
             <form id="intakeForm" autocomplete="on" novalidate data-endpoint="" data-google-form-link="https://docs.google.com/forms/d/1uxxEI6G5Q-CvHuDkeM8qIfFZ_8EZdWJb3OzCp5jSaCk/viewform">
               <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" aria-hidden="true">
-              <div class="inline" style="display:flex; gap:12px">
-                <div style="flex:1"><label for="name">Full name</label><input id="name" name="name" type="text" placeholder="Jane Doe" required /></div>
-                <div style="flex:1"><label for="birthday">Birthday</label><input id="birthday" name="birthday" type="date" required /></div>
+              <div class="inline" style="display:flex; gap:12px; flex-wrap:wrap">
+                <div style="flex:1 1 220px"><label for="name">Full name</label><input id="name" name="name" type="text" placeholder="Jane Doe" required /></div>
+                <div style="flex:1 1 180px"><label for="birthday">Birthday</label><input id="birthday" name="birthday" type="date" required /></div>
               </div>
-              <div class="inline" style="display:flex; gap:12px">
-                <div style="flex:1"><label for="suburb">Suburb</label><input id="suburb" name="suburb" type="text" placeholder="Brunswick" /></div>
-                <div style="flex:1"><label for="goal">Primary goal</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" /></div>
+              <div class="inline" style="display:flex; gap:12px; flex-wrap:wrap">
+                <div style="flex:1 1 200px"><label for="suburb">Suburb</label><input id="suburb" name="suburb" type="text" placeholder="Brunswick" /></div>
+                <div style="flex:1 1 260px"><label for="goal">Primary goal</label><input id="goal" name="goal" type="text" placeholder="e.g., lose 5kg, more energy" /></div>
               </div>
               <div><label for="limits">Injuries or limitations (optional)</label><textarea id="limits" name="limits" rows="3" placeholder="Any injuries or movements to avoid?"></textarea></div>
               <div><label for="ref">How did you hear about me?</label><input id="ref" name="ref" type="text" placeholder="Friend, Instagram, flyer" /></div>
               <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
               <div><label class="hint"><input type="checkbox" id="consent" required /> I agree to be contacted about coaching, and I understand this is general nutrition education—not medical nutrition therapy.</label></div>
-              <div class="inline" style="display:flex; gap:10px"><button class="btn" type="submit">Join the list</button><a class="btn" href="#about">How it works</a></div>
+              <div class="inline" style="display:flex; gap:10px; flex-wrap:wrap"><button class="btn" type="submit">Join the list</button><a class="btn" href="#about">How it works</a></div>
               <p class="hint">Your details are kept private and used only to contact you about coaching.</p>
             </form>
           </div>
@@ -326,12 +356,11 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS (NEW) placed below Get Started -->
+    <!-- TESTIMONIALS -->
     <section id="testimonials">
       <div class="wrap">
         <div class="section-title"><h2>Client Stories</h2><span class="pill">Before & After</span></div>
         <div class="t-grid">
-          <!-- Card 1  -->
           <!-- Upload images to: images/testimonials/t1-before.jpg and t1-after.jpg -->
           <article class="t-card">
             <div class="ba-grid">
@@ -341,7 +370,6 @@
             <p class="t-quote">“I finally stopped overthinking. Two simple routines, better food choices, and I’ve got my energy back.”</p>
             <div class="t-name">— J., Brunswick</div>
           </article>
-          <!-- Card 2  -->
           <!-- Upload images to: images/testimonials/t2-before.jpg and t2-after.jpg -->
           <article class="t-card">
             <div class="ba-grid">
@@ -351,7 +379,6 @@
             <p class="t-quote">“Beau broke it down so I could actually stick with it. I’m sleeping better and training feels fun.”</p>
             <div class="t-name">— A., Carlton</div>
           </article>
-          <!-- Card 3  -->
           <!-- Upload images to: images/testimonials/t3-before.jpg and t3-after.jpg -->
           <article class="t-card">
             <div class="ba-grid">
@@ -362,7 +389,7 @@
             <div class="t-name">— S., Fitzroy</div>
           </article>
         </div>
-        <p class="hint" style="margin-top:10px; color:var(--onDarkMuted)">Photos shared with consent. Individual results vary. Replace the placeholders by uploading JPGs to <code>images/testimonials/</code> with the filenames shown above.</p>
+        <p class="hint" style="margin-top:10px; color:var(--onDarkMuted)">Replace the placeholders by uploading JPGs to <code>images/testimonials/</code> with the filenames shown above. Photos shared with consent; individual results vary.</p>
       </div>
     </section>
 
@@ -371,7 +398,6 @@
       <div class="wrap">
         <div class="section-title"><h2>Legal</h2><span class="pill">Privacy & Terms</span></div>
         <div class="accordion" id="legalAcc" style="display:grid; gap:12px">
-          <!-- Privacy -->
           <div class="item" id="privacy">
             <button class="acc-head" aria-expanded="false" aria-controls="privacy-panel" id="privacy-head">
               <span>Privacy Policy <small class="hint" style="font-weight:400">(Last updated: <span id="ppDate"></span>)</small></span>
@@ -404,7 +430,6 @@
               </div>
             </div>
           </div>
-          <!-- Terms -->
           <div class="item" id="terms">
             <button class="acc-head" aria-expanded="false" aria-controls="terms-panel" id="terms-head">
               <span>Terms of Service <small class="hint" style="font-weight:400">(Plain-English summary)</small></span>
@@ -448,6 +473,23 @@
     document.getElementById('y').textContent = new Date().getFullYear();
     (function(){ const d = new Date(); const fmt = d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'}); const el = document.getElementById('ppDate'); if(el) el.textContent = fmt; })();
 
+    // Mobile nav toggle
+    (function(){
+      const toggle = document.querySelector('.nav-toggle');
+      const links = document.getElementById('primary-nav');
+      if(toggle && links){
+        toggle.addEventListener('click', () => {
+          const open = links.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open);
+        });
+        // Close on link click (mobile UX)
+        links.querySelectorAll('a,button').forEach(el => el.addEventListener('click', ()=>{
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+    })();
+
     // Booking buttons → wired to your Google Calendar Appointment Schedule link
     function openBooking(){
       const booking = 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3mqABYyAyWhRngVoOsYlBSJ_eDoMJ-RKxBTVtmLka1Vg98ir_0YV_633IHrCjCSpQUIskrQnDc';
@@ -467,7 +509,7 @@
     function show(type, text){ msg.className = type; msg.textContent = text; } function validEmail(e){ return /.+@.+\..+/.test(e); }
     function onSubmitSuccess(){ show('success', "Thanks! I’ll reply within 1–2 business days with next steps. You’ll now be taken to a short questionnaire."); const gf = form.dataset.googleFormLink || ''; if(gf){ setTimeout(()=>{ window.location.href = gf; }, 900); } form.reset(); }
     function mailtoFallback(payload){ const to = 'bschmitz799@gmail.com'; const subject = encodeURIComponent('New Coaching Intake'); const body = encodeURIComponent(`Name: ${payload.name}\nBirthday: ${payload.birthday}\nEmail: ${payload.email}\nSuburb: ${payload.suburb||''}\nGoal: ${payload.goal||''}\nLimits: ${payload.limits||''}\nReferral: ${payload.ref||''}`); window.location.href = `mailto:${to}?subject=${subject}&body=${body}`; onSubmitSuccess(); }
-    form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), suburb: f.get('suburb')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn't reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
+    form.addEventListener('submit', async (e) => { e.preventDefault(); const f = new FormData(form); const payload = { name: f.get('name')?.trim(), birthday: f.get('birthday'), email: f.get('email')?.trim(), suburb: f.get('suburb')?.trim(), goal: f.get('goal')?.trim(), limits: f.get('limits')?.trim(), ref: f.get('ref')?.trim() }; if((document.getElementById('website')||{}).value){ return; } if(!payload.name || !payload.birthday || !payload.email){ show('error', 'Please complete name, birthday, and email.'); return; } if(!validEmail(payload.email)){ show('error', 'Please enter a valid email.'); return; } if(!document.getElementById('consent').checked){ show('error', 'Please agree to the consent to continue.'); return; } try{ const list = JSON.parse(localStorage.getItem('intakes')||'[]'); list.push({...payload, ts:Date.now()}); localStorage.setItem('intakes', JSON.stringify(list)); }catch(err){} const endpoint = form.dataset.endpoint?.trim(); if(endpoint){ try{ const res = await fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); const data = await res.json().catch(()=>({})); if(res.ok){ onSubmitSuccess(data); } else{ show('error', 'Submission error. Using email instead…'); mailtoFallback(payload); } }catch(err){ show('error', 'Couldn\'t reach the server. Using email instead…'); mailtoFallback(payload); } } else { mailtoFallback(payload); } });
   </script>
 </body>
 </html>
